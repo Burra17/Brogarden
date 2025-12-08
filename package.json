@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://DITT_ANVÄNDARNAMN.github.io/Brogarden2",
+  "homepage": "https://github.com/Burra17/Brogarden",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

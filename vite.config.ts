@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 // base måste matcha namnet på ditt repository
 export default defineConfig({
   plugins: [react()],
-  base: '/Brogarden2/', 
+  base: '/Brogarden/', 
   build: {
     outDir: 'dist',
   },

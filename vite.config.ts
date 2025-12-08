@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 // T.ex. om ditt repo heter "brogarden-web", ska det stå base: '/brogarden-web/'
 export default defineConfig({
   plugins: [react()],
-  base: '/REPO_NAMN/', 
+  base: '/Brogarden/', 
   build: {
     outDir: 'dist',
   },

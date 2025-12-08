@@ -1,20 +1,31 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Brogården Webbplats
 
-# Run and deploy your AI Studio app
+Detta är källkoden för Brogårdens hemsida byggd med React och Vite.
 
-This contains everything you need to run your app locally.
+## Kom igång
 
-View your app in AI Studio: https://ai.studio/apps/drive/1vh1cvB_iLj5AX_na7FaNai5kAmK3Ck0f
+1. **Installera:**
+   ```bash
+   npm install
+   ```
 
-## Run Locally
+2. **Kör lokalt (utvecklingsläge):**
+   ```bash
+   npm run dev
+   ```
+   Öppna länken som visas i terminalen.
 
-**Prerequisites:**  Node.js
+## Publicera till GitHub Pages
 
+Innan du publicerar måste du konfigurera repo-namnet:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Öppna `vite.config.ts` och ändra `base: '/REPO_NAMN/'` till namnet på ditt GitHub-repository (t.ex. `/brogarden/`).
+2. Öppna `package.json` och ändra `"homepage"` till din fullständiga URL (t.ex. `https://dittnamn.github.io/brogarden`).
+
+**Kör sedan:**
+
+```bash
+npm run deploy
+```
+
+Detta bygger sidan och laddar upp den till `gh-pages` grenen.

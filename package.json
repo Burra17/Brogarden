@@ -3,10 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://DITT_ANVÄNDARNAMN.github.io/brogarden-webb",
+  "homepage": "https://DITT_ANVÄNDARNAMN.github.io/REPO_NAMN",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
   },

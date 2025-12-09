@@ -84,7 +84,9 @@ const accommodations: AccommodationItem[] = [
     ],
     images: [
       getImg('stuga-nystugan-1.jpg'),
-      getImg('stuga-nystugan-2.jpg')
+      getImg('stuga-nystugan-2.jpg'),
+      getImg('stuga-nystugan-3.jpg'),
+      getImg('stuga-nystugan-4.jpg')
     ]
   },
   {
@@ -121,7 +123,9 @@ const accommodations: AccommodationItem[] = [
     images: [
       getImg('stuga-osterstugan-1.jpg'),
       getImg('stuga-osterstugan-2.jpg'),
-      getImg('stuga-osterstugan-3.jpg')
+      getImg('stuga-osterstugan-3.jpg'),
+      getImg('stuga-osterstugan-4.jpg'),
+      getImg('stuga-osterstugan-5.jpg')
     ]
   },
   // Venue

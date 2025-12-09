@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
 
-// Helper to get correct path regardless of deployment (GitHub Pages etc)
+// Helper to get correct path using relative path
 const getImg = (path: string) => {
-    const meta = import.meta as any;
-    const baseUrl = meta.env?.BASE_URL ?? '/';
-    return `${baseUrl}images/${path}?v=10`;
+    // Vi använder ./ för att säga "leta i mappen där vi är just nu"
+    // Detta funkar ofta bättre på GitHub Pages om namnen strular
+    return `./images/${path}`;
 };
 
 const Home: React.FC = () => {

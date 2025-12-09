@@ -6,7 +6,7 @@ import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
 const getImg = (path: string) => {
     const meta = import.meta as any;
     const baseUrl = meta.env?.BASE_URL ?? '/';
-    return `${baseUrl}images/${path}?=3`;
+    return `${baseUrl}images/${path}?v=3`;
 };
 
 const Home: React.FC = () => {

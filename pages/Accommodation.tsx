@@ -17,6 +17,13 @@ import { Link } from 'react-router-dom';
 import { AccommodationItem } from '../types';
 import ImageLightbox from '../components/ImageLightbox';
 
+// Helper to get correct path regardless of deployment
+const getImg = (path: string) => {
+  const meta = import.meta as any;
+  const baseUrl = meta.env?.BASE_URL ?? '/';
+  return `${baseUrl}images/${path}`;
+};
+
 const accommodations: AccommodationItem[] = [
   // Outdoors
   {
@@ -35,9 +42,9 @@ const accommodations: AccommodationItem[] = [
       { icon: Home, label: 'Servicehus' }
     ],
     images: [
-      'https://picsum.photos/seed/camping1/1200/800', 
-      'https://picsum.photos/seed/camping2/1200/800',
-      'https://picsum.photos/seed/camping3/1200/800'
+      getImg('camping-main.jpg'), 
+      getImg('camping-detail-1.jpg'),
+      getImg('camping-detail-2.jpg')
     ]
   },
   // Rooms
@@ -57,9 +64,9 @@ const accommodations: AccommodationItem[] = [
       { icon: Utensils, label: 'Tillgång till kök' }
     ],
     images: [
-      'https://picsum.photos/seed/roomblue/1200/800', 
-      'https://picsum.photos/seed/roomsolo/1200/800',
-      'https://picsum.photos/seed/kitchen/1200/800'
+      getImg('room-blue.jpg'), 
+      getImg('room-solo.jpg'),
+      getImg('room-kitchen.jpg')
     ]
   },
   // Cottages
@@ -76,8 +83,8 @@ const accommodations: AccommodationItem[] = [
       { icon: Utensils, label: 'Kök i huvudbyggnad' }
     ],
     images: [
-      'https://picsum.photos/seed/nystugan/1200/800',
-      'https://picsum.photos/seed/nystuganinterior/1200/800'
+      getImg('stuga-nystugan-1.jpg'),
+      getImg('stuga-nystugan-2.jpg')
     ]
   },
   {
@@ -92,8 +99,8 @@ const accommodations: AccommodationItem[] = [
       { icon: ShowerHead, label: 'Servicehus nära' }
     ],
     images: [
-      'https://picsum.photos/seed/lillstugan/1200/800',
-      'https://picsum.photos/seed/lillstugan2/1200/800'
+      getImg('stuga-lillstugan-1.jpg'),
+      getImg('stuga-lillstugan-2.jpg')
     ]
   },
   {
@@ -112,9 +119,9 @@ const accommodations: AccommodationItem[] = [
       { icon: Bed, label: '3 Sovrum' }
     ],
     images: [
-      'https://picsum.photos/seed/osterstugan/1200/800',
-      'https://picsum.photos/seed/osterstuganinterior/1200/800',
-      'https://picsum.photos/seed/osterstugankitchen/1200/800'
+      getImg('stuga-osterstugan-1.jpg'),
+      getImg('stuga-osterstugan-2.jpg'),
+      getImg('stuga-osterstugan-3.jpg')
     ]
   },
   // Venue
@@ -131,8 +138,8 @@ const accommodations: AccommodationItem[] = [
       { icon: Mic, label: 'Ljudsystem' }
     ],
     images: [
-      'https://picsum.photos/seed/church/1200/800',
-      'https://picsum.photos/seed/church2/1200/800'
+      getImg('venue-kyrksal-1.jpg'),
+      getImg('venue-kyrksal-2.jpg')
     ]
   }
 ];
@@ -153,6 +160,10 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
       >
         <img 
           src={item.images[0]} 
+          onError={(e) => {
+             // Fallback during setup
+             e.currentTarget.src = `https://picsum.photos/seed/${item.id}/1200/800`;
+          }}
           alt={item.title} 
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
@@ -240,7 +251,8 @@ const Accommodation: React.FC = () => {
       <section className="relative h-[50vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <img 
-            src="https://picsum.photos/seed/accommodationhero/1920/800" 
+            src={getImg('camping-main.jpg')}
+            onError={(e) => e.currentTarget.src = 'https://picsum.photos/seed/accommodationhero/1920/800'}
             alt="Boende" 
             className="w-full h-full object-cover"
           />

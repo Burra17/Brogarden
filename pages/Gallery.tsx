@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { ZoomIn } from 'lucide-react';
 import ImageLightbox from '../components/ImageLightbox';
 
+// Helper to get correct path regardless of deployment
+const getImg = (path: string) => {
+  const meta = import.meta as any;
+  const baseUrl = meta.env?.BASE_URL ?? '/';
+  return `${baseUrl}images/${path}`;
+};
+
 const images = Array.from({ length: 12 }).map((_, i) => ({
   id: i,
-  url: `https://picsum.photos/seed/brogarden${i}/1200/800`,
+  url: getImg(`gallery-${i + 1}.jpg`),
   caption: `Brogården miljö ${i + 1}`
 }));
 
@@ -40,6 +47,7 @@ const Gallery: React.FC = () => {
             >
               <img 
                 src={img.url} 
+                onError={(e) => e.currentTarget.src = `https://picsum.photos/seed/brogarden${index}/1200/800`}
                 alt={img.caption} 
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />

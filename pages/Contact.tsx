@@ -1,13 +1,21 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 
+// Helper to get correct path regardless of deployment
+const getImg = (path: string) => {
+  const meta = import.meta as any;
+  const baseUrl = meta.env?.BASE_URL ?? '/';
+  return `${baseUrl}images/${path}`;
+};
+
 const Contact: React.FC = () => {
   return (
     <>
       <section className="relative h-[40vh] bg-brand-dark flex items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
            <img 
-            src="https://picsum.photos/seed/contact/1920/600" 
+            src={getImg('contact-hero.jpg')}
+            onError={(e) => e.currentTarget.src = 'https://picsum.photos/seed/contact/1920/600'}
             alt="Kontakt bakgrund" 
             className="w-full h-full object-cover opacity-30"
           />

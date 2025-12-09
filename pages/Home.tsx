@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
 
+// Helper to get correct path regardless of deployment (GitHub Pages etc)
+const getImg = (path: string) => {
+  const meta = import.meta as any;
+  const baseUrl = meta.env?.BASE_URL ?? '/';
+  return `${baseUrl}images/${path}`;
+};
+
 const Home: React.FC = () => {
   return (
     <>
@@ -10,7 +17,8 @@ const Home: React.FC = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://picsum.photos/seed/brogardenhero/1920/1080" 
+            src={getImg('home-hero.jpg')}
+            onError={(e) => e.currentTarget.src = 'https://picsum.photos/seed/brogardenhero/1920/1080'} // Fallback if file missing
             alt="Brogården natur" 
             className="w-full h-full object-cover"
           />
@@ -81,10 +89,15 @@ const Home: React.FC = () => {
       
       {/* Decorative Image Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 h-64">
-        <img src="https://picsum.photos/seed/camp1/800/600" alt="Natur" className="w-full h-full object-cover" />
-        <img src="https://picsum.photos/seed/camp2/800/600" alt="Stuga" className="w-full h-full object-cover" />
-        <img src="https://picsum.photos/seed/camp3/800/600" alt="Vatten" className="w-full h-full object-cover" />
-        <img src="https://picsum.photos/seed/camp4/800/600" alt="Lägereld" className="w-full h-full object-cover" />
+        {[1, 2, 3, 4].map((num) => (
+          <img 
+            key={num}
+            src={getImg(`collage-${num}.jpg`)} 
+            onError={(e) => e.currentTarget.src = `https://picsum.photos/seed/camp${num}/800/600`}
+            alt="Natur och miljö" 
+            className="w-full h-full object-cover" 
+          />
+        ))}
       </div>
     </>
   );

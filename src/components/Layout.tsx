@@ -90,7 +90,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         {/* Mobile Nav Overlay */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 flex flex-col p-4 animate-in slide-in-from-top-2">
+          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 flex flex-col p-4 animate-slide-in-from-top-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}

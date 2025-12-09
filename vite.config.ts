@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Konfiguration för GitHub Pages
-// base måste matcha namnet på ditt repository
-export default defineConfig({
+// Konfiguration som hanterar både lokal utveckling och GitHub Pages
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  base: '/Brogarden2/', 
+  // Använd '/' lokalt, men '/Brogarden2/' när vi bygger för produktion
+  base: mode === 'production' ? '/Brogarden2/' : '/',
   build: {
     outDir: 'dist',
   },
-});
+}));

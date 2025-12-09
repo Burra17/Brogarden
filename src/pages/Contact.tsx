@@ -79,8 +79,7 @@ const Contact: React.FC = () => {
             {/* Map */}
             <div className="h-[400px] lg:h-auto rounded-2xl overflow-hidden shadow-md border-4 border-white">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30804.88785721834!2d17.03043235688562!3d61.61664406282862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4660a4f6655c69b9%3A0x6cce8780727022d0!2sNjut%C3%A5nger!5e0!3m2!1ssv!2sse!4v1709635000000!5m2!1ssv!2sse"
-                width="100%"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d670.8238309460805!2d17.05760210743399!3d61.60453610011577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4666a56245e8a553%3A0xdacf9e633bf295!2sBrog%C3%A5rden!5e0!3m2!1ssv!2sse!4v1765299227222!5m2!1ssv!2sse"
                 height="100%"
                 style={{border: 0}}
                 allowFullScreen={true}

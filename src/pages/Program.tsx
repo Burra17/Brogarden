@@ -20,9 +20,8 @@ const Program: React.FC = () => {
               Kalender
             </h2>
             <div className="aspect-[4/3] w-full bg-gray-50 rounded-lg overflow-hidden">
-              {/* Embedding a public holiday calendar as placeholder since no specific ID was provided */}
               <iframe 
-                src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FStockholm&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&src=c3Yuc3dlZGlzaCNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%230B8043" 
+                src="https://calendar.google.com/calendar/embed?src=c_cafb2e4b853878b7445efc043ac1c561419a4c70903456cb06bf4cfa3feb097c%40group.calendar.google.com&ctz=Europe%2FStockholm" 
                 style={{border: 0}} 
                 width="100%" 
                 height="100%" 
@@ -38,9 +37,8 @@ const Program: React.FC = () => {
             <h2 className="text-2xl font-bold mb-6">Kommande höjdpunkter</h2>
             <div className="space-y-4">
               {[
-                { title: 'Sommarläger', date: '15-20 Juli', time: 'Hela veckan', desc: 'Läger för barn 10-14 år. Lek, bad och bibel.' },
-                { title: 'Friluftsgudstjänst', date: '28 Juli', time: '11:00', desc: 'Vi firar gudstjänst nere vid vattnet. Ta med kaffekorg.' },
-                { title: 'Arbetsdag', date: '24 Aug', time: '09:00 - 15:00', desc: 'Vi hjälps åt att fixa inför hösten. Korvgrillning ingår.' },
+                { title: 'Valborg', date: '30 April', time: '11:00', desc: 'Vårsånger med Njutånger-Iggesundskyrkokör. Vårtal och servering. Varmt välkommen!' },
+                { title: 'Sommarläger', date: '11-13 Augusti', time: '12:00', desc: 'Välkommen till vårt populära sångläger för barn och unga! Vi sjunger, umgås och har roligt tillsammans.' },
               ].map((event, idx) => (
                 <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-brand-lightGreen transition-colors group">
                   <div className="flex items-center gap-3 text-brand-green font-semibold mb-2">

@@ -1,13 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
-
-// Helper to get correct path using relative path
-const getImg = (path: string) => {
-    // Vi använder ./ för att säga "leta i mappen där vi är just nu"
-    // Detta funkar ofta bättre på GitHub Pages om namnen strular
-    return `./images/${path}`;
-};
+import { getImg } from '../utils/imageHelper';
 
 const Home: React.FC = () => {
     return (

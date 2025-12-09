@@ -16,13 +16,7 @@ import {
 import { Link } from 'react-router-dom';
 import { AccommodationItem } from '../types';
 import ImageLightbox from '../components/ImageLightbox';
-
-// Helper to get correct path regardless of deployment
-const getImg = (path: string) => {
-  const meta = import.meta as any;
-  const baseUrl = meta.env?.BASE_URL ?? '/';
-  return `${baseUrl}images/${path}`;
-};
+import { getImg } from '../utils/imageHelper';
 
 const accommodations: AccommodationItem[] = [
   // Outdoors

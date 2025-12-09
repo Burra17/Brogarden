@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { ZoomIn } from 'lucide-react';
 import ImageLightbox from '../components/ImageLightbox';
-
-// Helper to get correct path regardless of deployment
-const getImg = (path: string) => {
-  const meta = import.meta as any;
-  const baseUrl = meta.env?.BASE_URL ?? '/';
-  return `${baseUrl}images/${path}`;
-};
+import { getImg } from '../utils/imageHelper';
 
 const images = Array.from({ length: 12 }).map((_, i) => ({
   id: i,

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import PageHero from '../components/PageHero'; // <--- Importera komponenten
-import { getImg } from '../utils/imageHelper';
 
 const Contact: React.FC = () => {
     return (

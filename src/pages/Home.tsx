@@ -7,7 +7,7 @@ const Home: React.FC = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative h-screen flex items-center justify-center overflow-hidden">
+            <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -26,7 +26,7 @@ const Home: React.FC = () => {
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6 animate-fade-in-up drop-shadow-2xl">
                         Välkommen till Brogården!
                     </h1>
-                    <p className="text-lg md:text-2xl max-w-2xl mx-auto mb-8 font-light leading-relaxed drop-shadow-xl text-white/95">
+                    <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8 font-medium leading-relaxed drop-shadow-xl text-white/95">
                         Lägergård, vandrarhem och EFS-kyrka i lugn och naturskön miljö nära havet. En plats för vila, gemenskap och glädje.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">

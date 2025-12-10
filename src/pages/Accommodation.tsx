@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ImageLightbox from '../components/ImageLightbox';
-import PageHero from '../components/PageHero'; // <--- Vi använder din nya komponent
+import PageHero from '../components/PageHero';
 import { getImg } from '../utils/imageHelper';
 
 // Vi definierar typen här för säkerhets skull så att koden fungerar direkt
@@ -257,7 +257,7 @@ const Accommodation: React.FC = () => {
     return (
         <div className="bg-brand-cream/30 min-h-screen">
 
-            {/* --- HERO SEKTION (Ny enhetlig topp) --- */}
+            {/* --- HERO SEKTION --- */}
             <PageHero
                 title="Bo hos oss"
                 subtitle="Från mysiga stugor till natursköna tältplatser."
@@ -265,10 +265,11 @@ const Accommodation: React.FC = () => {
             />
 
             {/* Main List */}
-            <div className="container mx-auto px-4 py-20">
+            {/* HÄR ÄR ÄNDRINGEN: Bytte 'py-20' till 'pb-20' för att ta bort utrymmet i toppen */}
+            <div className="container mx-auto px-4 pb-20 -mt-12">
 
                 {/* Filter/Categories Header */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-5">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">Våra boendealternativ</h2>
                     <div className="w-16 h-1 bg-brand-lightGreen mx-auto rounded-full"></div>
                     <p className="mt-4 text-gray-500">Klicka på bilderna för att se fler foton</p>

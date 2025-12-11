@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Menu, X, Facebook, Mail, Phone, MapPin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
@@ -120,8 +120,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 En plats för vila, gemenskap och glädje i Njutångers vackra natur.
                             </p>
                             <div className="flex space-x-4">
-                                <a href="#" className="hover:text-brand-lightGreen transition-colors"><Facebook size={20} /></a>
-                                <a href="#" className="hover:text-brand-lightGreen transition-colors"><Instagram size={20} /></a>
+                                <a
+                                    href="https://www.facebook.com/BrogardenEFSNjutanger"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-brand-lightGreen transition-colors"
+                                    aria-label="Besök oss på Facebook"
+                                >
+                                    <Facebook size={30} />
+                                </a>
                             </div>
                         </div>
 

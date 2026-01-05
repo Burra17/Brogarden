@@ -34,8 +34,8 @@ const accommodations: AccommodationItem[] = [
     // Outdoors
     {
         id: 'camping',
-        title: 'Camping & Tältplats',
-        description: 'Vacker utemiljö med gröna ytor, närhet till vattnet och flera sittplatser runt området. Perfekt för avkoppling, grillning eller lek för barnen.',
+        title: 'Ställplats för husvagn/bil och tält.',
+        description: 'Vacker utemiljö med grönytor, närhet till vatten och flera sittplatser runt området. Perfekt för avkoppling, grillning eller lek för barnen.',
         type: 'Outdoor',
         tags: [{ label: 'Natur', color: 'bg-green-100 text-green-800' }],
         price: [
@@ -260,7 +260,7 @@ const Accommodation: React.FC = () => {
             {/* --- HERO SEKTION --- */}
             <PageHero
                 title="Bo hos oss"
-                subtitle="Från mysiga stugor till natursköna tältplatser."
+                subtitle="Prisvärt boende för små och stora sällskap."
                 backgroundImage="camping-main.jpg"
             />
 

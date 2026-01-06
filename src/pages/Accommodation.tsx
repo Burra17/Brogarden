@@ -53,27 +53,34 @@ const accommodations: AccommodationItem[] = [
             getImg('camping-detail-2.jpg')
         ]
     },
-    // Rooms
+    // Rooms - Nu uppdelade i två block
     {
-        id: 'rooms',
-        title: 'Blårummet & Solorummet',
-        description: 'Våra trevliga rum inne i huvudbyggnaden. Perfekt för dig som vill ha nära till kök och sällskapsytor.',
+        id: 'blarummet',
+        title: 'Blårummet',
+        description: 'Ett trevligt rum inne i Kyrkbyggnaden.',
         type: 'Room',
         tags: [{ label: 'Rum', color: 'bg-blue-100 text-blue-800' }],
-        price: [
-            { amount: '400 kr', unit: 'Blårummet' },
-            { amount: '300 kr', unit: 'Solorummet' }
-        ],
+        price: [{ amount: '400 kr', unit: '/ natt' }],
         features: [
             { icon: Users, label: 'Toalett intill' },
-            { icon: ShowerHead, label: 'Gemensam dusch' },
-            { icon: Utensils, label: 'Tillgång till kök' }
+            { icon: ShowerHead, label: 'Gemensam dusch i servicehus' },
+            { icon: Home, label: 'Tillgång till servicehus' }
         ],
-        images: [
-            getImg('room-blue.jpg'),
-            getImg('room-solo.jpg'),
-            getImg('room-kitchen.jpg')
-        ]
+        images: [getImg('room-blue.jpg')] // Endast en bild
+    },
+    {
+        id: 'solorummet',
+        title: 'Solorummet',
+        description: 'Ett mysigt mindre rum inne i Kyrkbyggnaden. Lugnt och skönt för dig som reser på egen hand eller vill ha ett eget krypin.',
+        type: 'Room',
+        tags: [{ label: 'Rum', color: 'bg-blue-100 text-blue-800' }],
+        price: [{ amount: '300 kr', unit: '/ natt' }],
+        features: [
+            { icon: Users, label: 'Toalett intill' },
+            { icon: ShowerHead, label: 'Gemensam dusch i servicehus' },
+            { icon: Home, label: 'Tillgång till servicehus' }
+        ],
+        images: [getImg('room-solo.jpg')] // Endast en bild
     },
     // Cottages
     {

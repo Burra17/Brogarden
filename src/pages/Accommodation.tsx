@@ -7,7 +7,7 @@ import {
     Users,
     Utensils,
     ShowerHead,
-    Trees,
+    //Trees,
     Music,
     Mic,
     CalendarCheck,
@@ -39,13 +39,13 @@ const accommodations: AccommodationItem[] = [
         type: 'Outdoor',
         tags: [{ label: 'Natur', color: 'bg-green-100 text-green-800' }],
         price: [
-            { amount: '200 kr', unit: '/ natt (Husbil)' },
+            { amount: '200 kr', unit: '/ natt (Husvagn/bil)' },
             { amount: '150 kr', unit: '/ natt (Tält)' }
         ],
         features: [
             { icon: Zap, label: 'Elstolpe' },
             { icon: Droplets, label: 'Vatten' },
-            { icon: Home, label: 'Servicehus' }
+            { icon: Home, label: 'Huvudbyggnad' }
         ],
         images: [
             getImg('camping-main.jpg'),
@@ -56,29 +56,29 @@ const accommodations: AccommodationItem[] = [
     // Rooms - Nu uppdelade i två block
     {
         id: 'blarummet',
-        title: 'Blårummet',
-        description: 'Ett trevligt rum inne i Kyrkbyggnaden.',
+        title: 'Blå rummet',
+        description: 'Ett trevligt dubbelrum i södra gaveln av Kyrkbyggnaden.',
         type: 'Room',
         tags: [{ label: 'Rum', color: 'bg-blue-100 text-blue-800' }],
-        price: [{ amount: '400 kr', unit: '/ natt' }],
+        price: [{ amount: '200 kr', unit: '/ natt' }],
         features: [
             { icon: Users, label: 'Toalett intill' },
-            { icon: ShowerHead, label: 'Gemensam dusch i servicehus' },
-            { icon: Home, label: 'Tillgång till servicehus' }
+            { icon: ShowerHead, label: 'Gemensam dusch i huvudbyggnad' },
+            { icon: Home, label: 'Tillgång till kök i huvudbyggnad' }
         ],
         images: [getImg('room-blue.jpg')] // Endast en bild
     },
     {
         id: 'solorummet',
         title: 'Solorummet',
-        description: 'Ett mysigt mindre rum inne i Kyrkbyggnaden. Lugnt och skönt för dig som reser på egen hand eller vill ha ett eget krypin.',
+        description: 'Ett litet rum i södra gaveln av kyrkobyggnaden med närhet till toalett.',
         type: 'Room',
         tags: [{ label: 'Rum', color: 'bg-blue-100 text-blue-800' }],
-        price: [{ amount: '300 kr', unit: '/ natt' }],
+        price: [{ amount: '200 kr', unit: '/ natt' }],
         features: [
             { icon: Users, label: 'Toalett intill' },
-            { icon: ShowerHead, label: 'Gemensam dusch i servicehus' },
-            { icon: Home, label: 'Tillgång till servicehus' }
+            { icon: ShowerHead, label: 'Gemensam dusch i huvudbyggnad' },
+            { icon: Home, label: 'Tillgång till kök i huvudbyggnad' }
         ],
         images: [getImg('room-solo.jpg')] // Endast en bild
     },
@@ -92,7 +92,6 @@ const accommodations: AccommodationItem[] = [
         price: [{ amount: '600 kr', unit: '/ natt' }],
         features: [
             { icon: Bed, label: '5 Bäddar' },
-            { icon: Trees, label: 'Veranda' },
             { icon: Utensils, label: 'Kök i huvudbyggnad' }
         ],
         images: [
@@ -105,13 +104,14 @@ const accommodations: AccommodationItem[] = [
     {
         id: 'lillstugan',
         title: 'Lillstugan',
-        description: 'Mysig mindre stuga med fyra bäddar i våningssängar. Perfekt för det lilla sällskapet.',
+        description: 'Mysig mindre stuga med fyra bäddar i våningssängar. Här får även hunden sova över.',
         type: 'Cottage',
         tags: [{ label: 'Stuga', color: 'bg-red-100 text-red-800' }],
         price: [{ amount: '500 kr', unit: '/ natt' }],
         features: [
             { icon: Bed, label: '4 Bäddar' },
-            { icon: ShowerHead, label: 'Servicehus nära' }
+            { icon: ShowerHead, label: 'WC/dusch i huvudbyggnad' },
+            { icon: Utensils, label: 'Kök i huvudbyggnad' }
         ],
         images: [
             getImg('stuga-lillstugan-1.jpg'),
@@ -121,17 +121,20 @@ const accommodations: AccommodationItem[] = [
     {
         id: 'osterstugan',
         title: 'Österstugan',
-        description: 'Vårt största boende med tre sovrum och ett sällskapsrum. Passar utmärkt för större sällskap eller konferensgrupper.',
+        description: 'Vårt största boende med tre sovrum och ett sällskapsrum.',
         type: 'Cottage',
         tags: [{ label: 'Stort hus', color: 'bg-red-100 text-red-800' }],
         price: [
             { amount: '800 kr', unit: '/ hela huset' },
-            { amount: '400 kr', unit: '/ rum' }
+            { amount: '400 kr', unit: '/ rum' },
+            { amount: '150 kr', unit: '/ bädd' }
         ],
         features: [
             { icon: Users, label: '1–8 Bäddar' },
             { icon: Home, label: 'Sällskapsrum' },
-            { icon: Bed, label: '3 Sovrum' }
+            { icon: Bed, label: '3 Sovrum' },
+            { icon: Utensils, label: 'Kök i huvudbyggnad' },
+            { icon: ShowerHead, label: 'WC/dusch i huvudbyggnad' }
         ],
         images: [
             getImg('stuga-osterstugan-1.jpg'),
@@ -144,8 +147,8 @@ const accommodations: AccommodationItem[] = [
     // Venue
     {
         id: 'kyrksal',
-        title: 'Kyrksal & Samlingssal',
-        description: 'Flexibel samlingssal för konferens, gudstjänst eller fest. Utrustad med elpiano och ljudanläggning.',
+        title: 'Kyrksal/Samlingssal',
+        description: 'Flexibel samlingssal för gudstjänster, föredrag, sång och musik etc. Utrustad med 80 lösa stolar, elpiano och ljudanläggning.',
         type: 'Venue',
         tags: [{ label: 'Lokal', color: 'bg-gray-100 text-gray-800' }],
         price: [{ amount: 'Kontakta oss', unit: 'för pris' }],

@@ -7,7 +7,6 @@ import {
     Users,
     Utensils,
     ShowerHead,
-    //Trees,
     Music,
     Mic,
     CalendarCheck,
@@ -18,7 +17,7 @@ import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero';
 import { getImg } from '../utils/imageHelper';
 
-// Vi definierar typen här för säkerhets skull så att koden fungerar direkt
+// Definition av typen för boendeobjekt
 interface AccommodationItem {
     id: string;
     title: string;
@@ -48,12 +47,11 @@ const accommodations: AccommodationItem[] = [
             { icon: Home, label: 'Huvudbyggnad' }
         ],
         images: [
-            getImg('camping-main.jpg'),
             getImg('camping-detail-1.jpg'),
             getImg('camping-detail-2.jpg')
         ]
     },
-    // Rooms - Nu uppdelade i två block
+    // Rooms - Uppdelade i två block
     {
         id: 'blarummet',
         title: 'Blå rummet',
@@ -66,7 +64,7 @@ const accommodations: AccommodationItem[] = [
             { icon: ShowerHead, label: 'Gemensam dusch i huvudbyggnad' },
             { icon: Home, label: 'Tillgång till kök i huvudbyggnad' }
         ],
-        images: [getImg('room-blue.jpg')] // Endast en bild
+        images: [getImg('room-blue.jpg')]
     },
     {
         id: 'solorummet',
@@ -80,7 +78,7 @@ const accommodations: AccommodationItem[] = [
             { icon: ShowerHead, label: 'Gemensam dusch i huvudbyggnad' },
             { icon: Home, label: 'Tillgång till kök i huvudbyggnad' }
         ],
-        images: [getImg('room-solo.jpg')] // Endast en bild
+        images: [getImg('room-solo.jpg')]
     },
     // Cottages
     {
@@ -160,6 +158,25 @@ const accommodations: AccommodationItem[] = [
         images: [
             getImg('venue-kyrksal-1.jpg'),
             getImg('venue-kyrksal-2.jpg')
+        ]
+    },
+    // Huvudbyggnad
+    {
+        id: 'huvudbyggnad',
+        title: 'Huvudbyggnaden',
+        description: 'När du bor på Brogården får du tillgång till den gemensamma huvudbyggnaden. Här finns ett stort kök med grundläggande utrustning. Matsal för ca 40 personer och även matplatser utomhus.',
+        type: 'Venue',
+        tags: [{ label: 'Gemensamma utrymmen', color: 'bg-amber-100 text-amber-800' }],
+        price: [{ amount: 'Ingår', unit: 'för gäster' }],
+        features: [
+            { icon: Users, label: '4 st WC (2 per plan)' },
+            { icon: ShowerHead, label: '2 st Duschar (1 per plan)' },
+            { icon: Utensils, label: 'Matsal 40 personer' },
+            { icon: Home, label: 'Kök med kyl, frys, spisar, diskmaskin, micro, kaffebryggare.' }
+        ],
+        images: [
+            getImg('main-building-reception.jpg'),
+            getImg('main-building-dining.jpg')
         ]
     }
 ];
@@ -266,19 +283,13 @@ const Accommodation: React.FC = () => {
 
     return (
         <div className="bg-brand-cream/30 min-h-screen">
-
-            {/* --- HERO SEKTION --- */}
             <PageHero
                 title="Bo hos oss"
                 subtitle="Prisvärt boende för små och stora sällskap."
                 backgroundImage="camping-main.jpg"
             />
 
-            {/* Main List */}
-            {/* HÄR ÄR ÄNDRINGEN: Bytte 'py-20' till 'pb-20' för att ta bort utrymmet i toppen */}
             <div className="container mx-auto px-4 pb-20 -mt-12">
-
-                {/* Filter/Categories Header */}
                 <div className="text-center mb-5">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">Våra boendealternativ</h2>
                     <div className="w-16 h-1 bg-brand-lightGreen mx-auto rounded-full"></div>
@@ -293,7 +304,6 @@ const Accommodation: React.FC = () => {
                         onOpenGallery={handleOpenGallery}
                     />
                 ))}
-
             </div>
 
             <ImageLightbox

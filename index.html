@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="/Brogarden/logo.png" />
+
+    <title>Brogården – Vandrarhem & Lägergård i Njutånger</title>
+    <meta name="description" content="Brogården – prisvärt och hemtrevligt boende nära natur och vatten. Perfekt för familjer, vandrare och grupper.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#2F5233',
+                            lightGreen: '#76B041',
+                            cream: '#F7F5E6',
+                            dark: '#1A202C',
+                            blue: '#4A90E2',
+                            red: '#E53E3E'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'slide-in-from-top-2': 'slideInFromTop 0.2s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInFromTop: {
+                            '0%': { transform: 'translateY(-10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <script type="importmap">
+        {
+          "imports": {
+            "react": "https://aistudiocdn.com/react@^19.2.1",
+            "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+            "react/": "https://aistudiocdn.com/react@^19.2.1/",
+            "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+            "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.10.1",
+            "vite": "https://aistudiocdn.com/vite@^7.2.7",
+            "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.2"
+          }
+        }
+    </script>
+  <script type="module" crossorigin src="/Brogarden/assets/index-DRQZRwv1.js"></script>
+</head>
+<body class="bg-brand-cream text-gray-800 font-sans antialiased">
+    <div id="root"></div>
+</body>
+</html>

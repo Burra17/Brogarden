@@ -4,7 +4,7 @@ Welcome to the official repository for the **Brogården** website! This project 
 The site is built with a focus on **serenity and clarity**, utilizing earthy tones, crisp typography, and smooth interactions to reflect the peaceful atmosphere of Brogården.
 
 ## 🚀 Live Demo
-*[Link to live site would go here]*
+*[https://burra17.github.io/Brogarden/#/]*
 
 ## ✨ Key Features
 *   **🌲 Nature-Inspired Design:** A clean aesthetic with green accents (`#7FB346`), serif fonts, and immersive photography.

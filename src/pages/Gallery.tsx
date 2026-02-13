@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ZoomIn } from 'lucide-react';
 import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero'; 
@@ -44,6 +44,7 @@ const Gallery: React.FC = () => {
                                 src={img.url}
                                 onError={(e) => e.currentTarget.src = `https://picsum.photos/seed/brogarden${index}/1200/800`}
                                 alt={img.caption}
+                                loading="lazy"
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">

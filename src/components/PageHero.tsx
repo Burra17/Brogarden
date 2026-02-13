@@ -1,4 +1,3 @@
-import React from 'react';
 import { getImg } from '../utils/imageHelper';
 
 interface PageHeroProps {
@@ -22,18 +21,18 @@ const PageHero: React.FC<PageHeroProps> = ({
                     alt={title}
                     className="w-full h-full object-cover"
                 />
-                {/* En tunn svart hinna (30%) så att vit text syns ovanpå ljusa bilder. 
-            Vill du ha bilden ännu ljusare kan du ändra till bg-black/10 eller ta bort raden helt. */}
+                {/* En tunn svart hinna (30%) sï¿½ att vit text syns ovanpï¿½ ljusa bilder. 
+            Vill du ha bilden ï¿½nnu ljusare kan du ï¿½ndra till bg-black/10 eller ta bort raden helt. */}
                 <div className="absolute inset-0 bg-black/30"></div>
             </div>
 
-            {/* Textinnehåll */}
+            {/* Textinnehï¿½ll */}
             <div className="relative z-10 text-center text-white px-4">
                 <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg">
                     {title}
                 </h1>
                 {subtitle && (
-                    <p className="text-xl max-w-xl mx-auto opacity-100 drop-shadow-md font-medium">
+                    <p className="text-xl max-w-xl mx-auto drop-shadow-md font-medium">
                         {subtitle}
                     </p>
                 )}

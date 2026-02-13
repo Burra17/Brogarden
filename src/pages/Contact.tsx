@@ -1,6 +1,6 @@
-import React from 'react';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
-import PageHero from '../components/PageHero'; // <--- Importera komponenten
+import PageHero from '../components/PageHero';
+import { contactInfo } from '../data/contactInfo';
 
 const Contact: React.FC = () => {
     return (
@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
                                 <div>
                                     <h3 className="font-bold text-gray-900 mb-1">Telefon</h3>
                                     <p className="text-gray-500 text-sm mb-1">Ring oss gärna</p>
-                                    <a href="tel:065070284" className="text-xl font-medium text-brand-green hover:underline">0650-70284</a>
+                                    <a href={contactInfo.phoneHref} className="text-xl font-medium text-brand-green hover:underline">{contactInfo.phone}</a>
                                 </div>
                             </div>
 
@@ -39,7 +39,7 @@ const Contact: React.FC = () => {
                                 <div>
                                     <h3 className="font-bold text-gray-900 mb-1">E-post</h3>
                                     <p className="text-gray-500 text-sm mb-1">För bokning & frågor</p>
-                                    <a href="mailto:katarina.svedman@efs.nu" className="text-xl font-medium text-brand-green hover:underline break-all">katarina.svedman@efs.nu</a>
+                                    <a href={contactInfo.emailHref} className="text-xl font-medium text-brand-green hover:underline break-all">{contactInfo.email}</a>
                                 </div>
                             </div>
 
@@ -50,8 +50,8 @@ const Contact: React.FC = () => {
                                 <div>
                                     <h3 className="font-bold text-gray-900 mb-1">Adress</h3>
                                     <p className="text-gray-500 text-sm mb-1">Besök oss</p>
-                                    <a href="https://maps.google.com/?q=Örängesvägen+19,825+92+Njutånger" target="_blank" rel="noopener noreferrer" className="text-lg font-medium text-gray-800 hover:text-brand-green transition-colors">
-                                        Örängesvägen 19,<br />825 92 Njutånger
+                                    <a href={contactInfo.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-lg font-medium text-gray-800 hover:text-brand-green transition-colors">
+                                        {contactInfo.address.street},<br />{contactInfo.address.postal}
                                     </a>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@ const Contact: React.FC = () => {
 
                         <div className="mt-12">
                             <a
-                                href="mailto:katarina.svedman@efs.nu?subject=Bokningsförfrågan Brogården"
+                                href={`${contactInfo.emailHref}?subject=Bokningsförfrågan Brogården`}
                                 className="w-full block text-center bg-brand-green text-white font-bold py-4 rounded-lg shadow-md hover:bg-brand-dark transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
                             >
                                 <Send size={20} />

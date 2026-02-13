@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
 import { getImg } from '../utils/imageHelper';
@@ -16,8 +15,6 @@ const Home: React.FC = () => {
                         alt="Brogården natur"
                         className="w-full h-full object-cover"
                     />
-                    {/* Helt transparent för maximal ljusstyrka */}
-                    <div className="absolute inset-0 bg-black/0"></div>
                 </div>
 
                 {/* Innehåll */}
@@ -98,9 +95,10 @@ const Home: React.FC = () => {
                             src={getImg(`collage-${num}.jpg`)}
                             onError={(e) => e.currentTarget.src = `https://picsum.photos/seed/camp${num}/800/800`}
                             alt="Natur och miljö på Brogården"
+                            loading="lazy"
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                        <div className="absolute inset-0 group-hover:bg-black/10 transition-colors duration-300"></div>
                     </div>
                 ))}
             </div>

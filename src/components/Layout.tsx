@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Facebook, Mail, Phone, MapPin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { contactInfo } from '../data/contactInfo';
 
 const navItems = [
     { label: 'Hem', path: '/' },
@@ -121,7 +122,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             </p>
                             <div className="flex space-x-4">
                                 <a
-                                    href="https://www.facebook.com/BrogardenEFSNjutanger"
+                                    href={contactInfo.facebookUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-brand-lightGreen transition-colors"
@@ -138,15 +139,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             <ul className="space-y-3 text-gray-300">
                                 <li className="flex items-start gap-2">
                                     <MapPin size={18} className="mt-1 flex-shrink-0 text-brand-lightGreen" />
-                                    <span>Örängesvägen 19,<br />825 92 Njutånger</span>
+                                    <span>{contactInfo.address.street},<br />{contactInfo.address.postal}</span>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <Phone size={18} className="text-brand-lightGreen" />
-                                    <a href="tel:065070284" className="hover:text-white">0650-70284</a>
+                                    <a href={contactInfo.phoneHref} className="hover:text-white">{contactInfo.phone}</a>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <Mail size={18} className="text-brand-lightGreen" />
-                                    <a href="mailto:katarina.svedman@efs.nu" className="hover:text-white break-all">katarina.svedman@efs.nu</a>
+                                    <a href={contactInfo.emailHref} className="hover:text-white break-all">{contactInfo.email}</a>
                                 </li>
                             </ul>
                         </div>
@@ -164,7 +165,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
                     </div>
                     <div className="border-t border-gray-800 mt-12 pt-6 text-center text-gray-500 text-sm">
-                        <p>&copy; 2025 Brogården – Alla rättigheter förbehållna</p>
+                        <p>&copy; {new Date().getFullYear()} Brogården – Alla rättigheter förbehållna</p>
                     </div>
                 </div>
             </footer>

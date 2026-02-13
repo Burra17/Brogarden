@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ImageLightboxProps {
@@ -14,7 +14,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
     // State för att hantera swipe
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
-    const minSwipeDistance = 50; // Minsta avstånd (px) för att räknas som swipe
+    const minSwipeDistance = 50;
 
     // Reset index when opening new set of images
     useEffect(() => {
@@ -22,6 +22,16 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
             setCurrentIndex(initialIndex);
         }
     }, [isOpen, initialIndex]);
+
+    const showPrev = useCallback((e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    }, [images.length]);
+
+    const showNext = useCallback((e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    }, [images.length]);
 
     // Handle keyboard navigation
     useEffect(() => {
@@ -33,17 +43,19 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [isOpen, currentIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [isOpen, onClose, showPrev, showNext]);
 
-    const showPrev = (e?: React.MouseEvent) => {
-        e?.stopPropagation();
-        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-    };
-
-    const showNext = (e?: React.MouseEvent) => {
-        e?.stopPropagation();
-        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    };
+    // Lock body scroll when lightbox is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
 
     // --- SWIPE LOGIK ---
     const onTouchStart = (e: React.TouchEvent) => {
@@ -69,7 +81,6 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
             showPrev();
         }
     };
-    // -------------------
 
     if (!isOpen) return null;
 
@@ -77,7 +88,6 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
         <div
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 animate-fade-in"
             onClick={onClose}
-            // Lägg till touch-lyssnare på containern
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -92,7 +102,6 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
 
             {images.length > 1 && (
                 <>
-                    {/* Vänster pil: Uppdaterad styling för mobil */}
                     <button
                         className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all focus:outline-none z-50"
                         onClick={showPrev}
@@ -101,7 +110,6 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
                         <ChevronLeft size={48} />
                     </button>
 
-                    {/* Höger pil: Uppdaterad styling för mobil */}
                     <button
                         className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all focus:outline-none z-50"
                         onClick={showNext}
@@ -116,7 +124,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
                 <img
                     src={images[currentIndex]}
                     alt={`Bild ${currentIndex + 1}`}
-                    className="max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-sm select-none" // select-none förhindrar att bilden markeras vid swipe
+                    className="max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-sm select-none"
                     onClick={(e) => e.stopPropagation()}
                 />
                 <div className="absolute bottom-[-2rem] md:bottom-4 left-0 right-0 text-center text-white/80 text-sm font-medium">

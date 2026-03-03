@@ -15,8 +15,7 @@ export default defineConfig(({ mode }) => ({
       },
     }),
   ],
-  // Använd '/' lokalt, men '/Brogarden/' när vi bygger för produktion
-  base: mode === 'production' ? '/Brogarden/' : '/',
+  base: '/',
   build: {
     outDir: 'dist',
   },

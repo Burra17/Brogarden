@@ -41,7 +41,7 @@ export const accommodations: AccommodationItem[] = [
         description: 'Ett trevligt dubbelrum i södra gaveln av kyrkobyggnaden.',
         type: 'Room',
         tags: [{ label: 'Rum', color: 'bg-blue-100 text-blue-800' }],
-        price: [{ amount: '200 kr', unit: '/ natt' }],
+        price: [{ amount: '400 kr', unit: '/ natt' }],
         features: [
             { icon: Users, label: 'Toalett intill' },
             { icon: ShowerHead, label: 'Gemensam dusch i huvudbyggnad' },

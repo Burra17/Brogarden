@@ -38,7 +38,7 @@ export const accommodations: AccommodationItem[] = [
     {
         id: 'blarummet',
         title: 'Blå rummet',
-        description: 'Ett trevligt dubbelrum i södra gaveln av Kyrkbyggnaden.',
+        description: 'Ett trevligt dubbelrum i södra gaveln av kyrkobyggnaden.',
         type: 'Room',
         tags: [{ label: 'Rum', color: 'bg-blue-100 text-blue-800' }],
         price: [{ amount: '200 kr', unit: '/ natt' }],
@@ -73,7 +73,8 @@ export const accommodations: AccommodationItem[] = [
         price: [{ amount: '600 kr', unit: '/ natt' }],
         features: [
             { icon: Bed, label: '5 Bäddar' },
-            { icon: Utensils, label: 'Kök i huvudbyggnad' }
+            { icon: Utensils, label: 'Kök i huvudbyggnad' },
+            { icon: ShowerHead, label: 'WC/dusch i huvudbyggnaden' },
         ],
         images: [
             getImg('stuga-nystugan-1.jpg'),

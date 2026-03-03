@@ -17,7 +17,7 @@ const Program: React.FC = () => {
             <div className="container mx-auto px-4">
                 {/* Den gamla rubriken låg här, men nu ligger den i bilden ovanför */}
 
-                <div className="flex flex-col lg:flex-row gap-12">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-12">
                     {/* Calendar Section */}
                     <div className="w-full lg:w-2/3 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden p-6">
                         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
@@ -42,8 +42,9 @@ const Program: React.FC = () => {
                         <h2 className="text-2xl font-bold mb-6">Kommande höjdpunkter</h2>
                         <div className="space-y-4">
                             {[
-                                { title: 'Valborg', date: '30 April', time: '11:00', desc: 'Vårsånger med Njutånger-Iggesundskyrkokör. Vårtal och servering. Varmt välkommen!' },
-                                { title: 'Sommarläger', date: '11-13 Augusti', time: '12:00', desc: 'Välkommen till vårt populära sångläger för barn och unga! Vi sjunger, umgås och har roligt tillsammans.' },
+                                { title: 'Valborgsmässofirande', date: '30 April', time: '19:00', desc: 'Vårsånger med Njutånger-Iggesunds kyrkokör. Vårtal: Kyrkoherde Edit Åkerlund Vallingstam. Majbrasa, fika, korv, fiskdamm. Varmt välkommen!' },
+                                { title: 'Midsommarfirande', date: '19 Juni', time: '15:00', desc: 'Resning och dans kring midsommarstången. Kort andakt och servering med korv, fiskdamm mm. Kom gärna innan och hjälp till att klä stången.' },
+                                { title: 'Soul Children-läger', date: '11-13 Augusti', time: '12:00', desc: 'Välkommen till vårt populära sångläger för barn och unga! Vi sjunger, umgås och har roligt tillsammans.' },
                             ].map((event, idx) => (
                                 <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-brand-lightGreen transition-colors group">
                                     <div className="flex items-center gap-3 text-brand-green font-semibold mb-2">

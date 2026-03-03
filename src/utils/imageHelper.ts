@@ -1,9 +1,11 @@
 // src/utils/imageHelper.ts
 
 /**
- * H‰mtar korrekt sˆkv‰g till bilder.
- * Fungerar bÂde lokalt och pÂ GitHub Pages tack vare relativ sˆkv‰g (./).
+ * HÔøΩmtar korrekt sÔøΩkvÔøΩg till bilder.
+ * Fungerar bÔøΩde lokalt och pÔøΩ GitHub Pages tack vare relativ sÔøΩkvÔøΩg (./).
  */
 export const getImg = (path: string) => {
-    return `./images/${path}`;
+    // Anv√§nd WebP-versionen om filnamnet slutar p√• .jpg
+    const webpPath = path.replace(/\.jpg$/i, '.webp');
+    return `./images/${webpPath}`;
 };

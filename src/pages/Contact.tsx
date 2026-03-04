@@ -4,7 +4,7 @@ import { contactInfo } from '../data/contactInfo';
 
 const Contact: React.FC = () => {
     return (
-        <div className="bg-white min-h-screen pb-20">
+        <div className="bg-white pb-20">
 
             {/* --- HERO SEKTION --- */}
             <PageHero

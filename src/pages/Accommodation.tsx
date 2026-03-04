@@ -18,7 +18,7 @@ const Accommodation: React.FC = () => {
     };
 
     return (
-        <div className="bg-brand-cream/30 min-h-screen">
+        <div className="bg-brand-cream/30">
             <PageHero
                 title="Bo hos oss"
                 subtitle="Prisvärt och flexibelt boende för små och stora sällskap."

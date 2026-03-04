@@ -24,7 +24,7 @@ const Gallery: React.FC = () => {
     };
 
     return (
-        <div className="bg-white min-h-screen pb-20">
+        <div className="bg-white pb-20">
 
             <PageHero
                 title="Bildgalleri"

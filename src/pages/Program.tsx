@@ -5,7 +5,7 @@ import PageHero from '../components/PageHero';
 const Program: React.FC = () => {
     return (
         // Jag tog bort 'pt-24' här för att bilden ska ligga kant-i-kant med toppen
-        <div className="bg-brand-cream/30 min-h-screen pb-20">
+        <div className="bg-brand-cream/30 pb-20">
 
             {/* --- HERO SEKTION --- */}
             <PageHero

@@ -30,17 +30,22 @@ const Home: React.FC = () => {
                         Lägergård, vandrarhem och EFS-kyrka i lugn och naturskön miljö nära havet. En plats för vila, gemenskap och glädje.
                     </p>
 
-                    {/* Knappar som på bilden */}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        {/* Solid grön knapp */}
-                        <Link
-                            to="/boende"
-                            className="w-full sm:w-auto px-8 py-4 bg-[#7FB346] hover:bg-[#6e9c3d] text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
-                        >
-                            Se våra rum & stugor <ArrowRight size={20} />
-                        </Link>
-
-                        {/* "Glass"-knapp: Halvgenomskinlig med suddig bakgrund */}
+                    {/* Knappar */}
+                    <div className="flex flex-col gap-4 justify-center items-center">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <Link
+                                to="/boende"
+                                className="w-full sm:w-auto px-10 py-4 bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
+                            >
+                                Se våra rum & stugor <ArrowRight size={20} />
+                            </Link>
+                            <Link
+                                to="/program"
+                                className="w-full sm:w-auto px-10 py-4 bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
+                            >
+                                Program <ArrowRight size={20} />
+                            </Link>
+                        </div>
                         <Link
                             to="/kontakt"
                             className="w-full sm:w-auto px-10 py-4 bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center transform hover:scale-105"

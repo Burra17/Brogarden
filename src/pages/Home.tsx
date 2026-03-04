@@ -31,8 +31,8 @@ const Home: React.FC = () => {
                     </p>
 
                     {/* Knappar */}
-                    <div className="flex flex-col gap-4 justify-center items-center">
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div className="flex flex-col gap-4 justify-center items-center w-full max-w-md mx-auto sm:max-w-none">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full">
                             <Link
                                 to="/boende"
                                 className="w-full sm:w-auto px-10 py-4 bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"

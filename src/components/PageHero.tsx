@@ -12,7 +12,7 @@ const PageHero: React.FC<PageHeroProps> = ({
     backgroundImage = 'default-hero.jpg'
 }) => {
     return (
-        <section className="relative h-[40vh] flex items-center justify-center mb-16">
+        <section className="relative h-hero-page flex items-center justify-center mb-16">
             {/* Bakgrundsbild */}
             <div className="absolute inset-0 overflow-hidden">
                 <img

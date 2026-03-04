@@ -7,3 +7,31 @@
 html, body {
     overflow-x: hidden;
 }
+
+/* Hero-höjder med dvh-fallback för Safari mobile */
+.h-hero-home {
+    min-height: 70vh;
+}
+.h-hero-page {
+    height: 40vh;
+}
+
+@supports (height: 1dvh) {
+    .h-hero-home {
+        min-height: 70dvh;
+    }
+    .h-hero-page {
+        height: 40dvh;
+    }
+}
+
+@media (min-width: 768px) {
+    .h-hero-home {
+        min-height: 75vh;
+    }
+    @supports (height: 1dvh) {
+        .h-hero-home {
+            min-height: 75dvh;
+        }
+    }
+}

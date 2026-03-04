@@ -6,7 +6,7 @@ const Home: React.FC = () => {
     return (
         <>
             {/* Hero Section - Matchar bilden perfekt */}
-            <section className="relative h-[70vh] md:h-[75vh] flex items-center justify-center overflow-hidden">
+            <section className="relative h-hero-home flex items-center justify-center overflow-hidden">
                 {/* Bakgrundsbild utan mörkt lager */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -19,36 +19,36 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Innehåll */}
-                <div className="relative z-10 container mx-auto px-6 text-center text-white pt-16 md:pt-0">
+                <div className="relative z-10 container mx-auto px-6 text-center text-white pt-20 pb-12 md:py-0">
                     {/* Rubrik med mjuk men djup skugga för läsbarhet mot ljus himmel */}
-                    <h1 className="text-4xl md:text-7xl font-bold font-serif mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] leading-tight">
+                    <h1 className="text-3xl md:text-7xl font-bold font-serif mb-4 md:mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] leading-tight">
                         Välkommen till Brogården!
                     </h1>
 
                     {/* Beskrivning */}
-                    <p className="text-lg md:text-2xl max-w-3xl mx-auto mb-10 font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+                    <p className="text-base md:text-2xl max-w-3xl mx-auto mb-8 md:mb-10 font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
                         Lägergård, vandrarhem och EFS-kyrka i lugn och naturskön miljö nära havet. En plats för vila, gemenskap och glädje.
                     </p>
 
                     {/* Knappar */}
-                    <div className="flex flex-col gap-4 justify-center items-center w-full max-w-md mx-auto sm:max-w-none">
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full">
+                    <div className="flex flex-col gap-3 md:gap-4 justify-center items-center w-full max-w-xs mx-auto sm:max-w-none">
+                        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full">
                             <Link
                                 to="/boende"
-                                className="w-full sm:w-auto px-10 py-4 bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
+                                className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
                             >
-                                Se våra rum & stugor <ArrowRight size={20} />
+                                Se våra rum & stugor <ArrowRight size={18} />
                             </Link>
                             <Link
                                 to="/program"
-                                className="w-full sm:w-auto px-10 py-4 bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
+                                className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
                             >
-                                Program <ArrowRight size={20} />
+                                Program <ArrowRight size={18} />
                             </Link>
                         </div>
                         <Link
                             to="/kontakt"
-                            className="w-full sm:w-auto px-10 py-4 bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center transform hover:scale-105"
+                            className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center transform hover:scale-105"
                         >
                             Kontakta oss
                         </Link>

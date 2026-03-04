@@ -4,7 +4,7 @@ import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero'; 
 import { getImg } from '../utils/imageHelper';
 
-const images = Array.from({ length: 12 }).map((_, i) => ({
+const images = Array.from({ length: 16 }).map((_, i) => ({
     id: i,
     url: getImg(`gallery-${i + 1}.jpg`),
     caption: `Brogården miljö ${i + 1}`

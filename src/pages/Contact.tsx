@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
                         <div className="mt-12">
                             <a
                                 href={`${contactInfo.emailHref}?subject=Bokningsförfrågan Brogården`}
-                                className="w-full block text-center bg-brand-green text-white font-bold py-4 rounded-lg shadow-md hover:bg-brand-dark transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                                className="w-full bg-brand-green text-white font-bold py-4 rounded-lg shadow-md hover:bg-brand-dark transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
                             >
                                 <Send size={20} />
                                 Skicka bokningsförfrågan

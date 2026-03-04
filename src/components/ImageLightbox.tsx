@@ -103,19 +103,21 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
             {images.length > 1 && (
                 <>
                     <button
-                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all focus:outline-none z-50"
+                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-2 md:p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all focus:outline-none z-50"
                         onClick={showPrev}
                         aria-label="Föregående bild"
                     >
-                        <ChevronLeft size={48} />
+                        <ChevronLeft size={28} className="md:hidden" />
+                        <ChevronLeft size={48} className="hidden md:block" />
                     </button>
 
                     <button
-                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all focus:outline-none z-50"
+                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-2 md:p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all focus:outline-none z-50"
                         onClick={showNext}
                         aria-label="Nästa bild"
                     >
-                        <ChevronRight size={48} />
+                        <ChevronRight size={28} className="md:hidden" />
+                        <ChevronRight size={48} className="hidden md:block" />
                     </button>
                 </>
             )}
@@ -127,7 +129,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
                     className="max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-sm select-none"
                     onClick={(e) => e.stopPropagation()}
                 />
-                <div className="absolute bottom-[-2rem] md:bottom-4 left-0 right-0 text-center text-white/80 text-sm font-medium">
+                <div className="absolute bottom-2 md:bottom-4 left-0 right-0 text-center text-white/80 text-sm font-medium">
                     {currentIndex + 1} / {images.length}
                 </div>
             </div>

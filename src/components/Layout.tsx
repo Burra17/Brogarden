@@ -50,7 +50,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     }`}
             >
                 <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-                    <Link to="/" className={`text-2xl font-bold font-serif tracking-tight ${!isTransparent ? 'text-brand-green' : 'text-white drop-shadow-md'}`}>
+                    <Link to="/" className={`flex items-center gap-2 text-2xl font-bold font-serif tracking-tight ${!isTransparent ? 'text-brand-green' : 'text-white drop-shadow-md'}`}>
+                        <img src={`${import.meta.env.BASE_URL}logo.png`} alt="" className="h-8 w-8" />
                         Brogården
                     </Link>
 

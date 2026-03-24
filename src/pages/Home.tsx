@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
 import { getImg } from '../utils/imageHelper';
+import { useScrollReveal } from '../utils/useScrollReveal';
 
 const Home: React.FC = () => {
+    // Scroll reveal refs för sektioner under the fold
+    const aboutRef = useScrollReveal<HTMLElement>();
+    const cardsRef = useScrollReveal<HTMLDivElement>();
+    const collageRef = useScrollReveal<HTMLDivElement>();
+
     return (
         <>
             {/* Hero Section - Matchar bilden perfekt */}
@@ -21,17 +27,17 @@ const Home: React.FC = () => {
                 {/* Innehåll */}
                 <div className="relative z-10 container mx-auto px-6 text-center text-white pt-20 pb-12 md:py-0">
                     {/* Rubrik med mjuk men djup skugga för läsbarhet mot ljus himmel */}
-                    <h1 className="text-3xl md:text-7xl font-bold font-serif mb-4 md:mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] leading-tight">
+                    <h1 className="hero-animate text-3xl md:text-7xl font-bold font-serif mb-4 md:mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] leading-tight">
                         Välkommen till Brogården!
                     </h1>
 
                     {/* Beskrivning */}
-                    <p className="text-base md:text-2xl max-w-3xl mx-auto mb-8 md:mb-10 font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+                    <p className="hero-animate hero-delay-1 text-base md:text-2xl max-w-3xl mx-auto mb-8 md:mb-10 font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
                         Lägergård, vandrarhem och EFS-kyrka i lugn och naturskön miljö nära havet. En plats för vila, gemenskap och glädje.
                     </p>
 
-                    {/* Knappar */}
-                    <div className="flex flex-col gap-3 md:gap-4 justify-center items-center w-full max-w-xs mx-auto sm:max-w-none">
+                    {/* Knappar – använder hero-animate-buttons som inte ändrar opacity */}
+                    <div className="hero-animate-buttons flex flex-col gap-3 md:gap-4 justify-center items-center w-full max-w-xs mx-auto sm:max-w-none">
                         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full">
                             <Link
                                 to="/boende"
@@ -57,7 +63,7 @@ const Home: React.FC = () => {
             </section>
 
             {/* About Section */}
-            <section className="py-20 bg-white">
+            <section ref={aboutRef} className="reveal-fade-up py-20 bg-white">
                 <div className="container mx-auto px-4 max-w-4xl text-center">
                     <span className="text-[#4A6741] font-bold tracking-wider uppercase text-sm mb-2 block">Om Oss</span>
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">En plats för möten</h2>
@@ -67,7 +73,7 @@ const Home: React.FC = () => {
                         Brogården drivs ideellt av en lokal, kristen EFS-förening. Här erbjuds prisvärt boende i rum och stugor samt ställplatser för husbil och tält. Gården används även för läger, dop, bröllop, föreningsdagar och gudstjänster.
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div ref={cardsRef} className="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="p-6 bg-[#fcfaf7] rounded-xl border border-gray-100 shadow-sm">
                             <div className="w-12 h-12 bg-[#7FB346]/10 text-[#7FB346] rounded-full flex items-center justify-center mx-auto mb-4">
                                 <Trees size={24} />
@@ -94,7 +100,7 @@ const Home: React.FC = () => {
             </section>
 
             {/* Decorative Image Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 h-64 md:h-96 w-full">
+            <div ref={collageRef} className="reveal-fade grid grid-cols-2 md:grid-cols-4 h-64 md:h-96 w-full">
                 {[1, 2, 3, 4].map((num) => (
                     <div key={num} className="relative w-full h-full overflow-hidden group">
                         <img

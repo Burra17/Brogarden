@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { ZoomIn } from 'lucide-react';
 import ImageLightbox from '../components/ImageLightbox';
-import PageHero from '../components/PageHero'; 
+import PageHero from '../components/PageHero';
 import { getImg } from '../utils/imageHelper';
+import { useScrollReveal, useScrollRevealList } from '../utils/useScrollReveal';
 
 const images = Array.from({ length: 16 }).map((_, i) => ({
     id: i,
@@ -13,6 +14,10 @@ const images = Array.from({ length: 16 }).map((_, i) => ({
 const Gallery: React.FC = () => {
     const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
     const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+    // Desktop: stagger-animation på hela gridet
+    const gridRef = useScrollReveal<HTMLDivElement>();
+    // Mobil: individuell reveal per bild
+    const imageRef = useScrollRevealList({ activeClass: 'revealed-mobile' });
 
     const openLightbox = (index: number) => {
         setLightboxIndex(index);
@@ -33,11 +38,13 @@ const Gallery: React.FC = () => {
             />
 
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div ref={gridRef} className="reveal-stagger-desktop grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                     {images.map((img, index) => (
                         <div
                             key={img.id}
-                            className="group relative aspect-square overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-lg transition-all"
+                            ref={imageRef}
+                            className="gallery-reveal group relative aspect-square overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-lg transition-all"
+                            style={{ transitionDelay: `${Math.min(index * 60, 500)}ms` }}
                             onClick={() => openLightbox(index)}
                         >
                             <img

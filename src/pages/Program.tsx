@@ -1,8 +1,12 @@
 import React from 'react';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import { useScrollReveal } from '../utils/useScrollReveal';
 
 const Program: React.FC = () => {
+    const calendarRef = useScrollReveal<HTMLDivElement>();
+    const highlightsRef = useScrollReveal<HTMLDivElement>();
+
     return (
         // Jag tog bort 'pt-24' här för att bilden ska ligga kant-i-kant med toppen
         <div className="bg-brand-cream/30 pb-20">
@@ -19,7 +23,7 @@ const Program: React.FC = () => {
 
                 <div className="flex flex-col lg:flex-row lg:items-start gap-12">
                     {/* Calendar Section */}
-                    <div className="w-full lg:w-2/3 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden p-6">
+                    <div ref={calendarRef} className="reveal-fade-up w-full lg:w-2/3 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden p-6">
                         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
                             <Calendar className="text-brand-lightGreen" />
                             Kalender
@@ -38,7 +42,7 @@ const Program: React.FC = () => {
                     </div>
 
                     {/* Upcoming Highlights (Static Example) */}
-                    <div className="w-full lg:w-1/3">
+                    <div ref={highlightsRef} className="reveal-fade-up w-full lg:w-1/3" style={{ transitionDelay: '150ms' }}>
                         <h2 className="text-2xl font-bold mb-6">Kommande höjdpunkter</h2>
                         <div className="space-y-4">
                             {[

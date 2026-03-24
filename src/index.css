@@ -1,4 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+/* Lokalt hostade typsnitt – eliminerar render-blockerande Google Fonts-anrop */
+/* Latin + latin-ext (för å, ä, ö) – skippar onödiga subsets */
+@import '@fontsource/inter/latin-300.css';
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-500.css';
+@import '@fontsource/inter/latin-600.css';
+@import '@fontsource/inter/latin-700.css';
+@import '@fontsource/inter/latin-ext-300.css';
+@import '@fontsource/inter/latin-ext-400.css';
+@import '@fontsource/inter/latin-ext-500.css';
+@import '@fontsource/inter/latin-ext-600.css';
+@import '@fontsource/inter/latin-ext-700.css';
+@import '@fontsource/merriweather/latin-300.css';
+@import '@fontsource/merriweather/latin-400.css';
+@import '@fontsource/merriweather/latin-700.css';
+@import '@fontsource/merriweather/latin-ext-300.css';
+@import '@fontsource/merriweather/latin-ext-400.css';
+@import '@fontsource/merriweather/latin-ext-700.css';
 
 @tailwind base;
 @tailwind components;

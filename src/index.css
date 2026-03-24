@@ -52,3 +52,158 @@ html, body {
         }
     }
 }
+
+/* Hero-animation – spelas direkt vid sidladdning, ingen flash */
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-animate {
+    animation: heroFadeUp 0.8s ease-out both;
+}
+
+.hero-delay-1 {
+    animation-delay: 0.15s;
+}
+
+.hero-delay-2 {
+    animation-delay: 0.3s;
+}
+
+/* Knappar – bara slide-up, ingen opacity-ändring (behåller glasmorfism-stilen) */
+@keyframes heroSlideUp {
+    from {
+        transform: translateY(20px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.hero-animate-buttons {
+    animation: heroSlideUp 0.8s ease-out 0.3s both;
+}
+
+/* Scroll reveal – starttillstånd (osynligt, förskjutet nedåt) */
+.reveal-fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal-fade-up.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Variant: fade in utan rörelse */
+.reveal-fade {
+    opacity: 0;
+    transition: opacity 0.7s ease-out;
+    will-change: opacity;
+}
+
+.reveal-fade.revealed {
+    opacity: 1;
+}
+
+/* Variant: fade in från vänster */
+.reveal-fade-left {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal-fade-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Variant: fade in från höger */
+.reveal-fade-right {
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal-fade-right.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Stöd för staggerade barn i en grupp */
+.reveal-stagger > :nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > :nth-child(2) { transition-delay: 100ms; }
+.reveal-stagger > :nth-child(3) { transition-delay: 200ms; }
+.reveal-stagger > :nth-child(4) { transition-delay: 300ms; }
+.reveal-stagger > :nth-child(5) { transition-delay: 400ms; }
+.reveal-stagger > :nth-child(6) { transition-delay: 500ms; }
+
+/* Barn i en stagger-grupp startar dolda, visas när föräldern har .revealed */
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal-stagger.revealed > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Galleri: mobil – individuell fade-up per bild */
+.gallery-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.gallery-reveal.revealed-mobile {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Galleri: desktop (sm+) – stagger-våg styrd av gridet */
+@media (min-width: 640px) {
+    .gallery-reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    /* På desktop ignorera mobil-reveal, låt stagger-containern styra */
+    .gallery-reveal.revealed-mobile {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    .reveal-stagger-desktop.revealed .gallery-reveal {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Respektera användarens rörelsepreferenser */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-fade-up,
+    .reveal-fade,
+    .reveal-fade-left,
+    .reveal-fade-right,
+    .reveal-stagger > *,
+    .gallery-reveal,
+    .hero-animate {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}

@@ -36,7 +36,12 @@ const Accommodation: React.FC = () => {
                 </div>
 
                 {accommodations.map((item, index) => (
-                    <div key={item.id} ref={cardRefs} className="reveal-fade-up">
+                    <div
+                        key={item.id}
+                        ref={cardRefs}
+                        className="reveal-fade-up"
+                        style={{ transitionDelay: `${Math.min(index * 100, 300)}ms` }}
+                    >
                         <AccommodationCard
                             item={item}
                             reverse={index % 2 !== 0}

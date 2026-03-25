@@ -15,11 +15,11 @@ Varje session = en branch, en PR. Kan reverteras individuellt.
 - [x] Ren CSS, GPU-accelererad (`transform: scale`)
 - [x] Test: ingen layout-shift eller overflow på mobil
 
-## Session 3: `feature/staggered-entrances`
-- [ ] Staggerade animationsdelays på upprepade element (feature cards, galleri, boendekort, programkort)
-- [ ] Bygger på scroll reveal-hooken från Session 1
-- [ ] `animation-delay` baserat på index, max-cap
-- [ ] Test: ingen content flash eller layout-hopp
+## Session 3: `feature/staggered-entrances` ✅
+- [x] Staggerade animationsdelays på upprepade element (feature cards, galleri, boendekort, programkort, collage)
+- [x] Bygger på scroll reveal-hooken från Session 1
+- [x] `transition-delay` baserat på index, max-cap
+- [x] Test: ingen content flash eller layout-hopp
 
 ## Session 4: `feature/page-transitions`
 - [ ] Fade-in vid sidbyten via wrapper-komponent

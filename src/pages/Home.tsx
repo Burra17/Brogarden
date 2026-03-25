@@ -6,7 +6,6 @@ import { useScrollReveal } from '../utils/useScrollReveal';
 
 const Home: React.FC = () => {
     // Scroll reveal refs för sektioner under the fold
-    const aboutRef = useScrollReveal<HTMLElement>();
     const cardsRef = useScrollReveal<HTMLDivElement>();
     const collageRef = useScrollReveal<HTMLDivElement>();
     // Parallax-effekt på collage – bilderna rör sig långsammare än scrollen
@@ -95,8 +94,8 @@ const Home: React.FC = () => {
             </section>
 
             {/* About Section */}
-            <section ref={aboutRef} className="reveal-fade-up py-20 bg-white">
-                <div className="container mx-auto px-4 max-w-4xl text-center">
+            <section className="py-20 bg-white">
+                <div className="hero-animate hero-delay-2 container mx-auto px-4 max-w-4xl text-center">
                     <span className="text-[#4A6741] font-bold tracking-wider uppercase text-sm mb-2 block">Om Oss</span>
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">En plats för möten</h2>
                     <div className="w-24 h-1 bg-[#7FB346] mx-auto mb-10 rounded-full"></div>
@@ -132,7 +131,7 @@ const Home: React.FC = () => {
             </section>
 
             {/* Decorative Image Strip */}
-            <div ref={collageRef} className="reveal-stagger grid grid-cols-2 md:grid-cols-4 h-64 md:h-96 w-full">
+            <div ref={collageRef} className="reveal-stagger grid grid-cols-2 md:grid-cols-4 h-64 md:h-96 w-full bg-white">
                 {[1, 2, 3, 4].map((num) => (
                     <div key={num} className="relative w-full h-full overflow-hidden group">
                         <img

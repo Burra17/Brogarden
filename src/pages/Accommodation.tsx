@@ -39,8 +39,7 @@ const Accommodation: React.FC = () => {
                     <div
                         key={item.id}
                         ref={cardRefs}
-                        className="reveal-fade-up"
-                        style={{ transitionDelay: `${Math.min(index * 100, 300)}ms` }}
+                        className={index % 2 === 0 ? 'reveal-fade-left' : 'reveal-fade-right'}
                     >
                         <AccommodationCard
                             item={item}

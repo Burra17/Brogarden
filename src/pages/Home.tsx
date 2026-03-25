@@ -20,7 +20,7 @@ const Home: React.FC = () => {
                         onError={(e) => e.currentTarget.src = 'https://picsum.photos/seed/brogardenhero/1920/1080'}
                         alt="Brogården natur"
                         fetchPriority="high"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover hero-ken-burns"
                     />
                 </div>
 

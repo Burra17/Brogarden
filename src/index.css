@@ -193,6 +193,21 @@ html, body {
     }
 }
 
+/* Ken Burns – långsam zoom på hero-bilder för visuellt djup */
+@keyframes kenBurns {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.08);
+    }
+}
+
+.hero-ken-burns {
+    animation: kenBurns 20s ease-out forwards;
+    will-change: transform;
+}
+
 /* Respektera användarens rörelsepreferenser */
 @media (prefers-reduced-motion: reduce) {
     .reveal-fade-up,
@@ -201,9 +216,11 @@ html, body {
     .reveal-fade-right,
     .reveal-stagger > *,
     .gallery-reveal,
-    .hero-animate {
+    .hero-animate,
+    .hero-ken-burns {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+        animation: none !important;
     }
 }

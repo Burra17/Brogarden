@@ -9,11 +9,11 @@ Varje session = en branch, en PR. Kan reverteras individuellt.
 - [x] `prefers-reduced-motion` stöd
 - [x] Test: mobil Safari, Chrome, Firefox
 
-## Session 2: `feature/hero-animation`
-- [ ] Ken Burns-effekt (långsam zoom) på hero-bilder via CSS keyframes
-- [ ] Gäller Home hero + alla PageHero-instanser
-- [ ] Ren CSS, GPU-accelererad (`transform: scale`)
-- [ ] Test: ingen layout-shift eller overflow på mobil
+## Session 2: `feature/hero-animation` ✅
+- [x] Ken Burns-effekt (långsam zoom) på hero-bilder via CSS keyframes
+- [x] Gäller Home hero + alla PageHero-instanser
+- [x] Ren CSS, GPU-accelererad (`transform: scale`)
+- [x] Test: ingen layout-shift eller overflow på mobil
 
 ## Session 3: `feature/staggered-entrances`
 - [ ] Staggerade animationsdelays på upprepade element (feature cards, galleri, boendekort, programkort)

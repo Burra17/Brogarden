@@ -20,7 +20,7 @@ const PageHero: React.FC<PageHeroProps> = ({
                     onError={(e) => e.currentTarget.src = 'https://picsum.photos/seed/hero/1920/600'}
                     alt={title}
                     fetchPriority="high"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hero-ken-burns"
                 />
                 {/* En tunn svart hinna (30%) s� att vit text syns ovanp� ljusa bilder. 
             Vill du ha bilden �nnu ljusare kan du �ndra till bg-black/10 eller ta bort raden helt. */}

@@ -1,10 +1,9 @@
-import { useLayoutEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 /**
  * Hook som animerar element när de scrollas in i vyn.
  * Använder IntersectionObserver för prestanda.
  * Respekterar prefers-reduced-motion automatiskt.
- * Element som redan är synliga vid sidladdning visas direkt utan animation.
  */
 
 interface ScrollRevealOptions {
@@ -25,34 +24,6 @@ const defaultOptions: ScrollRevealOptions = {
     once: true,
 };
 
-/** Visa element direkt utan transition (för element redan i viewport) */
-function revealInstantly(el: HTMLElement, activeClass: string) {
-    // Stäng av transitions på elementet OCH alla barn (för stagger-containers)
-    el.style.transition = 'none';
-    const children = el.children;
-    for (let i = 0; i < children.length; i++) {
-        (children[i] as HTMLElement).style.transition = 'none';
-    }
-
-    el.classList.add(activeClass);
-
-    // Tvinga reflow så browsern applicerar ändringen utan transition
-    el.offsetHeight;
-
-    // Återställ transitions
-    el.style.transition = '';
-    for (let i = 0; i < children.length; i++) {
-        (children[i] as HTMLElement).style.transition = '';
-    }
-}
-
-/** Kolla om element är synligt i viewport */
-function isInViewport(el: HTMLElement, threshold: number) {
-    const rect = el.getBoundingClientRect();
-    const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-    return visibleHeight > rect.height * threshold;
-}
-
 export function useScrollReveal<T extends HTMLElement>(
     options?: ScrollRevealOptions
 ) {
@@ -61,7 +32,7 @@ export function useScrollReveal<T extends HTMLElement>(
 
     const mergedOptions = { ...defaultOptions, ...options };
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const element = ref.current;
         if (!element) return;
 
@@ -72,13 +43,6 @@ export function useScrollReveal<T extends HTMLElement>(
 
         if (prefersReducedMotion) {
             element.classList.add(mergedOptions.activeClass!);
-            return;
-        }
-
-        // Element redan synligt vid mount → visa direkt utan animation
-        if (isInViewport(element, mergedOptions.threshold!)) {
-            revealInstantly(element, mergedOptions.activeClass!);
-            hasRevealed.current = true;
             return;
         }
 
@@ -124,30 +88,22 @@ export function useScrollRevealGroup<T extends HTMLElement>(
  * Returnerar en callback som kan kopplas till varje elements ref.
  */
 export function useScrollRevealList(options?: ScrollRevealOptions) {
-    const elements = useRef<Set<HTMLElement>>(new Set());
+    const elements = useRef<Set<Element>>(new Set());
     const observer = useRef<IntersectionObserver | null>(null);
-    const prefersReducedMotion = useRef(false);
 
     const mergedOptions = { ...defaultOptions, ...options };
 
-    useLayoutEffect(() => {
-        prefersReducedMotion.current = window.matchMedia(
+    useEffect(() => {
+        const prefersReducedMotion = window.matchMedia(
             '(prefers-reduced-motion: reduce)'
         ).matches;
 
-        if (prefersReducedMotion.current) {
+        if (prefersReducedMotion) {
             elements.current.forEach((el) =>
                 el.classList.add(mergedOptions.activeClass!)
             );
             return;
         }
-
-        // Visa element som redan är i viewport direkt
-        elements.current.forEach((el) => {
-            if (isInViewport(el, mergedOptions.threshold!)) {
-                revealInstantly(el, mergedOptions.activeClass!);
-            }
-        });
 
         observer.current = new IntersectionObserver(
             (entries) => {
@@ -166,12 +122,7 @@ export function useScrollRevealList(options?: ScrollRevealOptions) {
             }
         );
 
-        // Observera bara element som inte redan visats
-        elements.current.forEach((el) => {
-            if (!el.classList.contains(mergedOptions.activeClass!)) {
-                observer.current?.observe(el);
-            }
-        });
+        elements.current.forEach((el) => observer.current?.observe(el));
 
         return () => observer.current?.disconnect();
     }, []);
@@ -179,15 +130,7 @@ export function useScrollRevealList(options?: ScrollRevealOptions) {
     const callbackRef = useCallback((node: HTMLElement | null) => {
         if (node) {
             elements.current.add(node);
-
-            // Om observer redan är igång och elementet inte redan visats
-            if (observer.current && !prefersReducedMotion.current) {
-                if (isInViewport(node, mergedOptions.threshold!)) {
-                    revealInstantly(node, mergedOptions.activeClass!);
-                } else {
-                    observer.current.observe(node);
-                }
-            }
+            observer.current?.observe(node);
         }
     }, []);
 

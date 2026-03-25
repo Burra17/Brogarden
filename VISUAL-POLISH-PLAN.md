@@ -16,9 +16,9 @@ Varje session = en branch, en PR. Kan reverteras individuellt.
 - [x] Test: ingen layout-shift eller overflow på mobil
 
 ## Session 3: `feature/staggered-entrances` ✅
-- [x] Staggerade animationsdelays på upprepade element (feature cards, galleri, boendekort, programkort)
+- [x] Staggerade animationsdelays på upprepade element (feature cards, galleri, boendekort, programkort, collage)
 - [x] Bygger på scroll reveal-hooken från Session 1
-- [x] `animation-delay` baserat på index, max-cap
+- [x] `transition-delay` baserat på index, max-cap
 - [x] Test: ingen content flash eller layout-hopp
 
 ## Session 4: `feature/page-transitions`

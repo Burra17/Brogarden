@@ -118,8 +118,8 @@ html, body {
 /* Variant: fade in från vänster */
 .reveal-fade-left {
     opacity: 0;
-    transform: translateX(-24px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    transform: translateX(-32px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity, transform;
 }
 
@@ -131,8 +131,8 @@ html, body {
 /* Variant: fade in från höger */
 .reveal-fade-right {
     opacity: 0;
-    transform: translateX(24px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    transform: translateX(32px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity, transform;
 }
 
@@ -217,9 +217,17 @@ html, body {
     }
 }
 
+/* Inaktivera ken-burns på mobil – orsakar laggig känsla på svagare enheter */
 .hero-ken-burns {
-    animation: kenBurns 20s ease-out forwards;
-    will-change: transform;
+    animation: none;
+    will-change: auto;
+}
+
+@media (min-width: 768px) {
+    .hero-ken-burns {
+        animation: kenBurns 20s ease-out forwards;
+        will-change: transform;
+    }
 }
 
 /* Respektera användarens rörelsepreferenser */

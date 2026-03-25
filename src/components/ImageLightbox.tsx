@@ -45,15 +45,19 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isOpen, onClose, showPrev, showNext]);
 
-    // Lock body scroll when lightbox is open
+    // Lås scroll och dölj header när lightbox är öppen
     useEffect(() => {
+        const header = document.querySelector('header');
         if (isOpen) {
             document.body.style.overflow = 'hidden';
+            if (header) header.style.display = 'none';
         } else {
             document.body.style.overflow = '';
+            if (header) header.style.display = '';
         }
         return () => {
             document.body.style.overflow = '';
+            if (header) header.style.display = '';
         };
     }, [isOpen]);
 

@@ -44,9 +44,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="flex flex-col min-h-screen">
             {/* Header */}
             <header
-                className={`fixed w-full z-50 transition-all duration-300 ${isTransparent
+                className={`fixed w-full z-50 transition-all duration-500 ${isTransparent
                         ? 'bg-transparent py-4'
-                        : 'bg-white/95 backdrop-blur-sm shadow-md py-2'
+                        : 'bg-white/90 backdrop-blur-md shadow-sm py-2'
                     }`}
             >
                 <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
@@ -63,8 +63,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 <Link
                                     key={item.path}
                                     to={item.path}
-                                    className={`font-medium transition-colors hover:text-brand-lightGreen ${isActive
-                                            ? 'text-brand-lightGreen border-b-2 border-brand-lightGreen'
+                                    className={`font-medium transition-all duration-300 hover:text-brand-lightGreen relative pb-1 ${isActive
+                                            ? 'text-brand-lightGreen after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-brand-lightGreen after:rounded-full'
                                             : !isTransparent ? 'text-gray-700' : 'text-white drop-shadow-md'
                                         }`}
                                 >

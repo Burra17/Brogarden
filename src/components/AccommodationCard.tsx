@@ -79,7 +79,7 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
                     </div>
                     <Link
                         to="/kontakt"
-                        className="w-full sm:w-auto text-center px-6 py-3 bg-brand-green text-white rounded-lg hover:bg-brand-dark transition-colors font-medium flex items-center justify-center gap-2"
+                        className="w-full sm:w-auto text-center px-6 py-3 bg-brand-green text-white rounded-lg hover:bg-brand-dark hover:-translate-y-0.5 hover:shadow-lg transition-all font-medium flex items-center justify-center gap-2"
                     >
                         <CalendarCheck size={18} />
                         {item.type === 'Venue' ? 'Gör förfrågan' : 'Boka nu'}

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
 import { getImg } from '../utils/imageHelper';
@@ -8,6 +9,37 @@ const Home: React.FC = () => {
     const aboutRef = useScrollReveal<HTMLElement>();
     const cardsRef = useScrollReveal<HTMLDivElement>();
     const collageRef = useScrollReveal<HTMLDivElement>();
+    // Parallax-effekt på collage – bilderna rör sig långsammare än scrollen
+    useEffect(() => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        const container = collageRef.current;
+        if (!container) return;
+
+        let ticking = false;
+        const handleScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const rect = container.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+                // Bara beräkna när collaget är synligt
+                if (rect.bottom > 0 && rect.top < viewHeight) {
+                    const progress = (viewHeight - rect.top) / (viewHeight + rect.height);
+                    const offset = (progress - 0.5) * -30;
+                    const imgs = container.querySelectorAll('img');
+                    imgs.forEach((img) => {
+                        (img as HTMLElement).style.transform = `translateY(${offset}px) scale(1.08)`;
+                    });
+                }
+                ticking = false;
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <>
@@ -41,20 +73,20 @@ const Home: React.FC = () => {
                         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full">
                             <Link
                                 to="/boende"
-                                className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
+                                className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-xl"
                             >
                                 Se våra rum & stugor <ArrowRight size={18} />
                             </Link>
                             <Link
                                 to="/program"
-                                className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 transform hover:scale-105"
+                                className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-xl"
                             >
                                 Program <ArrowRight size={18} />
                             </Link>
                         </div>
                         <Link
                             to="/kontakt"
-                            className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center transform hover:scale-105"
+                            className="w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center hover:-translate-y-0.5 hover:shadow-xl"
                         >
                             Kontakta oss
                         </Link>
@@ -108,7 +140,7 @@ const Home: React.FC = () => {
                             onError={(e) => e.currentTarget.src = `https://picsum.photos/seed/camp${num}/800/800`}
                             alt="Natur och miljö på Brogården"
                             loading="lazy"
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            className="w-full h-full object-cover will-change-transform scale-[1.08]"
                         />
                         <div className="absolute inset-0 group-hover:bg-black/10 transition-colors duration-300"></div>
                     </div>

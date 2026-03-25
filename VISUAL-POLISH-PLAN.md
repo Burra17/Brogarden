@@ -27,11 +27,11 @@ Varje session = en branch, en PR. Kan reverteras individuellt.
 - [x] Scroll-to-top vid navigering
 - [x] Test: bakåt/framåt-knappar, djuplänkar
 
-## Session 5: `feature/micro-interactions`
-- [ ] Förfinade button hover-states (shadow lift istället för scale)
-- [ ] Navbar-transition polish (backdrop blur ramp, aktiv länk-indikator)
-- [ ] Parallax-effekt på bildcollage-strip (Home)
-- [ ] Test: touch-enheter, reduced motion
+## Session 5: `feature/micro-interactions` ✅
+- [x] Förfinade button hover-states (shadow lift istället för scale)
+- [x] Navbar-transition polish (backdrop blur ramp, aktiv länk-indikator)
+- [x] Parallax-effekt på bildcollage-strip (Home)
+- [x] Test: touch-enheter, reduced motion
 
 ## Regler
 - Inga nya npm-beroenden

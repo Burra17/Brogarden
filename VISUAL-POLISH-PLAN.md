@@ -21,11 +21,11 @@ Varje session = en branch, en PR. Kan reverteras individuellt.
 - [x] `transition-delay` baserat på index, max-cap
 - [x] Test: ingen content flash eller layout-hopp
 
-## Session 4: `feature/page-transitions`
-- [ ] Fade-in vid sidbyten via wrapper-komponent
-- [ ] CSS-only med klass-toggle vid mount
-- [ ] Scroll-to-top vid navigering
-- [ ] Test: bakåt/framåt-knappar, djuplänkar
+## Session 4: `feature/page-transitions` ✅
+- [x] Fade-in vid sidbyten via wrapper-komponent
+- [x] CSS-only med klass-toggle vid mount
+- [x] Scroll-to-top vid navigering
+- [x] Test: bakåt/framåt-knappar, djuplänkar
 
 ## Session 5: `feature/micro-interactions`
 - [ ] Förfinade button hover-states (shadow lift istället för scale)

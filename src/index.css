@@ -193,6 +193,20 @@ html, body {
     }
 }
 
+/* Sidövergång – fade-in vid navigation */
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.page-transition {
+    animation: pageFadeIn 0.35s ease-out both;
+}
+
 /* Ken Burns – långsam zoom på hero-bilder för visuellt djup */
 @keyframes kenBurns {
     from {
@@ -217,7 +231,8 @@ html, body {
     .reveal-stagger > *,
     .gallery-reveal,
     .hero-animate,
-    .hero-ken-burns {
+    .hero-ken-burns,
+    .page-transition {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;

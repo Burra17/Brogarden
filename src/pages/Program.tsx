@@ -6,6 +6,7 @@ import { useScrollReveal } from '../utils/useScrollReveal';
 const Program: React.FC = () => {
     const calendarRef = useScrollReveal<HTMLDivElement>();
     const highlightsRef = useScrollReveal<HTMLDivElement>();
+    const eventsRef = useScrollReveal<HTMLDivElement>();
 
     return (
         // Jag tog bort 'pt-24' här för att bilden ska ligga kant-i-kant med toppen
@@ -44,7 +45,7 @@ const Program: React.FC = () => {
                     {/* Upcoming Highlights (Static Example) */}
                     <div ref={highlightsRef} className="reveal-fade-up w-full lg:w-1/3" style={{ transitionDelay: '150ms' }}>
                         <h2 className="text-2xl font-bold mb-6">Kommande höjdpunkter</h2>
-                        <div className="space-y-4">
+                        <div ref={eventsRef} className="reveal-stagger space-y-4">
                             {[
                                 { title: 'Valborgsmässofirande', date: '30 April', time: '19:00', desc: 'Vårsånger med Njutånger-Iggesunds kyrkokör. Vårtal: Kyrkoherde Edit Åkerlund Vallingstam. Majbrasa, fika, korv, fiskdamm. Varmt välkommen!' },
                                 { title: 'Midsommarfirande', date: '19 Juni', time: '15:00', desc: 'Resning och dans kring midsommarstången. Kort andakt och servering med korv, fiskdamm mm. Kom gärna innan och hjälp till att klä stången.' },

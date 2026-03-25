@@ -100,7 +100,7 @@ const Home: React.FC = () => {
             </section>
 
             {/* Decorative Image Strip */}
-            <div ref={collageRef} className="reveal-fade grid grid-cols-2 md:grid-cols-4 h-64 md:h-96 w-full">
+            <div ref={collageRef} className="reveal-stagger grid grid-cols-2 md:grid-cols-4 h-64 md:h-96 w-full">
                 {[1, 2, 3, 4].map((num) => (
                     <div key={num} className="relative w-full h-full overflow-hidden group">
                         <img

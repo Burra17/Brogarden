@@ -44,7 +44,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="flex flex-col min-h-screen">
             {/* Header */}
             <header
-                className={`fixed w-full z-50 transition-colors duration-300 py-2 ${isTransparent
+                className={`fixed w-full z-50 py-2 ${isTransparent
                         ? 'bg-transparent'
                         : 'bg-white shadow-sm'
                     }`}

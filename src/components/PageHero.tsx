@@ -27,8 +27,8 @@ const PageHero: React.FC<PageHeroProps> = ({
                 <div className="absolute inset-0 bg-black/30"></div>
             </div>
 
-            {/* Textinneh�ll */}
-            <div className="relative z-10 text-center text-white px-4">
+            {/* Textinnehåll – pt-16 kompenserar för fixed header så texten inte överlappar */}
+            <div className="relative z-10 text-center text-white px-4 pt-16">
                 <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg">
                     {title}
                 </h1>

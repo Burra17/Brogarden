@@ -193,19 +193,7 @@ html, body {
     }
 }
 
-/* Sidövergång – fade-in vid navigation */
-@keyframes pageFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.page-transition {
-    animation: pageFadeIn 0.35s ease-out both;
-}
+/* Sidövergång borttagen – individuella sektionsanimationer hanterar fade-in */
 
 /* Ken Burns – långsam zoom på hero-bilder för visuellt djup */
 @keyframes kenBurns {

@@ -50,14 +50,14 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
         const header = document.querySelector('header');
         if (isOpen) {
             document.body.style.overflow = 'hidden';
-            if (header) header.style.display = 'none';
+            if (header) header.classList.add('!hidden');
         } else {
             document.body.style.overflow = '';
-            if (header) header.style.display = '';
+            if (header) header.classList.remove('!hidden');
         }
         return () => {
             document.body.style.overflow = '';
-            if (header) header.style.display = '';
+            if (header) header.classList.remove('!hidden');
         };
     }, [isOpen]);
 

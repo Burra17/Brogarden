@@ -17,9 +17,8 @@ const PageHero: React.FC<PageHeroProps> = ({
             <div className="absolute inset-0 overflow-hidden">
                 <img
                     src={getImg(backgroundImage)}
-                    onError={(e) => e.currentTarget.src = 'https://picsum.photos/seed/hero/1920/600'}
                     alt={title}
-                    fetchPriority="high"
+                    fetchpriority="high"
                     className="w-full h-full object-cover hero-ken-burns"
                 />
                 {/* En tunn svart hinna (30%) s� att vit text syns ovanp� ljusa bilder. 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ZoomIn } from 'lucide-react';
 import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero';
@@ -12,6 +12,7 @@ const images = Array.from({ length: 16 }).map((_, i) => ({
 }));
 
 const Gallery: React.FC = () => {
+    useEffect(() => { document.title = 'Bildgalleri – Brogården'; }, []);
     const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
     const [isLightboxOpen, setIsLightboxOpen] = useState(false);
     // Desktop: stagger-animation på hela gridet

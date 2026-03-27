@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import { contactInfo } from '../data/contactInfo';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
 const Contact: React.FC = () => {
+    useEffect(() => { document.title = 'Kontakt – Brogården'; }, []);
     const contactCardRef = useScrollReveal<HTMLDivElement>();
     const mapRef = useScrollReveal<HTMLDivElement>();
 

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
 const Program: React.FC = () => {
+    useEffect(() => { document.title = 'Program & Aktiviteter – Brogården'; }, []);
     const calendarRef = useScrollReveal<HTMLDivElement>();
     const highlightsRef = useScrollReveal<HTMLDivElement>();
     const eventsRef = useScrollReveal<HTMLDivElement>();

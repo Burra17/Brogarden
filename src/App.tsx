@@ -26,7 +26,7 @@ const PageShell = ({ children }: { children: React.ReactNode }) => {
 
 function App() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Layout>
         <Suspense fallback={<div className="min-h-screen bg-brand-cream" />}>
           <PageShell>

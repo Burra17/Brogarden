@@ -5,6 +5,8 @@ import { getImg } from '../utils/imageHelper';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
 const Home: React.FC = () => {
+    useEffect(() => { document.title = 'Brogården – Lägergård & vandrarhem i Njutånger'; }, []);
+
     // Scroll reveal refs för sektioner under the fold
     const cardsRef = useScrollReveal<HTMLDivElement>();
     const collageRef = useScrollReveal<HTMLDivElement>();
@@ -49,7 +51,7 @@ const Home: React.FC = () => {
                     <img
                         src={getImg('home-hero.jpg')}
                         alt="Brogården natur"
-                        fetchPriority="high"
+                        fetchpriority="high"
                         className="w-full h-full object-cover hero-ken-burns"
                     />
                 </div>

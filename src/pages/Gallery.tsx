@@ -49,7 +49,6 @@ const Gallery: React.FC = () => {
                         >
                             <img
                                 src={img.url}
-                                onError={(e) => e.currentTarget.src = `https://picsum.photos/seed/brogarden${index}/1200/800`}
                                 alt={img.caption}
                                 loading="lazy"
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

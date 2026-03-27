@@ -48,7 +48,6 @@ const Home: React.FC = () => {
                 <div className="absolute inset-0 z-0">
                     <img
                         src={getImg('home-hero.jpg')}
-                        onError={(e) => e.currentTarget.src = 'https://picsum.photos/seed/brogardenhero/1920/1080'}
                         alt="Brogården natur"
                         fetchPriority="high"
                         className="w-full h-full object-cover hero-ken-burns"
@@ -136,7 +135,6 @@ const Home: React.FC = () => {
                     <div key={num} className="relative w-full h-full overflow-hidden group">
                         <img
                             src={getImg(`collage-${num}.jpg`)}
-                            onError={(e) => e.currentTarget.src = `https://picsum.photos/seed/camp${num}/800/800`}
                             alt="Natur och miljö på Brogården"
                             loading="lazy"
                             className="w-full h-full object-cover will-change-transform scale-[1.08]"

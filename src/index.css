@@ -25,7 +25,7 @@ html, body {
     overflow-x: hidden;
 }
 
-/* Hero-höjder med dvh-fallback för Safari mobile */
+/* Hero-höjder – svh ger stabil höjd på mobil (ingen resize när adressfältet döljs) */
 .h-hero-home {
     min-height: 70vh;
 }
@@ -33,12 +33,12 @@ html, body {
     height: 40vh;
 }
 
-@supports (height: 1dvh) {
+@supports (height: 1svh) {
     .h-hero-home {
-        min-height: 70dvh;
+        min-height: 70svh;
     }
     .h-hero-page {
-        height: 40dvh;
+        height: 40svh;
     }
 }
 
@@ -46,9 +46,9 @@ html, body {
     .h-hero-home {
         min-height: 75vh;
     }
-    @supports (height: 1dvh) {
+    @supports (height: 1svh) {
         .h-hero-home {
-            min-height: 75dvh;
+            min-height: 75svh;
         }
     }
 }
@@ -161,16 +161,10 @@ html, body {
     transform: translateY(0);
 }
 
-/* Galleri: mobil – individuell fade-up per bild */
+/* Galleri: mobil – bilder visas direkt (ingen animation som döljer vid snabb scroll) */
 .gallery-reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.gallery-reveal.revealed-mobile {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
 /* Galleri: desktop (sm+) – stagger-våg styrd av gridet */

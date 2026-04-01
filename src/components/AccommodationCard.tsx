@@ -23,11 +23,12 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
                     }}
                     alt={item.title}
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition-opacity group-hover:opacity-40"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition-opacity md:group-hover:opacity-40"></div>
 
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* Synlig galleri-ikon på mobil, hover-effekt på desktop */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-70 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-black/40 p-3 rounded-full backdrop-blur-sm text-white border border-white/30">
                         <Images size={32} />
                     </div>
@@ -79,7 +80,7 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
                     </div>
                     <Link
                         to="/kontakt"
-                        className="w-full sm:w-auto text-center px-6 py-3 bg-brand-green text-white rounded-lg hover:bg-brand-dark hover:-translate-y-0.5 hover:shadow-lg transition-all font-medium flex items-center justify-center gap-2"
+                        className="w-full sm:w-auto text-center px-6 py-3 bg-brand-green text-white rounded-lg active:bg-brand-dark md:hover:bg-brand-dark md:hover:-translate-y-0.5 md:hover:shadow-lg transition-all font-medium flex items-center justify-center gap-2"
                     >
                         <CalendarCheck size={18} />
                         {item.type === 'Venue' ? 'Gör förfrågan' : 'Boka nu'}

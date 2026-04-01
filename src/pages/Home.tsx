@@ -10,10 +10,11 @@ const Home: React.FC = () => {
     // Scroll reveal refs för sektioner under the fold
     const cardsRef = useScrollReveal<HTMLDivElement>();
     const collageRef = useScrollReveal<HTMLDivElement>();
-    // Parallax-effekt på collage – bilderna rör sig långsammare än scrollen
+    // Parallax-effekt på collage – bara desktop (mobil får lagg och vita linjer)
     useEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) return;
+        const isMobile = window.matchMedia('(max-width: 767px)').matches;
+        if (prefersReducedMotion || isMobile) return;
 
         const container = collageRef.current;
         if (!container) return;
@@ -139,7 +140,7 @@ const Home: React.FC = () => {
                             src={getImg(`collage-${num}.jpg`)}
                             alt="Natur och miljö på Brogården"
                             loading="lazy"
-                            className="w-full h-full object-cover will-change-transform scale-[1.08]"
+                            className="w-full h-full object-cover md:will-change-transform md:scale-[1.08]"
                         />
                         <div className="absolute inset-0 group-hover:bg-black/10 transition-colors duration-300"></div>
                     </div>

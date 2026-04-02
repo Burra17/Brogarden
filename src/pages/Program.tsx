@@ -32,7 +32,7 @@ const Program: React.FC = () => {
                         </h2>
                         <div className="aspect-square md:aspect-[4/3] w-full bg-gray-50 rounded-lg overflow-hidden">
                             <iframe
-                                src="https://calendar.google.com/calendar/embed?src=c_cafb2e4b853878b7445efc043ac1c561419a4c70903456cb06bf4cfa3feb097c%40group.calendar.google.com&ctz=Europe%2FStockholm"
+                                src="https://calendar.google.com/calendar/embed?src=c_cafb2e4b853878b7445efc043ac1c561419a4c70903456cb06bf4cfa3feb097c%40group.calendar.google.com&ctz=Europe%2FStockholm&mode=AGENDA"
                                 style={{ border: 0 }}
                                 width="100%"
                                 height="100%"

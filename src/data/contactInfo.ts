@@ -10,4 +10,5 @@ export const contactInfo = {
   mapsUrl:
     'https://maps.google.com/?q=Örängesvägen+19,825+92+Njutånger',
   facebookUrl: 'https://www.facebook.com/BrogardenEFSNjutanger',
+  instagramUrl: 'https://www.instagram.com/brogardslager/',
 };

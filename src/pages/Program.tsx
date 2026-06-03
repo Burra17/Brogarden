@@ -80,6 +80,15 @@ const Program: React.FC = () => {
                       >
                         länken
                       </a>
+                      . Följ oss på{" "}
+                      <a
+                        href="https://www.instagram.com/brogardslager/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-brand-green font-semibold underline"
+                      >
+                        Instagram
+                      </a>
                       .
                     </>
                   ),

@@ -1,6 +1,6 @@
 export const contactInfo = {
-  phone: '0650-70284',
-  phoneHref: 'tel:+4665070284',
+  phone: '073-856 94 36',
+  phoneHref: 'tel:+46738569436',
   email: 'katarina.svedman@efs.nu',
   emailHref: 'mailto:katarina.svedman@efs.nu',
   address: {

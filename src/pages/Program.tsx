@@ -57,59 +57,48 @@ const Program: React.FC = () => {
             <div ref={eventsRef} className="reveal-stagger space-y-4">
               {[
                 {
-                  title: "Midsommarfirande",
-                  date: "19 Juni 2026",
-                  time: "15:00",
-                  desc: "Resning och dans kring midsommarstången. Kort andakt och servering med korv, fiskdamm mm. Kom gärna innan och hjälp till att klä stången.",
-                },
-                {
-                  title:
-                    "Soul Children läger 9-13 år Anmälningsstart 31 maj 10.00!",
-                  date: "11–13 Augusti 2026",
-                  time: "12:00",
+                  title: "Surströmmingsavslutning",
+                  date: "Söndag 30 Augusti 2026",
+                  time: "18:00",
                   desc: (
                     <>
-                      Välkommen på Brogårdsläger med massor av sång, lek, bad,
-                      bibelskoj mm. Begränsat med platser, möjlighet att sova
-                      över eller åka hem och sova. Mer information se{" "}
+                      Anmälan{" "}
                       <a
-                        href="./brogardslager-2026.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="tel:+46738569436"
                         className="text-brand-green font-semibold underline"
                       >
-                        länken
+                        073-856 94 36
                       </a>
-                      . Följ oss på{" "}
-                      <a
-                        href="https://www.instagram.com/brogardslager/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-brand-green font-semibold underline"
-                      >
-                        Instagram
-                      </a>
-                      .
                     </>
                   ),
+                },
+                {
+                  title: "Tack till alla gäster som besökt oss i sommar!",
+                  date: null,
+                  time: null,
+                  desc: "Logigäster, lägerdeltagare, gudstjänst- och musikkvällsdeltagare, eller besökare vid andra evenemang. Det är ni som bidrar till att Brogården kan fortsätta fungera som en värdefull kristen mötesplats för alla generationer. Hoppas vi ses nästa sommar igen!",
                 },
               ].map((event, idx) => (
                 <div
                   key={idx}
                   className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-brand-lightGreen transition-colors group"
                 >
-                  <div className="flex items-center gap-3 text-brand-green font-semibold mb-2">
-                    <Calendar size={18} />
-                    <span>{event.date}</span>
-                  </div>
+                  {event.date && (
+                    <div className="flex items-center gap-3 text-brand-green font-semibold mb-2">
+                      <Calendar size={18} />
+                      <span>{event.date}</span>
+                    </div>
+                  )}
                   <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-brand-green transition-colors">
                     {event.title}
                   </h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                    <Clock size={14} /> {event.time}
-                    <span className="mx-1">•</span>
-                    <MapPin size={14} /> Brogården
-                  </div>
+                  {event.time && (
+                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                      <Clock size={14} /> {event.time}
+                      <span className="mx-1">•</span>
+                      <MapPin size={14} /> Brogården
+                    </div>
+                  )}
                   <p className="text-gray-600 text-sm">{event.desc}</p>
                 </div>
               ))}

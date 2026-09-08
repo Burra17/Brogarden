@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { Calendar, Clock, MapPin, Instagram } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { useScrollReveal } from "../utils/useScrollReveal";
+import { contactInfo } from "../data/contactInfo";
 
 const Program: React.FC = () => {
   useEffect(() => {
@@ -57,17 +58,19 @@ const Program: React.FC = () => {
             <div ref={eventsRef} className="reveal-stagger space-y-4">
               {[
                 {
-                  title: "Surströmmingsavslutning",
-                  date: "Söndag 30 Augusti 2026",
-                  time: "18:00",
+                  title: "Glimtar från årets läger!",
+                  date: null,
+                  time: null,
                   desc: (
                     <>
-                      Anmälan{" "}
+                      Se bilder här:{" "}
                       <a
-                        href="tel:+46738569436"
-                        className="text-brand-green font-semibold underline"
+                        href={contactInfo.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-brand-green font-semibold underline"
                       >
-                        073-856 94 36
+                        <Instagram size={14} /> Instagram
                       </a>
                     </>
                   ),

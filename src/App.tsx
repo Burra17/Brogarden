@@ -7,11 +7,13 @@ import Gallery from './pages/Gallery';
 import Program from './pages/Program';
 import Contact from './pages/Contact';
 import { usePageTracking } from './utils/usePageTracking';
+import { useCanonicalUrl } from './utils/useCanonicalUrl';
 
-// Scrollar till toppen, triggar fade-in och räknar sidvisning vid sidbyte
+// Scrollar till toppen, triggar fade-in, sätter canonical och räknar sidvisning vid sidbyte
 const PageShell = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
   usePageTracking(pathname);
+  useCanonicalUrl(pathname);
 
   useEffect(() => {
     window.scrollTo(0, 0);

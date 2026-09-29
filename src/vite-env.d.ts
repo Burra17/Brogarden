@@ -1,4 +1,4 @@
-// Manual type definitions since vite/client is missing
+// Egna typdeklarationer för importerade filer, eftersom vite/client saknas
 declare module '*.svg' {
   import * as React from 'react';
   export const ReactComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }>;

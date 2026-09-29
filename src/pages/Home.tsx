@@ -26,7 +26,7 @@ const featureToneClasses: Record<AboutFeature['tone'], string> = {
 };
 
 const Home: React.FC = () => {
-  // Scroll reveal refs för sektioner under the fold
+  // Scroll reveal-refs för sektionerna nedanför heron
   const cardsRef = useScrollReveal<HTMLDivElement>();
   const collageRef = useScrollReveal<HTMLDivElement>();
   // Parallax-effekt på collage – bara desktop (mobil får lagg och vita linjer)
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {/* Hero Section - Matchar bilden perfekt */}
+      {/* Hero */}
       <section className='relative h-hero-home flex items-center justify-center overflow-hidden'>
         {/* Bakgrundsbild utan mörkt lager */}
         <div className='absolute inset-0 z-0'>
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Om oss */}
       <section className='py-20 bg-white'>
         <div className='hero-animate hero-delay-2 container mx-auto px-4 max-w-4xl text-center'>
           <span className='text-brand-green font-bold tracking-wider uppercase text-sm mb-2 block'>Om Oss</span>
@@ -125,7 +125,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Decorative Image Strip */}
+      {/* Dekorativ bildremsa */}
       <div ref={collageRef} className='reveal-stagger grid grid-cols-2 md:grid-cols-4 h-64 md:h-96 w-full bg-white'>
         {[1, 2, 3, 4].map((num) => (
           <div key={num} className='relative w-full h-full overflow-hidden group'>

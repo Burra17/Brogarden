@@ -22,7 +22,7 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
     <div
       className={`flex flex-col lg:flex-row bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-12 lg:mb-20 transition-all hover:shadow-xl ${reverse ? 'lg:flex-row-reverse' : ''}`}
     >
-      {/* Image Gallery */}
+      {/* Bildgalleri */}
       <div className='lg:w-1/2 h-64 lg:h-auto relative group cursor-pointer' onClick={() => onOpenGallery(item.images)}>
         <img
           src={item.images[0]}
@@ -51,7 +51,7 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
         )}
       </div>
 
-      {/* Content */}
+      {/* Innehåll */}
       <div className='lg:w-1/2 p-6 lg:p-10 flex flex-col justify-center'>
         <div className='flex gap-2 mb-4'>
           {item.tags.map((tag, idx) => (

@@ -11,20 +11,17 @@ const Program: React.FC = () => {
   const hasHighlights = highlights.length > 0;
 
   return (
-    // Jag tog bort 'pt-24' här för att bilden ska ligga kant-i-kant med toppen
     <div className='bg-brand-cream/30 pb-20'>
       {/* --- HERO SEKTION --- */}
       <PageHero
         title='Program & Aktiviteter'
         subtitle='Här hittar du vad som händer på Brogården. Läger, gudstjänster och andra samlingar.'
-        backgroundImage='program-hero.jpg' // Se till att du har en bild med detta namn, annars visas en slumpmässig
+        backgroundImage='program-hero.jpg'
       />
 
       <div className='container mx-auto px-4'>
-        {/* Den gamla rubriken låg här, men nu ligger den i bilden ovanför */}
-
         <div className='flex flex-col lg:flex-row lg:items-start gap-12'>
-          {/* Calendar Section */}
+          {/* Kalender */}
           <div
             ref={calendarRef}
             className={`reveal-fade-up w-full ${hasHighlights ? 'lg:w-2/3' : ''} bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden p-6`}
@@ -46,7 +43,7 @@ const Program: React.FC = () => {
             </div>
           </div>
 
-          {/* Upcoming Highlights (Static Example) */}
+          {/* Kommande höjdpunkter – döljs när listan är tom */}
           {hasHighlights && (
             <div ref={highlightsRef} className='reveal-fade-up w-full lg:w-1/3' style={{ transitionDelay: '150ms' }}>
               <h2 className='text-2xl font-bold mb-6'>Kommande höjdpunkter</h2>

@@ -3,7 +3,7 @@ import { AccommodationItem } from '../types';
 import { getImg } from '../utils/imageHelper';
 
 export const accommodations: AccommodationItem[] = [
-  // Outdoors
+  // Utomhus
   {
     id: 'camping',
     title: 'Ställplats för husvagn/bil och tält.',
@@ -22,7 +22,7 @@ export const accommodations: AccommodationItem[] = [
     ],
     images: [getImg('camping-detail-1.jpg'), getImg('camping-detail-2.jpg')],
   },
-  // Rooms
+  // Rum
   {
     id: 'blarummet',
     title: 'Blå rummet',
@@ -51,7 +51,7 @@ export const accommodations: AccommodationItem[] = [
     ],
     images: [getImg('room-solo.jpg')],
   },
-  // Cottages
+  // Stugor
   {
     id: 'nystugan',
     title: 'Nystugan',
@@ -106,7 +106,7 @@ export const accommodations: AccommodationItem[] = [
       getImg('stuga-osterstugan-5.jpg'),
     ],
   },
-  // Venue
+  // Lokaler
   {
     id: 'kyrksal',
     title: 'Kyrksal/Samlingssal',

@@ -12,8 +12,7 @@ const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, backgroundImage = 
       {/* Bakgrundsbild */}
       <div className='absolute inset-0 overflow-hidden'>
         <img src={getImg(backgroundImage)} alt={title} fetchpriority='high' className='w-full h-full object-cover hero-ken-burns' />
-        {/* En tunn svart hinna (30%) s� att vit text syns ovanp� ljusa bilder. 
-            Vill du ha bilden �nnu ljusare kan du �ndra till bg-black/10 eller ta bort raden helt. */}
+        {/* Tunn svart hinna (30 %) så att vit text syns ovanpå ljusa bilder */}
         <div className='absolute inset-0 bg-black/30'></div>
       </div>
 

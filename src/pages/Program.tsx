@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, Clock, MapPin, Instagram } from 'lucide-react';
 import PageHero from '../components/PageHero';
-import { useScrollReveal } from '../utils/useScrollReveal';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import { contactInfo } from '../data/contactInfo';
 
 const Program: React.FC = () => {

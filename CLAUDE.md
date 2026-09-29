@@ -28,12 +28,14 @@ Koda som en senior utvecklare. Följ dessa principer:
 
 ```
 src/
-├── components/    # Återanvändbara UI-komponenter
+├── components/    # Återanvändbara UI-komponenter (Layout = Header + Footer)
 ├── data/          # Statisk data (boenden, kontaktinfo)
+├── hooks/         # Egna React-hooks (scroll reveal, canonical, sidvisningar)
 ├── pages/         # Sidkomponenter (en per route)
 ├── utils/         # Hjälpfunktioner (t.ex. imageHelper)
+├── routes.tsx     # Sidlistan – router, meny, footer och sidtitlar byggs härifrån
 ├── types.ts       # Gemensamma TypeScript-typer
-├── App.tsx        # Router och layout
+├── App.tsx        # Router, layout och PageShell (titel, beskrivning, canonical)
 ├── index.tsx      # Entry point
 └── index.css      # Globala stilar + Tailwind
 ```

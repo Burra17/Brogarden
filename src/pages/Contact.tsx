@@ -1,7 +1,7 @@
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import { contactInfo } from '../data/contactInfo';
-import { useScrollReveal } from '../utils/useScrollReveal';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const Contact: React.FC = () => {
   const contactCardRef = useScrollReveal<HTMLDivElement>();

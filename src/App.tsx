@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, matchPath } from 'react-router-dom';
 import Layout from './components/Layout';
 import { routes } from './routes';
-import { usePageTracking } from './utils/usePageTracking';
-import { useCanonicalUrl } from './utils/useCanonicalUrl';
+import { usePageTracking } from './hooks/usePageTracking';
+import { useCanonicalUrl } from './hooks/useCanonicalUrl';
 
 // Scrollar till toppen, sätter titel, beskrivning och canonical samt räknar sidvisning vid sidbyte
 const PageShell = ({ children }: { children: React.ReactNode }) => {

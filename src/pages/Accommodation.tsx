@@ -3,7 +3,7 @@ import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero';
 import AccommodationCard from '../components/AccommodationCard';
 import { accommodations } from '../data/accommodations';
-import { useScrollRevealList } from '../utils/useScrollReveal';
+import { useScrollRevealList } from '../hooks/useScrollReveal';
 
 const Accommodation: React.FC = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);

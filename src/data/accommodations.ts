@@ -10,7 +10,7 @@ export const accommodations: AccommodationItem[] = [
     description:
       'Vacker utemiljö med grönytor, närhet till vatten och flera sittplatser runt området. Perfekt för avkoppling, grillning eller lek för barnen.',
     type: 'Outdoor',
-    tags: [{ label: 'Natur', color: 'bg-green-100 text-green-800' }],
+    tags: [{ label: 'Natur', tone: 'green' }],
     price: [
       { amount: '200 kr', unit: '/ natt (Husvagn/bil)' },
       { amount: '150 kr', unit: '/ natt (Tält)' },
@@ -28,7 +28,7 @@ export const accommodations: AccommodationItem[] = [
     title: 'Blå rummet',
     description: 'Ett trevligt dubbelrum i södra gaveln av kyrkobyggnaden.',
     type: 'Room',
-    tags: [{ label: 'Rum', color: 'bg-blue-100 text-blue-800' }],
+    tags: [{ label: 'Rum', tone: 'blue' }],
     price: [{ amount: '400 kr', unit: '/ natt' }],
     features: [
       { icon: Users, label: 'Toalett intill' },
@@ -42,7 +42,7 @@ export const accommodations: AccommodationItem[] = [
     title: 'Solorummet',
     description: 'Ett litet rum i södra gaveln av kyrkobyggnaden med närhet till toalett.',
     type: 'Room',
-    tags: [{ label: 'Rum', color: 'bg-blue-100 text-blue-800' }],
+    tags: [{ label: 'Rum', tone: 'blue' }],
     price: [{ amount: '200 kr', unit: '/ natt' }],
     features: [
       { icon: Users, label: 'Toalett intill' },
@@ -57,7 +57,7 @@ export const accommodations: AccommodationItem[] = [
     title: 'Nystugan',
     description: 'En rymlig stuga med veranda. Här finns plats för hela familjen med våningssängar och enkelsäng.',
     type: 'Cottage',
-    tags: [{ label: 'Stuga', color: 'bg-red-100 text-red-800' }],
+    tags: [{ label: 'Stuga', tone: 'red' }],
     price: [{ amount: '600 kr', unit: '/ natt' }],
     features: [
       { icon: Bed, label: '5 Bäddar' },
@@ -71,7 +71,7 @@ export const accommodations: AccommodationItem[] = [
     title: 'Lillstugan',
     description: 'Mysig mindre stuga med fyra bäddar i våningssängar. Här får även hunden sova över.',
     type: 'Cottage',
-    tags: [{ label: 'Stuga', color: 'bg-red-100 text-red-800' }],
+    tags: [{ label: 'Stuga', tone: 'red' }],
     price: [{ amount: '500 kr', unit: '/ natt' }],
     features: [
       { icon: Bed, label: '4 Bäddar' },
@@ -85,7 +85,7 @@ export const accommodations: AccommodationItem[] = [
     title: 'Österstugan',
     description: 'Vårt största boende med tre sovrum och ett sällskapsrum.',
     type: 'Cottage',
-    tags: [{ label: 'Stort hus', color: 'bg-red-100 text-red-800' }],
+    tags: [{ label: 'Stort hus', tone: 'red' }],
     price: [
       { amount: '800 kr', unit: '/ hela huset' },
       { amount: '400 kr', unit: '/ rum' },
@@ -112,7 +112,7 @@ export const accommodations: AccommodationItem[] = [
     title: 'Kyrksal/Samlingssal',
     description: 'Flexibel samlingssal för gudstjänster, föredrag, sång och musik etc. Utrustad med 80 lösa stolar, elpiano och ljudanläggning.',
     type: 'Venue',
-    tags: [{ label: 'Lokal', color: 'bg-gray-100 text-gray-800' }],
+    tags: [{ label: 'Lokal', tone: 'gray' }],
     price: [{ amount: 'Kontakta oss', unit: 'för pris' }],
     features: [
       { icon: Users, label: 'ca 80 platser' },
@@ -128,7 +128,7 @@ export const accommodations: AccommodationItem[] = [
     description:
       'När du bor på Brogården får du tillgång till den gemensamma huvudbyggnaden. Här finns ett stort kök med grundläggande utrustning. Matsal för ca 40 personer och även matplatser utomhus.',
     type: 'Venue',
-    tags: [{ label: 'Gemensamma utrymmen', color: 'bg-amber-100 text-amber-800' }],
+    tags: [{ label: 'Gemensamma utrymmen', tone: 'amber' }],
     price: [{ amount: 'Ingår', unit: 'för gäster' }],
     features: [
       { icon: Users, label: '4 st WC (2 per plan)' },

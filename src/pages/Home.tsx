@@ -91,9 +91,9 @@ const Home: React.FC = () => {
       {/* About Section */}
       <section className='py-20 bg-white'>
         <div className='hero-animate hero-delay-2 container mx-auto px-4 max-w-4xl text-center'>
-          <span className='text-[#4A6741] font-bold tracking-wider uppercase text-sm mb-2 block'>Om Oss</span>
+          <span className='text-brand-green font-bold tracking-wider uppercase text-sm mb-2 block'>Om Oss</span>
           <h2 className='text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6'>En plats för möten</h2>
-          <div className='w-24 h-1 bg-[#7FB346] mx-auto mb-10 rounded-full'></div>
+          <div className='w-24 h-1 bg-brand-lightGreen mx-auto mb-10 rounded-full'></div>
 
           <p className='text-lg text-gray-700 leading-relaxed mb-12'>
             Brogården drivs ideellt av en lokal, kristen EFS-förening. Här erbjuds prisvärt boende i rum och stugor samt ställplatser för husbil och
@@ -101,21 +101,21 @@ const Home: React.FC = () => {
           </p>
 
           <div ref={cardsRef} className='reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-8'>
-            <div className='p-6 bg-[#fcfaf7] rounded-xl border border-gray-100 shadow-sm'>
-              <div className='w-12 h-12 bg-[#7FB346]/10 text-[#7FB346] rounded-full flex items-center justify-center mx-auto mb-4'>
+            <div className='p-6 bg-brand-cream/30 rounded-xl border border-gray-100 shadow-sm'>
+              <div className='w-12 h-12 bg-brand-lightGreen/10 text-brand-lightGreen rounded-full flex items-center justify-center mx-auto mb-4'>
                 <Trees size={24} />
               </div>
               <h3 className='font-bold text-xl mb-2 text-gray-800'>Naturnära</h3>
               <p className='text-gray-600 text-sm'>Omgiven av skog och vatten, perfekt för återhämtning.</p>
             </div>
-            <div className='p-6 bg-[#fcfaf7] rounded-xl border border-gray-100 shadow-sm'>
+            <div className='p-6 bg-brand-cream/30 rounded-xl border border-gray-100 shadow-sm'>
               <div className='w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4'>
                 <HomeIcon size={24} />
               </div>
               <h3 className='font-bold text-xl mb-2 text-gray-800'>Hemtrevligt</h3>
               <p className='text-gray-600 text-sm'>Enkla, mysiga rum och stugor med personlig touch.</p>
             </div>
-            <div className='p-6 bg-[#fcfaf7] rounded-xl border border-gray-100 shadow-sm'>
+            <div className='p-6 bg-brand-cream/30 rounded-xl border border-gray-100 shadow-sm'>
               <div className='w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4'>
                 <Heart size={24} />
               </div>

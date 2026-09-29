@@ -18,3 +18,18 @@ export interface AccommodationItem {
   features: AccommodationFeature[];
   images: string[];
 }
+
+export interface AboutFeature {
+  icon: LucideIcon;
+  title: string;
+  text: string;
+  tone: Extract<Tone, 'green' | 'blue' | 'red'>;
+}
+
+export interface Highlight {
+  title: string;
+  text: string;
+  date?: string;
+  time?: string;
+  link?: { label: string; url: string; icon?: LucideIcon };
+}

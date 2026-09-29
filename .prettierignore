@@ -1,0 +1,9 @@
+# Byggresultat och beroenden formateras aldrig
+dist
+node_modules
+
+# Lockfilen ägs av npm, inte av oss
+package-lock.json
+
+# Statiska filer som serveras som de är
+public

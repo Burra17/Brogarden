@@ -1,0 +1,53 @@
+name: CI
+
+# PR-körningen är grinden. Push-körningen på main ger ett eget facit i historiken,
+# så att en commit som ändå tagit sig förbi grinden syns som röd i efterhand.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Jobbet läser bara kod. Utan raden ärver GITHUB_TOKEN repots standardrättigheter.
+permissions:
+  contents: read
+
+# Nya pushar på en PR avbryter äldre körningar. På main avbryts ingenting,
+# där är varje körning ett facit för just den commiten.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  # Jobbets id är namnet som branch protection pekar på – byt inte utan att
+  # uppdatera den obligatoriska statuskontrollen.
+  kontroller:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Node-versionen läses ur .nvmrc, samma som Cloudflare Pages använder.
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # npm ci installerar exakt det som står i package-lock.json.
+      - name: Installera beroenden
+        run: npm ci
+
+      # Billigaste kontrollen först, så att det enklaste felet syns snabbast.
+      - name: Format
+        run: npm run format:check
+
+      # !cancelled() gör att stegen körs även om ett tidigare fallit,
+      # så att alla fel syns i samma körning.
+      - name: Lint
+        if: '!cancelled()'
+        run: npm run lint
+
+      # build kör typkontroll före Vite-bygget – samma kommando som Cloudflare kör.
+      - name: Bygg
+        if: '!cancelled()'
+        run: npm run build

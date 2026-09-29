@@ -46,7 +46,7 @@ const Home: React.FC = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [collageRef]);
 
   return (
     <>

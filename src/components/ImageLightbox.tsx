@@ -16,12 +16,15 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
     const minSwipeDistance = 50;
 
-    // Reset index when opening new set of images
-    useEffect(() => {
+    // Återställ index när lightboxen öppnas eller startbilden byts. Justeras under
+    // renderingen i stället för i en effect, så att fel bild aldrig hinner visas.
+    const [prevProps, setPrevProps] = useState({ isOpen, initialIndex });
+    if (prevProps.isOpen !== isOpen || prevProps.initialIndex !== initialIndex) {
+        setPrevProps({ isOpen, initialIndex });
         if (isOpen) {
             setCurrentIndex(initialIndex);
         }
-    }, [isOpen, initialIndex]);
+    }
 
     const showPrev = useCallback((e?: React.MouseEvent) => {
         e?.stopPropagation();

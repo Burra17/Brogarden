@@ -36,10 +36,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  // Stäng mobilmenyn vid varje navigering. Justeras under renderingen i stället
+  // för i en effect, så att menyn aldrig hinner renderas öppen på den nya sidan.
+  const [prevLocationKey, setPrevLocationKey] = useState(location.key);
+  if (location.key !== prevLocationKey) {
+    setPrevLocationKey(location.key);
     setIsMenuOpen(false);
-  }, [location]);
+  }
 
   const hasHeroImage = [
     "/",

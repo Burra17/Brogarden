@@ -17,7 +17,7 @@ interface ScrollRevealOptions {
     once?: boolean;
 }
 
-const defaultOptions: ScrollRevealOptions = {
+const defaultOptions: Required<ScrollRevealOptions> = {
     threshold: 0.1,
     activeClass: 'revealed',
     rootMargin: '0px 0px -40px 0px',
@@ -30,7 +30,7 @@ export function useScrollReveal<T extends HTMLElement>(
     const ref = useRef<T>(null);
     const hasRevealed = useRef(false);
 
-    const mergedOptions = { ...defaultOptions, ...options };
+    const { threshold, activeClass, rootMargin, once } = { ...defaultOptions, ...options };
 
     useEffect(() => {
         const element = ref.current;
@@ -42,33 +42,33 @@ export function useScrollReveal<T extends HTMLElement>(
         ).matches;
 
         if (prefersReducedMotion) {
-            element.classList.add(mergedOptions.activeClass!);
+            element.classList.add(activeClass);
             return;
         }
 
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    element.classList.add(mergedOptions.activeClass!);
+                    element.classList.add(activeClass);
                     hasRevealed.current = true;
 
-                    if (mergedOptions.once) {
+                    if (once) {
                         observer.unobserve(element);
                     }
-                } else if (!mergedOptions.once && hasRevealed.current) {
-                    element.classList.remove(mergedOptions.activeClass!);
+                } else if (!once && hasRevealed.current) {
+                    element.classList.remove(activeClass);
                 }
             },
             {
-                threshold: mergedOptions.threshold,
-                rootMargin: mergedOptions.rootMargin,
+                threshold,
+                rootMargin,
             }
         );
 
         observer.observe(element);
 
         return () => observer.disconnect();
-    }, []);
+    }, [threshold, activeClass, rootMargin, once]);
 
     return ref;
 }
@@ -91,7 +91,7 @@ export function useScrollRevealList(options?: ScrollRevealOptions) {
     const elements = useRef<Set<Element>>(new Set());
     const observer = useRef<IntersectionObserver | null>(null);
 
-    const mergedOptions = { ...defaultOptions, ...options };
+    const { threshold, activeClass, rootMargin, once } = { ...defaultOptions, ...options };
 
     useEffect(() => {
         const prefersReducedMotion = window.matchMedia(
@@ -100,7 +100,7 @@ export function useScrollRevealList(options?: ScrollRevealOptions) {
 
         if (prefersReducedMotion) {
             elements.current.forEach((el) =>
-                el.classList.add(mergedOptions.activeClass!)
+                el.classList.add(activeClass)
             );
             return;
         }
@@ -109,23 +109,23 @@ export function useScrollRevealList(options?: ScrollRevealOptions) {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add(mergedOptions.activeClass!);
-                        if (mergedOptions.once) {
+                        entry.target.classList.add(activeClass);
+                        if (once) {
                             observer.current?.unobserve(entry.target);
                         }
                     }
                 });
             },
             {
-                threshold: mergedOptions.threshold,
-                rootMargin: mergedOptions.rootMargin,
+                threshold,
+                rootMargin,
             }
         );
 
         elements.current.forEach((el) => observer.current?.observe(el));
 
         return () => observer.current?.disconnect();
-    }, []);
+    }, [threshold, activeClass, rootMargin, once]);
 
     const callbackRef = useCallback((node: HTMLElement | null) => {
         if (node) {

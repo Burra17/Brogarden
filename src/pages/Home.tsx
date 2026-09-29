@@ -5,10 +5,6 @@ import { getImg } from '../utils/imageHelper';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
 const Home: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Brogården – Lägergård & vandrarhem i Njutånger';
-  }, []);
-
   // Scroll reveal refs för sektioner under the fold
   const cardsRef = useScrollReveal<HTMLDivElement>();
   const collageRef = useScrollReveal<HTMLDivElement>();

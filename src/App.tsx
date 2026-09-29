@@ -1,15 +1,11 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, matchPath } from 'react-router-dom';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import Accommodation from './pages/Accommodation';
-import Gallery from './pages/Gallery';
-import Program from './pages/Program';
-import Contact from './pages/Contact';
+import { routes } from './routes';
 import { usePageTracking } from './utils/usePageTracking';
 import { useCanonicalUrl } from './utils/useCanonicalUrl';
 
-// Scrollar till toppen, triggar fade-in, sätter canonical och räknar sidvisning vid sidbyte
+// Scrollar till toppen, sätter titel, beskrivning och canonical samt räknar sidvisning vid sidbyte
 const PageShell = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
   usePageTracking(pathname);
@@ -18,6 +14,15 @@ const PageShell = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  // matchPath hanterar avslutande snedstreck, så /boende/ hittar samma sida som /boende
+  const page = routes.find((route) => matchPath(route.path, pathname));
+
+  useEffect(() => {
+    if (!page) return;
+    document.title = page.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', page.description);
+  }, [page]);
 
   return <>{children}</>;
 };
@@ -28,11 +33,9 @@ function App() {
       <Layout>
         <PageShell>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/boende' element={<Accommodation />} />
-            <Route path='/bilder' element={<Gallery />} />
-            <Route path='/program' element={<Program />} />
-            <Route path='/kontakt' element={<Contact />} />
+            {routes.map((route) => (
+              <Route key={route.path} path={route.path} element={route.element} />
+            ))}
             {/* Okända sökvägar skickas till startsidan i stället för att visa en tom sida */}
             <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>

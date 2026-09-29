@@ -1,11 +1,10 @@
-// src/utils/imageHelper.ts
-
 /**
- * H�mtar korrekt s�kv�g till bilder.
- * Fungerar b�de lokalt och p� GitHub Pages tack vare relativ s�kv�g (./).
+ * Hämtar korrekt sökväg till bilder i public/images.
+ * Sökvägen är absolut (utgår från BASE_URL) så att den fungerar oavsett
+ * vilken URL sidan visas på, t.ex. /boende eller /boende/.
  */
 export const getImg = (path: string) => {
   // Använd WebP-versionen om filnamnet slutar på .jpg
   const webpPath = path.replace(/\.jpg$/i, '.webp');
-  return `./images/${webpPath}`;
+  return `${import.meta.env.BASE_URL}images/${webpPath}`;
 };

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
-// Konfiguration som hanterar både lokal utveckling och GitHub Pages
+// Vite-konfiguration för lokal utveckling och bygget till Cloudflare Pages
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),

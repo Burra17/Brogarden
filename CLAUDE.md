@@ -3,7 +3,7 @@
 ## Projekt
 
 Webbplats för Brogården (EFS lägergård/vandrarhem) byggd med React, TypeScript, Tailwind CSS och Vite.
-Hostad på GitHub Pages med automatisk deploy via GitHub Actions vid push till `main`.
+Hostad på Cloudflare Pages med automatisk deploy vid push till `main` och preview-deploy per PR.
 Domän: www.efsbrogarden.se
 
 ## Git-arbetsflöde
@@ -56,9 +56,11 @@ src/
 
 ## Deploy
 
-- Automatiskt via GitHub Actions (`.github/workflows/deploy.yml`) vid push till `main`
-- Manuell deploy behövs inte – `gh-pages`-paketet är borttaget
-- CNAME-fil i `public/` för custom domain
+- Cloudflare Pages (projekt `brogarden`) bygger automatiskt vid push till `main` via Git-integrationen
+- Varje PR får en preview-deploy med egen länk
+- Bygginställningar: `npm run build`, utdatamapp `dist`, Node-version från `.nvmrc`
+- DNS ligger hos Strato: `www` är en CNAME till `brogarden.pages.dev`, apex omdirigeras (301) till `https://www.efsbrogarden.se`
+- Rör inte MX-, TXT- eller DMARC-posterna hos Strato – de hör till föreningens e-post
 
 ## Mobilanpassning
 

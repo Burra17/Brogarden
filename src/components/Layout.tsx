@@ -193,7 +193,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </ul>
             </div>
           </div>
-          <div className='border-t border-gray-800 mt-12 pt-6 text-center text-gray-500 text-sm'>
+          <div className='border-t border-gray-800 mt-12 pt-6 text-center text-gray-400 text-sm'>
             <p>&copy; {new Date().getFullYear()} Brogården – Alla rättigheter förbehållna</p>
           </div>
         </div>

@@ -44,7 +44,7 @@ src/
 - **TypeScript** – strikt typning
 - **Tailwind CSS** – all styling via utility-klasser, inga separata CSS-filer per komponent
 - **Vite** – build och dev server
-- **React Router** (HashRouter) – klientsidesrouting
+- **React Router** (BrowserRouter) – klientsidesrouting med rena URL:er. Cloudflare Pages serverar `index.html` för alla sökvägar (SPA-fallback), så lägg aldrig till en `404.html` i `public/`. Gamla `/#/`-länkar skrivs om i `utils/redirectLegacyHashUrl.ts`
 - **Lucide React** – ikoner
 
 ## Bilder

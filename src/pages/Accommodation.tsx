@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero';
 import AccommodationCard from '../components/AccommodationCard';
 import { accommodations } from '../data/accommodations';
-import { useScrollRevealList } from '../utils/useScrollReveal';
+import { useScrollRevealList } from '../hooks/useScrollReveal';
 
 const Accommodation: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Boende – Brogården';
-  }, []);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentGalleryImages, setCurrentGalleryImages] = useState<string[]>([]);
   const headerRef = useScrollRevealList();

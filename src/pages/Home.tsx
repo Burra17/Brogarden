@@ -2,13 +2,9 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
 import { getImg } from '../utils/imageHelper';
-import { useScrollReveal } from '../utils/useScrollReveal';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const Home: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Brogården – Lägergård & vandrarhem i Njutånger';
-  }, []);
-
   // Scroll reveal refs för sektioner under the fold
   const cardsRef = useScrollReveal<HTMLDivElement>();
   const collageRef = useScrollReveal<HTMLDivElement>();

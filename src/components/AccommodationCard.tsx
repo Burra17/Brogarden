@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Images, CalendarCheck } from 'lucide-react';
-import { AccommodationItem } from '../types';
+import { AccommodationItem, Tone } from '../types';
 
 interface AccommodationCardProps {
   item: AccommodationItem;
@@ -8,12 +8,21 @@ interface AccommodationCardProps {
   onOpenGallery: (images: string[]) => void;
 }
 
+// Tailwind-klasser per färgton för etiketterna
+const tagToneClasses: Record<Tone, string> = {
+  green: 'bg-green-100 text-green-800',
+  blue: 'bg-blue-100 text-blue-800',
+  red: 'bg-red-100 text-red-800',
+  gray: 'bg-gray-100 text-gray-800',
+  amber: 'bg-amber-100 text-amber-800',
+};
+
 const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, onOpenGallery }) => {
   return (
     <div
       className={`flex flex-col lg:flex-row bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-12 lg:mb-20 transition-all hover:shadow-xl ${reverse ? 'lg:flex-row-reverse' : ''}`}
     >
-      {/* Image Gallery */}
+      {/* Bildgalleri */}
       <div className='lg:w-1/2 h-64 lg:h-auto relative group cursor-pointer' onClick={() => onOpenGallery(item.images)}>
         <img
           src={item.images[0]}
@@ -42,11 +51,11 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
         )}
       </div>
 
-      {/* Content */}
+      {/* Innehåll */}
       <div className='lg:w-1/2 p-6 lg:p-10 flex flex-col justify-center'>
         <div className='flex gap-2 mb-4'>
           {item.tags.map((tag, idx) => (
-            <span key={idx} className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${tag.color}`}>
+            <span key={idx} className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${tagToneClasses[tag.tone]}`}>
               {tag.label}
             </span>
           ))}

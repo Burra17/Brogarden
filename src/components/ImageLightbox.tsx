@@ -42,7 +42,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
     [images.length],
   );
 
-  // Handle keyboard navigation
+  // Navigering med tangentbordet
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;

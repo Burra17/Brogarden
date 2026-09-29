@@ -14,7 +14,7 @@ const Contact: React.FC = () => {
 
       <div className='container mx-auto px-4'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto'>
-          {/* Contact Info Card */}
+          {/* Kontaktuppgifter */}
           <div ref={contactCardRef} className='reveal-fade-left bg-brand-cream rounded-2xl p-8 md:p-12 shadow-sm h-full flex flex-col justify-center'>
             <h2 className='text-3xl font-bold font-serif text-gray-900 mb-8'>Kontaktuppgifter</h2>
 
@@ -76,7 +76,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Map */}
+          {/* Karta */}
           <div ref={mapRef} className='reveal-fade-right h-[400px] lg:h-auto rounded-2xl overflow-hidden shadow-md border-4 border-white'>
             <iframe
               src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1996.7963629864275!2d17.0689!3d61.6155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4660a4869715764d%3A0x66c7216167814270!2s%C3%96r%C3%A4ngesv%C3%A4gen%2019%2C%20825%2092%20Njut%C3%A5nger!5e0!3m2!1ssv!2sse!4v1650000000000!5m2!1ssv!2sse'

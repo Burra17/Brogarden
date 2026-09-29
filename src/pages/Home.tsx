@@ -1,11 +1,32 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Trees, Home as HomeIcon, Heart } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { getImg } from '../utils/imageHelper';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { aboutFeatures } from '../data/aboutFeatures';
+import { AboutFeature } from '../types';
+
+// Hero-knapparna, en inre lista per rad
+const heroButtonRows = [
+  [
+    { to: '/boende', label: 'Se våra rum & stugor', showArrow: true },
+    { to: '/program', label: 'Program & Läger', showArrow: true },
+  ],
+  [{ to: '/kontakt', label: 'Kontakta oss', showArrow: false }],
+];
+
+const heroButtonClass =
+  'w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-xl';
+
+// Ikonfärger för "Om oss"-korten
+const featureToneClasses: Record<AboutFeature['tone'], string> = {
+  green: 'bg-brand-lightGreen/10 text-brand-lightGreen',
+  blue: 'bg-blue-50 text-blue-600',
+  red: 'bg-red-50 text-red-600',
+};
 
 const Home: React.FC = () => {
-  // Scroll reveal refs för sektioner under the fold
+  // Scroll reveal-refs för sektionerna nedanför heron
   const cardsRef = useScrollReveal<HTMLDivElement>();
   const collageRef = useScrollReveal<HTMLDivElement>();
   // Parallax-effekt på collage – bara desktop (mobil får lagg och vita linjer)
@@ -43,7 +64,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {/* Hero Section - Matchar bilden perfekt */}
+      {/* Hero */}
       <section className='relative h-hero-home flex items-center justify-center overflow-hidden'>
         {/* Bakgrundsbild utan mörkt lager */}
         <div className='absolute inset-0 z-0'>
@@ -64,36 +85,26 @@ const Home: React.FC = () => {
 
           {/* Knappar – använder hero-animate-buttons som inte ändrar opacity */}
           <div className='hero-animate-buttons flex flex-col gap-3 md:gap-4 justify-center items-center w-full max-w-xs mx-auto sm:max-w-none'>
-            <div className='flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full'>
-              <Link
-                to='/boende'
-                className='w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-xl'
-              >
-                Se våra rum & stugor <ArrowRight size={18} />
-              </Link>
-              <Link
-                to='/program'
-                className='w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-xl'
-              >
-                Program & Läger <ArrowRight size={18} />
-              </Link>
-            </div>
-            <Link
-              to='/kontakt'
-              className='w-full sm:w-auto px-6 py-2.5 md:px-10 md:py-4 text-sm md:text-base bg-black/20 backdrop-blur-md border border-white/30 hover:bg-black/35 text-white font-semibold rounded-full transition-all shadow-lg flex items-center justify-center hover:-translate-y-0.5 hover:shadow-xl'
-            >
-              Kontakta oss
-            </Link>
+            {heroButtonRows.map((row) => (
+              <div key={row[0].to} className='flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full'>
+                {row.map((button) => (
+                  <Link key={button.to} to={button.to} className={heroButtonClass}>
+                    {button.label}
+                    {button.showArrow && <ArrowRight size={18} />}
+                  </Link>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Om oss */}
       <section className='py-20 bg-white'>
         <div className='hero-animate hero-delay-2 container mx-auto px-4 max-w-4xl text-center'>
-          <span className='text-[#4A6741] font-bold tracking-wider uppercase text-sm mb-2 block'>Om Oss</span>
+          <span className='text-brand-green font-bold tracking-wider uppercase text-sm mb-2 block'>Om Oss</span>
           <h2 className='text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6'>En plats för möten</h2>
-          <div className='w-24 h-1 bg-[#7FB346] mx-auto mb-10 rounded-full'></div>
+          <div className='w-24 h-1 bg-brand-lightGreen mx-auto mb-10 rounded-full'></div>
 
           <p className='text-lg text-gray-700 leading-relaxed mb-12'>
             Brogården drivs ideellt av en lokal, kristen EFS-förening. Här erbjuds prisvärt boende i rum och stugor samt ställplatser för husbil och
@@ -101,32 +112,20 @@ const Home: React.FC = () => {
           </p>
 
           <div ref={cardsRef} className='reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-8'>
-            <div className='p-6 bg-[#fcfaf7] rounded-xl border border-gray-100 shadow-sm'>
-              <div className='w-12 h-12 bg-[#7FB346]/10 text-[#7FB346] rounded-full flex items-center justify-center mx-auto mb-4'>
-                <Trees size={24} />
+            {aboutFeatures.map((feature) => (
+              <div key={feature.title} className='p-6 bg-brand-cream/30 rounded-xl border border-gray-100 shadow-sm'>
+                <div className={`w-12 h-12 ${featureToneClasses[feature.tone]} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <feature.icon size={24} />
+                </div>
+                <h3 className='font-bold text-xl mb-2 text-gray-800'>{feature.title}</h3>
+                <p className='text-gray-600 text-sm'>{feature.text}</p>
               </div>
-              <h3 className='font-bold text-xl mb-2 text-gray-800'>Naturnära</h3>
-              <p className='text-gray-600 text-sm'>Omgiven av skog och vatten, perfekt för återhämtning.</p>
-            </div>
-            <div className='p-6 bg-[#fcfaf7] rounded-xl border border-gray-100 shadow-sm'>
-              <div className='w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4'>
-                <HomeIcon size={24} />
-              </div>
-              <h3 className='font-bold text-xl mb-2 text-gray-800'>Hemtrevligt</h3>
-              <p className='text-gray-600 text-sm'>Enkla, mysiga rum och stugor med personlig touch.</p>
-            </div>
-            <div className='p-6 bg-[#fcfaf7] rounded-xl border border-gray-100 shadow-sm'>
-              <div className='w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4'>
-                <Heart size={24} />
-              </div>
-              <h3 className='font-bold text-xl mb-2 text-gray-800'>Gemenskap</h3>
-              <p className='text-gray-600 text-sm'>En mötesplats för alla åldrar, driven av ideella krafter.</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Decorative Image Strip */}
+      {/* Dekorativ bildremsa */}
       <div ref={collageRef} className='reveal-stagger grid grid-cols-2 md:grid-cols-4 h-64 md:h-96 w-full bg-white'>
         {[1, 2, 3, 4].map((num) => (
           <div key={num} className='relative w-full h-full overflow-hidden group'>

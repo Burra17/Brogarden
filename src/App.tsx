@@ -15,9 +15,7 @@ const PageShell = ({ children }: { children: React.ReactNode }) => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  return (
-    <>{children}</>
-  );
+  return <>{children}</>;
 };
 
 function App() {
@@ -26,11 +24,11 @@ function App() {
       <Layout>
         <PageShell>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/boende" element={<Accommodation />} />
-            <Route path="/bilder" element={<Gallery />} />
-            <Route path="/program" element={<Program />} />
-            <Route path="/kontakt" element={<Contact />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/boende' element={<Accommodation />} />
+            <Route path='/bilder' element={<Gallery />} />
+            <Route path='/program' element={<Program />} />
+            <Route path='/kontakt' element={<Contact />} />
           </Routes>
         </PageShell>
       </Layout>

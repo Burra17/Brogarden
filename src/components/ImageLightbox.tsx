@@ -2,146 +2,152 @@ import { useEffect, useState, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ImageLightboxProps {
-    images: string[];
-    initialIndex: number;
-    isOpen: boolean;
-    onClose: () => void;
+  images: string[];
+  initialIndex: number;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isOpen, onClose }) => {
-    const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-    // State för att hantera swipe
-    const [touchStart, setTouchStart] = useState<number | null>(null);
-    const [touchEnd, setTouchEnd] = useState<number | null>(null);
-    const minSwipeDistance = 50;
+  // State för att hantera swipe
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50;
 
-    // Återställ index när lightboxen öppnas eller startbilden byts. Justeras under
-    // renderingen i stället för i en effect, så att fel bild aldrig hinner visas.
-    const [prevProps, setPrevProps] = useState({ isOpen, initialIndex });
-    if (prevProps.isOpen !== isOpen || prevProps.initialIndex !== initialIndex) {
-        setPrevProps({ isOpen, initialIndex });
-        if (isOpen) {
-            setCurrentIndex(initialIndex);
-        }
+  // Återställ index när lightboxen öppnas eller startbilden byts. Justeras under
+  // renderingen i stället för i en effect, så att fel bild aldrig hinner visas.
+  const [prevProps, setPrevProps] = useState({ isOpen, initialIndex });
+  if (prevProps.isOpen !== isOpen || prevProps.initialIndex !== initialIndex) {
+    setPrevProps({ isOpen, initialIndex });
+    if (isOpen) {
+      setCurrentIndex(initialIndex);
     }
+  }
 
-    const showPrev = useCallback((e?: React.MouseEvent) => {
-        e?.stopPropagation();
-        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-    }, [images.length]);
+  const showPrev = useCallback(
+    (e?: React.MouseEvent) => {
+      e?.stopPropagation();
+      setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    },
+    [images.length],
+  );
 
-    const showNext = useCallback((e?: React.MouseEvent) => {
-        e?.stopPropagation();
-        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    }, [images.length]);
+  const showNext = useCallback(
+    (e?: React.MouseEvent) => {
+      e?.stopPropagation();
+      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    },
+    [images.length],
+  );
 
-    // Handle keyboard navigation
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (!isOpen) return;
-            if (e.key === 'Escape') onClose();
-            if (e.key === 'ArrowLeft') showPrev();
-            if (e.key === 'ArrowRight') showNext();
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [isOpen, onClose, showPrev, showNext]);
-
-    // Lås scroll och dölj header när lightbox är öppen
-    useEffect(() => {
-        const header = document.querySelector('header');
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-            if (header) header.classList.add('!hidden');
-        } else {
-            document.body.style.overflow = '';
-            if (header) header.classList.remove('!hidden');
-        }
-        return () => {
-            document.body.style.overflow = '';
-            if (header) header.classList.remove('!hidden');
-        };
-    }, [isOpen]);
-
-    // --- SWIPE LOGIK ---
-    const onTouchStart = (e: React.TouchEvent) => {
-        setTouchEnd(null);
-        setTouchStart(e.targetTouches[0].clientX);
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return;
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
     };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose, showPrev, showNext]);
 
-    const onTouchMove = (e: React.TouchEvent) => {
-        setTouchEnd(e.targetTouches[0].clientX);
+  // Lås scroll och dölj header när lightbox är öppen
+  useEffect(() => {
+    const header = document.querySelector('header');
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      if (header) header.classList.add('!hidden');
+    } else {
+      document.body.style.overflow = '';
+      if (header) header.classList.remove('!hidden');
+    }
+    return () => {
+      document.body.style.overflow = '';
+      if (header) header.classList.remove('!hidden');
     };
+  }, [isOpen]);
 
-    const onTouchEnd = () => {
-        if (!touchStart || !touchEnd) return;
+  // --- SWIPE LOGIK ---
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
 
-        const distance = touchStart - touchEnd;
-        const isLeftSwipe = distance > minSwipeDistance;
-        const isRightSwipe = distance < -minSwipeDistance;
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
 
-        if (isLeftSwipe) {
-            showNext();
-        }
-        if (isRightSwipe) {
-            showPrev();
-        }
-    };
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
 
-    if (!isOpen) return null;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
 
-    return (
-        <div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 animate-fade-in"
-            onClick={onClose}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-        >
-            <button
-                className="absolute top-4 right-4 text-white active:text-white/60 md:hover:text-white/80 transition-colors p-3 z-50 focus:outline-none"
-                onClick={onClose}
-                aria-label="Stäng"
-            >
-                <X size={40} />
-            </button>
+    if (isLeftSwipe) {
+      showNext();
+    }
+    if (isRightSwipe) {
+      showPrev();
+    }
+  };
 
-            {images.length > 1 && (
-                <>
-                    <button
-                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all focus:outline-none z-50"
-                        onClick={showPrev}
-                        aria-label="Föregående bild"
-                    >
-                        <ChevronLeft size={28} className="md:hidden" />
-                        <ChevronLeft size={48} className="hidden md:block" />
-                    </button>
+  if (!isOpen) return null;
 
-                    <button
-                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all focus:outline-none z-50"
-                        onClick={showNext}
-                        aria-label="Nästa bild"
-                    >
-                        <ChevronRight size={28} className="md:hidden" />
-                        <ChevronRight size={48} className="hidden md:block" />
-                    </button>
-                </>
-            )}
+  return (
+    <div
+      className='fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 animate-fade-in'
+      onClick={onClose}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      <button
+        className='absolute top-4 right-4 text-white active:text-white/60 md:hover:text-white/80 transition-colors p-3 z-50 focus:outline-none'
+        onClick={onClose}
+        aria-label='Stäng'
+      >
+        <X size={40} />
+      </button>
 
-            <div className="relative max-w-7xl max-h-screen w-full h-full flex items-center justify-center pointer-events-none">
-                <img
-                    src={images[currentIndex]}
-                    alt={`Bild ${currentIndex + 1}`}
-                    className="max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-sm select-none"
-                    onClick={(e) => e.stopPropagation()}
-                />
-                <div className="absolute bottom-2 md:bottom-4 left-0 right-0 text-center text-white/80 text-sm font-medium">
-                    {currentIndex + 1} / {images.length}
-                </div>
-            </div>
+      {images.length > 1 && (
+        <>
+          <button
+            className='absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all focus:outline-none z-50'
+            onClick={showPrev}
+            aria-label='Föregående bild'
+          >
+            <ChevronLeft size={28} className='md:hidden' />
+            <ChevronLeft size={48} className='hidden md:block' />
+          </button>
+
+          <button
+            className='absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all focus:outline-none z-50'
+            onClick={showNext}
+            aria-label='Nästa bild'
+          >
+            <ChevronRight size={28} className='md:hidden' />
+            <ChevronRight size={48} className='hidden md:block' />
+          </button>
+        </>
+      )}
+
+      <div className='relative max-w-7xl max-h-screen w-full h-full flex items-center justify-center pointer-events-none'>
+        <img
+          src={images[currentIndex]}
+          alt={`Bild ${currentIndex + 1}`}
+          className='max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-sm select-none'
+          onClick={(e) => e.stopPropagation()}
+        />
+        <div className='absolute bottom-2 md:bottom-4 left-0 right-0 text-center text-white/80 text-sm font-medium'>
+          {currentIndex + 1} / {images.length}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default ImageLightbox;

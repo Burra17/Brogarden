@@ -3,21 +3,25 @@ import Accommodation from './pages/Accommodation';
 import Gallery from './pages/Gallery';
 import Program from './pages/Program';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
-export interface PageRoute {
-  path: string;
-  /** Text i huvudmenyn */
-  label: string;
+export interface PageMeta {
   /** Sidans <title> */
   title: string;
   /** Sidans meta-beskrivning */
   description: string;
   element: React.ReactNode;
+}
+
+export interface PageRoute extends PageMeta {
+  path: string;
+  /** Text i huvudmenyn */
+  label: string;
   /** Text under "Hitta snabbt" i footern – sidor utan etikett visas inte där */
   footerLabel?: string;
 }
 
-// Sajtens enda lista över sidor. Router, meny, footer och sidtitlar byggs härifrån.
+// Sajtens enda lista över sidor. Router, meny, footer, sidtitlar och förrenderingen byggs härifrån.
 export const routes: PageRoute[] = [
   {
     path: '/',
@@ -60,3 +64,10 @@ export const routes: PageRoute[] = [
     footerLabel: 'Hitta hit',
   },
 ];
+
+// Visas för okända sökvägar och förrenderas till 404.html
+export const notFoundPage: PageMeta = {
+  title: 'Sidan finns inte – Brogården',
+  description: 'Sidan du letar efter finns inte på Brogårdens webbplats.',
+  element: <NotFound links={routes} />,
+};

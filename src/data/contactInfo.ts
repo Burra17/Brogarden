@@ -1,4 +1,5 @@
 export const contactInfo = {
+  siteUrl: 'https://www.efsbrogarden.se',
   phone: '073-856 94 36',
   phoneHref: 'tel:+46738569436',
   email: 'katarina.svedman@efs.nu',

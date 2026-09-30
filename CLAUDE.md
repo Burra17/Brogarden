@@ -34,10 +34,11 @@ src/
 ├── hooks/         # Egna React-hooks (scroll reveal, canonical, sidvisningar)
 ├── pages/         # Sidkomponenter (en per route)
 ├── utils/         # Hjälpfunktioner (t.ex. imageHelper)
-├── routes.tsx     # Sidlistan – router, meny, footer och sidtitlar byggs härifrån
+├── routes.tsx     # Sidlistan – router, meny, footer, sidtitlar och förrendering byggs härifrån
 ├── types.ts       # Gemensamma TypeScript-typer
-├── App.tsx        # Router, layout och PageShell (titel, beskrivning, canonical)
-├── index.tsx      # Entry point
+├── App.tsx        # Routes, layout och PageShell (titel, beskrivning, canonical)
+├── index.tsx      # Entry point i webbläsaren (BrowserRouter, hydrering)
+├── entry-server.tsx # Entry point för förrenderingen (StaticRouter)
 └── index.css      # Globala stilar + Tailwind
 ```
 
@@ -47,7 +48,9 @@ src/
 - **TypeScript** – strikt typning
 - **Tailwind CSS** – all styling via utility-klasser, inga separata CSS-filer per komponent
 - **Vite** – build och dev server
-- **React Router** (BrowserRouter) – klientsidesrouting med rena URL:er. Cloudflare Pages serverar `index.html` för alla sökvägar (SPA-fallback), så lägg aldrig till en `404.html` i `public/`. Gamla `/#/`-länkar skrivs om i `utils/redirectLegacyHashUrl.ts`
+- **React Router** (BrowserRouter) – klientsidesrouting med rena URL:er. Gamla `/#/`-länkar skrivs om i `utils/redirectLegacyHashUrl.ts`
+- **Förrendering** – `scripts/prerender.mjs` renderar varje sida i `routes.tsx` till en egen HTML-fil (`index.html`, `boende.html` …) med titel, beskrivning, canonical och `og:*` inbakade. `index.tsx` hydrerar HTML:en. Okända sökvägar får den förrenderade `404.html`, som Cloudflare Pages serverar med status 404 – lägg inte en egen `404.html` i `public/`
+- Komponenter renderas även i Node vid bygget – använd `window`/`document` bara i effekter och händelsehanterare, och låt första renderingen bli likadan i båda miljöerna (annars hydreringsfel)
 - **Lucide React** – ikoner
 
 ## Bilder
@@ -65,6 +68,7 @@ src/
 - Cloudflare Pages (projekt `brogarden`) bygger automatiskt vid push till `main` via Git-integrationen
 - Varje PR får en preview-deploy med egen länk
 - Bygginställningar: `npm run build`, utdatamapp `dist`, Node-version från `.nvmrc`
+- Byggsteg: `typecheck` → `vite build` (klient) → `vite build --ssr src/entry-server.tsx` (till `dist/server`, tas bort efteråt) → `scripts/prerender.mjs` → `scripts/optimizeImages.mjs`
 - DNS ligger hos Strato: `www` är en CNAME till `brogarden.pages.dev`, apex omdirigeras (301) till `https://www.efsbrogarden.se`
 - Rör inte MX-, TXT- eller DMARC-posterna hos Strato – de hör till föreningens e-post
 

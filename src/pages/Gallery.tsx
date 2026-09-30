@@ -41,7 +41,7 @@ const Gallery: React.FC = () => {
               type='button'
               key={img.src}
               ref={imageRef}
-              className='gallery-reveal group relative block w-full aspect-square overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-lg transition-all'
+              className='gallery-reveal group relative block w-full aspect-square overflow-hidden rounded-xl cursor-pointer shadow-xs hover:shadow-lg transition-all'
               style={{ transitionDelay: `${Math.min(index * 60, 500)}ms` }}
               onClick={() => openLightbox(index)}
               aria-label={`Visa i helskärm: ${img.alt}`}

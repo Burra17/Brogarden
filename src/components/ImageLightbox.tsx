@@ -99,7 +99,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
       ref={dialogRef}
       aria-label='Bildvisning'
       tabIndex={-1}
-      className='fixed inset-0 m-0 h-full max-h-none w-full max-w-none border-0 bg-black/95 p-4 outline-none backdrop:bg-black/95 open:flex items-center justify-center animate-fade-in'
+      className='fixed inset-0 m-0 h-full max-h-none w-full max-w-none border-0 bg-black/95 p-4 outline-hidden backdrop:bg-black/95 open:flex items-center justify-center animate-fade-in'
       onClose={onClose}
       onKeyDown={handleKeyDown}
       onClick={handleBackdropClick}
@@ -147,7 +147,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
           <img
             src={currentImage.src}
             alt={currentImage.alt}
-            className='max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-sm select-none'
+            className='max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-xs select-none'
           />
           {/* Läses upp av skärmläsare vid varje bildbyte */}
           <div aria-live='polite' className='absolute bottom-2 md:bottom-4 left-0 right-0 text-center text-white/80 text-sm font-medium'>

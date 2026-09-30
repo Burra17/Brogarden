@@ -15,12 +15,12 @@ const Contact: React.FC = () => {
       <div className='container mx-auto px-4'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto'>
           {/* Kontaktuppgifter */}
-          <div ref={contactCardRef} className='reveal-fade-left bg-brand-cream rounded-2xl p-8 md:p-12 shadow-sm h-full flex flex-col justify-center'>
+          <div ref={contactCardRef} className='reveal-fade-left bg-brand-cream rounded-2xl p-8 md:p-12 shadow-xs h-full flex flex-col justify-center'>
             <h2 className='text-3xl font-bold font-serif text-gray-900 mb-8'>Kontaktuppgifter</h2>
 
             <div className='space-y-8'>
               <div className='flex items-start'>
-                <div className='bg-white p-4 rounded-full shadow-sm text-brand-green mr-6'>
+                <div className='bg-white p-4 rounded-full shadow-xs text-brand-green mr-6'>
                   <Phone size={24} />
                 </div>
                 <div>
@@ -33,7 +33,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div className='flex items-start'>
-                <div className='bg-white p-4 rounded-full shadow-sm text-brand-green mr-6'>
+                <div className='bg-white p-4 rounded-full shadow-xs text-brand-green mr-6'>
                   <Mail size={24} />
                 </div>
                 <div>
@@ -46,7 +46,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div className='flex items-start'>
-                <div className='bg-white p-4 rounded-full shadow-sm text-brand-green mr-6'>
+                <div className='bg-white p-4 rounded-full shadow-xs text-brand-green mr-6'>
                   <MapPin size={24} />
                 </div>
                 <div>

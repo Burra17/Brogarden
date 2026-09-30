@@ -106,7 +106,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
       onTouchEnd={onTouchEnd}
     >
       <button
-        className='absolute top-4 right-4 text-white active:text-white/60 md:hover:text-white/80 transition-colors p-3 z-50 focus:outline-none'
+        className='absolute top-4 right-4 text-white active:text-white/60 md:hover:text-white/80 transition-colors p-3 z-50'
         onClick={onClose}
         aria-label='Stäng'
       >
@@ -116,7 +116,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
       {images.length > 1 && (
         <>
           <button
-            className='absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all focus:outline-none z-50'
+            className='absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all z-50'
             onClick={showPrev}
             aria-label='Föregående bild'
           >
@@ -125,7 +125,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
           </button>
 
           <button
-            className='absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all focus:outline-none z-50'
+            className='absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all z-50'
             onClick={showNext}
             aria-label='Nästa bild'
           >

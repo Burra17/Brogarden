@@ -40,7 +40,7 @@ const Header: React.FC = () => {
         </Link>
 
         {/* Desktopmeny */}
-        <nav className='hidden md:flex space-x-8'>
+        <nav aria-label='Huvudmeny' className='hidden md:flex space-x-8'>
           {routes.map((route) => {
             const isActive = location.pathname === route.path;
             return (
@@ -62,7 +62,14 @@ const Header: React.FC = () => {
         </nav>
 
         {/* Knapp för mobilmenyn */}
-        <button className='md:hidden p-2 rounded-md focus:outline-none' onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label='Toggle menu'>
+        <button
+          type='button'
+          className='md:hidden p-2 rounded-md'
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? 'Stäng meny' : 'Öppna meny'}
+          aria-expanded={isMenuOpen}
+          aria-controls='mobile-menu'
+        >
           {isMenuOpen ? (
             <X className={!isTransparent ? 'text-gray-800' : 'text-white'} size={28} />
           ) : (
@@ -73,7 +80,11 @@ const Header: React.FC = () => {
 
       {/* Mobilmeny */}
       {isMenuOpen && (
-        <div className='md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 flex flex-col p-4 animate-slide-in-from-top-2'>
+        <nav
+          id='mobile-menu'
+          aria-label='Mobilmeny'
+          className='md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 flex flex-col p-4 animate-slide-in-from-top-2'
+        >
           {routes.map((route) => (
             <Link
               key={route.path}
@@ -85,7 +96,7 @@ const Header: React.FC = () => {
               {route.label}
             </Link>
           ))}
-        </div>
+        </nav>
       )}
     </header>
   );

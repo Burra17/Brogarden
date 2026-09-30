@@ -3,15 +3,16 @@ import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero';
 import AccommodationCard from '../components/AccommodationCard';
 import { accommodations } from '../data/accommodations';
+import { LightboxImage } from '../types';
 import { useScrollRevealList } from '../hooks/useScrollReveal';
 
 const Accommodation: React.FC = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentGalleryImages, setCurrentGalleryImages] = useState<string[]>([]);
+  const [currentGalleryImages, setCurrentGalleryImages] = useState<LightboxImage[]>([]);
   const headerRef = useScrollRevealList();
   const cardRefs = useScrollRevealList();
 
-  const handleOpenGallery = (images: string[]) => {
+  const handleOpenGallery = (images: LightboxImage[]) => {
     setCurrentGalleryImages(images);
     setLightboxOpen(true);
   };

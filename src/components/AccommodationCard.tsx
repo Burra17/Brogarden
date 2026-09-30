@@ -1,11 +1,11 @@
 import { Link } from 'react-router';
 import { Images, CalendarCheck } from 'lucide-react';
-import { AccommodationItem, Tone } from '../types';
+import { AccommodationItem, LightboxImage, Tone } from '../types';
 
 interface AccommodationCardProps {
   item: AccommodationItem;
   reverse?: boolean;
-  onOpenGallery: (images: string[]) => void;
+  onOpenGallery: (images: LightboxImage[]) => void;
 }
 
 // Tailwind-klasser per färgton för etiketterna
@@ -18,12 +18,18 @@ const tagToneClasses: Record<Tone, string> = {
 };
 
 const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, onOpenGallery }) => {
+  // Alt-text per bild i lightboxen, t.ex. "Blå rummet – bild 1 av 2"
+  const galleryImages: LightboxImage[] = item.images.map((src, index) => ({
+    src,
+    alt: `${item.title} – bild ${index + 1} av ${item.images.length}`,
+  }));
+
   return (
     <div
       className={`flex flex-col lg:flex-row bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-12 lg:mb-20 transition-all hover:shadow-xl ${reverse ? 'lg:flex-row-reverse' : ''}`}
     >
       {/* Bildgalleri */}
-      <div className='lg:w-1/2 h-64 lg:h-auto relative group cursor-pointer' onClick={() => onOpenGallery(item.images)}>
+      <div className='lg:w-1/2 h-64 lg:h-auto relative group cursor-pointer' onClick={() => onOpenGallery(galleryImages)}>
         <img
           src={item.images[0]}
           onError={(e) => {

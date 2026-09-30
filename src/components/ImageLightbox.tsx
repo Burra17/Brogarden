@@ -1,14 +1,20 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LightboxImage } from '../types';
 
 interface ImageLightboxProps {
-  images: string[];
+  images: LightboxImage[];
   initialIndex: number;
   isOpen: boolean;
   onClose: () => void;
 }
 
+// Bildvisning i helskärm. Byggd på webbläsarens <dialog> med showModal(), som ger
+// fokusfälla, stängning med Escape, fokus tillbaka till knappen som öppnade den
+// och en otillgänglig bakgrund. Dialogen ligger i webbläsarens top layer, ovanför
+// headern och allt annat, så ingen z-index eller döljning av andra element behövs.
 const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isOpen, onClose }) => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   // State för att hantera swipe
@@ -26,49 +32,43 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
     }
   }
 
-  const showPrev = useCallback(
-    (e?: React.MouseEvent) => {
-      e?.stopPropagation();
-      setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-    },
-    [images.length],
-  );
+  const showPrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  }, [images.length]);
 
-  const showNext = useCallback(
-    (e?: React.MouseEvent) => {
-      e?.stopPropagation();
-      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    },
-    [images.length],
-  );
+  const showNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  }, [images.length]);
 
-  // Navigering med tangentbordet
+  // Synka dialogen med isOpen och lås sidans scroll medan den är öppen
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return;
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowLeft') showPrev();
-      if (e.key === 'ArrowRight') showNext();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose, showPrev, showNext]);
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
-  // Lås scroll och dölj header när lightbox är öppen
-  useEffect(() => {
-    const header = document.querySelector('header');
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      if (header) header.classList.add('!hidden');
-    } else {
-      document.body.style.overflow = '';
-      if (header) header.classList.remove('!hidden');
+    if (isOpen && !dialog.open) {
+      dialog.showModal();
+      // Fokusera dialogen i stället för första knappen, så att fokusringen inte
+      // visas vid öppning med mus. Tab går vidare till knapparna som vanligt.
+      dialog.focus();
     }
+    if (!isOpen && dialog.open) dialog.close();
+
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
-      if (header) header.classList.remove('!hidden');
     };
   }, [isOpen]);
+
+  // Piltangenter bläddrar. Escape hanteras av <dialog> och utlöser onClose via close-händelsen.
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDialogElement>) => {
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  };
+
+  // Klick utanför bilden och knapparna träffar själva dialogen och stänger den
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+    if (e.target === e.currentTarget) onClose();
+  };
 
   // --- SWIPE LOGIK ---
   const onTouchStart = (e: React.TouchEvent) => {
@@ -84,29 +84,28 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
     if (!touchStart || !touchEnd) return;
 
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      showNext();
-    }
-    if (isRightSwipe) {
-      showPrev();
-    }
+    if (distance > minSwipeDistance) showNext();
+    if (distance < -minSwipeDistance) showPrev();
   };
 
-  if (!isOpen) return null;
+  const currentImage = images[currentIndex];
 
   return (
-    <div
-      className='fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 animate-fade-in'
-      onClick={onClose}
+    <dialog
+      ref={dialogRef}
+      aria-label='Bildvisning'
+      tabIndex={-1}
+      className='fixed inset-0 m-0 h-full max-h-none w-full max-w-none border-0 bg-black/95 p-4 outline-none backdrop:bg-black/95 open:flex items-center justify-center animate-fade-in'
+      onClose={onClose}
+      onKeyDown={handleKeyDown}
+      onClick={handleBackdropClick}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
       <button
-        className='absolute top-4 right-4 text-white active:text-white/60 md:hover:text-white/80 transition-colors p-3 z-50'
+        type='button'
+        className='absolute top-4 right-4 text-white active:text-white/60 md:hover:text-white/80 transition-colors p-3 z-10'
         onClick={onClose}
         aria-label='Stäng'
       >
@@ -116,7 +115,8 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
       {images.length > 1 && (
         <>
           <button
-            className='absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all z-50'
+            type='button'
+            className='absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all z-10'
             onClick={showPrev}
             aria-label='Föregående bild'
           >
@@ -125,7 +125,8 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
           </button>
 
           <button
-            className='absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all z-50'
+            type='button'
+            className='absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white p-3 md:p-4 bg-black/20 active:bg-black/50 md:hover:bg-black/40 rounded-full transition-all z-10'
             onClick={showNext}
             aria-label='Nästa bild'
           >
@@ -135,18 +136,25 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
         </>
       )}
 
-      <div className='relative max-w-7xl max-h-screen w-full h-full flex items-center justify-center pointer-events-none'>
-        <img
-          src={images[currentIndex]}
-          alt={`Bild ${currentIndex + 1}`}
-          className='max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-sm select-none'
-          onClick={(e) => e.stopPropagation()}
-        />
-        <div className='absolute bottom-2 md:bottom-4 left-0 right-0 text-center text-white/80 text-sm font-medium'>
-          {currentIndex + 1} / {images.length}
+      {currentImage && (
+        <div className='relative max-w-7xl max-h-screen w-full h-full flex items-center justify-center pointer-events-none'>
+          <img
+            src={currentImage.src}
+            alt={currentImage.alt}
+            className='max-w-full max-h-[85vh] md:max-h-[90vh] object-contain shadow-2xl pointer-events-auto rounded-sm select-none'
+          />
+          {/* Läses upp av skärmläsare vid varje bildbyte */}
+          <div aria-live='polite' className='absolute bottom-2 md:bottom-4 left-0 right-0 text-center text-white/80 text-sm font-medium'>
+            <span aria-hidden='true'>
+              {currentIndex + 1} / {images.length}
+            </span>
+            <span className='sr-only'>
+              Bild {currentIndex + 1} av {images.length}
+            </span>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </dialog>
   );
 };
 

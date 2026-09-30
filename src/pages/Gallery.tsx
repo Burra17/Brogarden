@@ -58,7 +58,12 @@ const Gallery: React.FC = () => {
         </div>
       </div>
 
-      <ImageLightbox images={images.map((img) => img.url)} initialIndex={lightboxIndex} isOpen={isLightboxOpen} onClose={closeLightbox} />
+      <ImageLightbox
+        images={images.map((img) => ({ src: img.url, alt: img.caption }))}
+        initialIndex={lightboxIndex}
+        isOpen={isLightboxOpen}
+        onClose={closeLightbox}
+      />
     </div>
   );
 };

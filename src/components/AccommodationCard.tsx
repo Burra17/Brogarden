@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { Images, CalendarCheck } from 'lucide-react';
 import { AccommodationItem, LightboxImage, Tone } from '../types';
+import { getImg, getImgSrcSet } from '../utils/imageHelper';
 
 interface AccommodationCardProps {
   item: AccommodationItem;
@@ -19,8 +20,8 @@ const tagToneClasses: Record<Tone, string> = {
 
 const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, onOpenGallery }) => {
   // Alt-text per bild i lightboxen, t.ex. "Nystugan – bild 1 av 3". Bara namnet om det finns en bild.
-  const galleryImages: LightboxImage[] = item.images.map((src, index) => ({
-    src,
+  const galleryImages: LightboxImage[] = item.images.map((file, index) => ({
+    src: getImg(file),
     alt: item.images.length > 1 ? `${item.title} – bild ${index + 1} av ${item.images.length}` : item.title,
   }));
 
@@ -37,10 +38,9 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
         aria-label={item.images.length > 1 ? `Visa bilder på ${item.title}` : `Visa bild på ${item.title}`}
       >
         <img
-          src={item.images[0]}
-          onError={(e) => {
-            e.currentTarget.src = `https://picsum.photos/seed/${item.id}/1200/800`;
-          }}
+          src={getImg(item.images[0])}
+          srcSet={getImgSrcSet(item.images[0])}
+          sizes='(min-width: 1024px) 50vw, 100vw'
           alt=''
           loading='lazy'
           className='w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105'

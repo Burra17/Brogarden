@@ -1,6 +1,5 @@
 import { Zap, Droplets, Home, Bed, Users, Utensils, ShowerHead, Music, Mic } from 'lucide-react';
 import { AccommodationItem } from '../types';
-import { getImg } from '../utils/imageHelper';
 
 export const accommodations: AccommodationItem[] = [
   // Utomhus
@@ -20,7 +19,7 @@ export const accommodations: AccommodationItem[] = [
       { icon: Droplets, label: 'Vatten' },
       { icon: Home, label: 'Huvudbyggnad' },
     ],
-    images: [getImg('camping-detail-1.jpg'), getImg('camping-detail-2.jpg')],
+    images: ['camping-detail-1.jpg', 'camping-detail-2.jpg'],
   },
   // Rum
   {
@@ -35,7 +34,7 @@ export const accommodations: AccommodationItem[] = [
       { icon: ShowerHead, label: 'Gemensam dusch i huvudbyggnad' },
       { icon: Home, label: 'Tillgång till kök i huvudbyggnad' },
     ],
-    images: [getImg('room-blue.jpg')],
+    images: ['room-blue.jpg'],
   },
   {
     id: 'solorummet',
@@ -49,7 +48,7 @@ export const accommodations: AccommodationItem[] = [
       { icon: ShowerHead, label: 'Gemensam dusch i huvudbyggnad' },
       { icon: Home, label: 'Tillgång till kök i huvudbyggnad' },
     ],
-    images: [getImg('room-solo.jpg')],
+    images: ['room-solo.jpg'],
   },
   // Stugor
   {
@@ -64,7 +63,7 @@ export const accommodations: AccommodationItem[] = [
       { icon: Utensils, label: 'Kök i huvudbyggnad' },
       { icon: ShowerHead, label: 'WC/dusch i huvudbyggnaden' },
     ],
-    images: [getImg('stuga-nystugan-1.jpg'), getImg('stuga-nystugan-2.jpg'), getImg('stuga-nystugan-3.jpg'), getImg('stuga-nystugan-4.jpg')],
+    images: ['stuga-nystugan-1.jpg', 'stuga-nystugan-2.jpg', 'stuga-nystugan-3.jpg', 'stuga-nystugan-4.jpg'],
   },
   {
     id: 'lillstugan',
@@ -78,7 +77,7 @@ export const accommodations: AccommodationItem[] = [
       { icon: ShowerHead, label: 'WC/dusch i huvudbyggnad' },
       { icon: Utensils, label: 'Kök i huvudbyggnad' },
     ],
-    images: [getImg('stuga-lillstugan-1.jpg'), getImg('stuga-lillstugan-2.jpg')],
+    images: ['stuga-lillstugan-1.jpg', 'stuga-lillstugan-2.jpg'],
   },
   {
     id: 'osterstugan',
@@ -98,13 +97,7 @@ export const accommodations: AccommodationItem[] = [
       { icon: Utensils, label: 'Kök i huvudbyggnad' },
       { icon: ShowerHead, label: 'WC/dusch i huvudbyggnad' },
     ],
-    images: [
-      getImg('stuga-osterstugan-1.jpg'),
-      getImg('stuga-osterstugan-2.jpg'),
-      getImg('stuga-osterstugan-3.jpg'),
-      getImg('stuga-osterstugan-4.jpg'),
-      getImg('stuga-osterstugan-5.jpg'),
-    ],
+    images: ['stuga-osterstugan-1.jpg', 'stuga-osterstugan-2.jpg', 'stuga-osterstugan-3.jpg', 'stuga-osterstugan-4.jpg', 'stuga-osterstugan-5.jpg'],
   },
   // Lokaler
   {
@@ -119,7 +112,7 @@ export const accommodations: AccommodationItem[] = [
       { icon: Music, label: 'Elpiano' },
       { icon: Mic, label: 'Ljudsystem' },
     ],
-    images: [getImg('venue-kyrksal-1.jpg'), getImg('venue-kyrksal-2.jpg')],
+    images: ['venue-kyrksal-1.jpg', 'venue-kyrksal-2.jpg'],
   },
   // Huvudbyggnad
   {
@@ -136,6 +129,6 @@ export const accommodations: AccommodationItem[] = [
       { icon: Utensils, label: 'Matsal 40 personer' },
       { icon: Home, label: 'Kök med kyl, frys, spisar, diskmaskin, micro, kaffebryggare.' },
     ],
-    images: [getImg('main-building-reception.jpg'), getImg('main-building-dining.jpg')],
+    images: ['main-building-reception.jpg', 'main-building-dining.jpg'],
   },
 ];

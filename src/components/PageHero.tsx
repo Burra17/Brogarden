@@ -1,4 +1,4 @@
-import { getImg } from '../utils/imageHelper';
+import { getImg, getImgSrcSet } from '../utils/imageHelper';
 
 interface PageHeroProps {
   title: string;
@@ -11,7 +11,14 @@ const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, backgroundImage = 
     <section className='relative h-hero-page flex items-center justify-center mb-16'>
       {/* Bakgrundsbild */}
       <div className='absolute inset-0 overflow-hidden'>
-        <img src={getImg(backgroundImage)} alt={title} fetchPriority='high' className='w-full h-full object-cover hero-ken-burns' />
+        <img
+          src={getImg(backgroundImage)}
+          srcSet={getImgSrcSet(backgroundImage)}
+          sizes='100vw'
+          alt={title}
+          fetchPriority='high'
+          className='w-full h-full object-cover hero-ken-burns'
+        />
         {/* Tunn svart hinna (30 %) så att vit text syns ovanpå ljusa bilder */}
         <div className='absolute inset-0 bg-black/30'></div>
       </div>

@@ -1,24 +1,23 @@
 import { useEffect } from 'react';
-
-const SITE_URL = 'https://www.efsbrogarden.se';
+import { contactInfo } from '../data/contactInfo';
 
 /**
- * Sätter canonical-länken för aktuell sida så att Google indexerar varje
- * undersida för sig. Taggen finns medvetet inte i index.html – alla sidor
- * serveras från samma fil, och en statisk canonical skulle peka alla sidor
- * mot startsidan. Avslutande snedstreck tas bort så att /boende/ och /boende
- * räknas som samma sida.
+ * Håller canonical-länken aktuell vid navigering inom appen, så att Google
+ * indexerar varje undersida för sig. Förrenderingen bakar in samma länk i varje
+ * sidas HTML. Utan sökväg (404-sidan) tas länken bort.
  */
-export const useCanonicalUrl = (pathname: string) => {
+export const useCanonicalUrl = (path: string | undefined) => {
   useEffect(() => {
-    const path = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
-
     let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!path) {
+      link?.remove();
+      return;
+    }
     if (!link) {
       link = document.createElement('link');
       link.rel = 'canonical';
       document.head.appendChild(link);
     }
-    link.href = `${SITE_URL}${path}`;
-  }, [pathname]);
+    link.href = `${contactInfo.siteUrl}${path}`;
+  }, [path]);
 };

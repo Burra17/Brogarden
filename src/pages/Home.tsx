@@ -50,8 +50,9 @@ const Home: React.FC = () => {
           const progress = (viewHeight - rect.top) / (viewHeight + rect.height);
           const offset = (progress - 0.5) * -30;
           const imgs = container.querySelectorAll('img');
+          // Bara förskjutningen – skalan kommer från klassen md:scale-[1.08] (egen scale-egenskap i Tailwind 4)
           imgs.forEach((img) => {
-            (img as HTMLElement).style.transform = `translateY(${offset}px) scale(1.08)`;
+            (img as HTMLElement).style.transform = `translateY(${offset}px)`;
           });
         }
         ticking = false;
@@ -81,12 +82,12 @@ const Home: React.FC = () => {
         {/* Innehåll */}
         <div className='relative z-10 container mx-auto px-6 text-center text-white pt-20 pb-12 md:py-0'>
           {/* Rubrik med mjuk men djup skugga för läsbarhet mot ljus himmel */}
-          <h1 className='hero-animate text-3xl md:text-7xl font-bold font-serif mb-4 md:mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] leading-tight'>
+          <h1 className='hero-animate text-3xl md:text-7xl font-bold font-serif mb-4 md:mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] leading-tight md:leading-none'>
             Välkommen till Brogården!
           </h1>
 
           {/* Beskrivning */}
-          <p className='hero-animate hero-delay-1 text-base md:text-2xl max-w-3xl mx-auto mb-8 md:mb-10 font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'>
+          <p className='hero-animate hero-delay-1 text-base md:text-2xl max-w-3xl mx-auto mb-8 md:mb-10 font-medium leading-relaxed md:leading-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'>
             Lägergård, vandrarhem och EFS-kyrka i lugn och naturskön miljö nära havet. En plats för vila, gemenskap och glädje.
           </p>
 

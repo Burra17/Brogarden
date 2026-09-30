@@ -1,7 +1,9 @@
-import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { contactInfo } from '../data/contactInfo';
 import { routes } from '../routes';
+import FacebookIcon from './icons/FacebookIcon';
+import InstagramIcon from './icons/InstagramIcon';
 
 // Bara sidor med footerLabel visas under "Hitta snabbt"
 const footerLinks = routes.filter((route) => route.footerLabel);
@@ -24,7 +26,7 @@ const Footer: React.FC = () => (
               className='hover:text-brand-lightGreen transition-colors'
               aria-label='Besök oss på Facebook'
             >
-              <Facebook size={30} />
+              <FacebookIcon size={30} />
             </a>
             <a
               href={contactInfo.instagramUrl}
@@ -33,7 +35,7 @@ const Footer: React.FC = () => (
               className='hover:text-brand-lightGreen transition-colors'
               aria-label='Besök oss på Instagram'
             >
-              <Instagram size={30} />
+              <InstagramIcon size={30} />
             </a>
           </div>
         </div>

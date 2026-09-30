@@ -1,3 +1,4 @@
+import type { ComponentType } from 'react';
 import { LucideIcon } from 'lucide-react';
 
 // Färgton för etiketter – komponenten som visar etiketten väljer de faktiska klasserna
@@ -31,5 +32,6 @@ export interface Highlight {
   text: string;
   date?: string;
   time?: string;
-  link?: { label: string; url: string; icon?: LucideIcon };
+  // Både Lucide-ikoner och egna varumärkesikoner (t.ex. InstagramIcon) passar – båda tar emot size
+  link?: { label: string; url: string; icon?: ComponentType<{ size?: number }> };
 }

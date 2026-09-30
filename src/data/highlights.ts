@@ -1,4 +1,4 @@
-import { Instagram } from 'lucide-react';
+import InstagramIcon from '../components/icons/InstagramIcon';
 import { Highlight } from '../types';
 import { contactInfo } from './contactInfo';
 
@@ -7,7 +7,7 @@ export const highlights: Highlight[] = [
   {
     title: 'Glimtar från årets läger!',
     text: 'Se bilder här:',
-    link: { label: 'Instagram', url: contactInfo.instagramUrl, icon: Instagram },
+    link: { label: 'Instagram', url: contactInfo.instagramUrl, icon: InstagramIcon },
   },
   {
     title: 'Tack till alla gäster som besökt oss i sommar!',

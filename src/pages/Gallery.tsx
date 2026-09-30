@@ -2,14 +2,11 @@ import { useState } from 'react';
 import { ZoomIn } from 'lucide-react';
 import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero';
+import { galleryImages } from '../data/gallery';
 import { getImg } from '../utils/imageHelper';
 import { useScrollReveal, useScrollRevealList } from '../hooks/useScrollReveal';
 
-const images = Array.from({ length: 16 }).map((_, i) => ({
-  id: i,
-  url: getImg(`gallery-${i + 1}.jpg`),
-  caption: `Brogården miljö ${i + 1}`,
-}));
+const images = galleryImages.map((img) => ({ src: getImg(img.file), alt: img.alt }));
 
 const Gallery: React.FC = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
@@ -39,31 +36,34 @@ const Gallery: React.FC = () => {
       <div className='container mx-auto px-4'>
         <div ref={gridRef} className='reveal-stagger-desktop grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4'>
           {images.map((img, index) => (
-            <div
-              key={img.id}
+            <button
+              type='button'
+              key={img.src}
               ref={imageRef}
-              className='gallery-reveal group relative aspect-square overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-lg transition-all'
+              className='gallery-reveal group relative block w-full aspect-square overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-lg transition-all'
               style={{ transitionDelay: `${Math.min(index * 60, 500)}ms` }}
               onClick={() => openLightbox(index)}
+              aria-label={`Visa i helskärm: ${img.alt}`}
             >
-              <img src={img.url} alt={img.caption} className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110' />
-              <div className='absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center'>
+              {/* Tom alt – knappens aria-label beskriver redan bilden */}
+              <img
+                src={img.src}
+                alt=''
+                loading='lazy'
+                className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+              />
+              <div className='absolute inset-0 bg-black/0 group-hover:bg-black/30 group-focus-visible:bg-black/30 transition-colors flex items-center justify-center'>
                 <ZoomIn
-                  className='text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300'
+                  className='text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transform scale-50 group-hover:scale-100 group-focus-visible:scale-100 transition-all duration-300'
                   size={32}
                 />
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
 
-      <ImageLightbox
-        images={images.map((img) => ({ src: img.url, alt: img.caption }))}
-        initialIndex={lightboxIndex}
-        isOpen={isLightboxOpen}
-        onClose={closeLightbox}
-      />
+      <ImageLightbox images={images} initialIndex={lightboxIndex} isOpen={isLightboxOpen} onClose={closeLightbox} />
     </div>
   );
 };

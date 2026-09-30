@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { contactInfo } from '../data/contactInfo';
 import { routes } from '../routes';
 import FacebookIcon from './icons/FacebookIcon';

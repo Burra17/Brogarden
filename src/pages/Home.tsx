@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { getImg } from '../utils/imageHelper';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
       <section className='relative h-hero-home flex items-center justify-center overflow-hidden'>
         {/* Bakgrundsbild utan mörkt lager */}
         <div className='absolute inset-0 z-0'>
-          <img src={getImg('home-hero.jpg')} alt='Brogården natur' fetchpriority='high' className='w-full h-full object-cover hero-ken-burns' />
+          <img src={getImg('home-hero.jpg')} alt='Brogården natur' fetchPriority='high' className='w-full h-full object-cover hero-ken-burns' />
         </div>
 
         {/* Innehåll */}

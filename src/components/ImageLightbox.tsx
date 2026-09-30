@@ -91,6 +91,10 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
   const currentImage = images[currentIndex];
 
   return (
+    // jsx-a11y räknar <dialog> som icke-interaktivt. Klick på bakgrunden är en genväg för
+    // mus/touch – tangentbordet har Escape och Stäng-knappen – och piltangenterna måste
+    // lyssnas på här eftersom fokus ligger i dialogen.
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <dialog
       ref={dialogRef}
       aria-label='Bildvisning'

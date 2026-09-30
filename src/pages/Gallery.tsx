@@ -3,9 +3,10 @@ import { ZoomIn } from 'lucide-react';
 import ImageLightbox from '../components/ImageLightbox';
 import PageHero from '../components/PageHero';
 import { galleryImages } from '../data/gallery';
-import { getImg } from '../utils/imageHelper';
+import { getImg, getImgSrcSet } from '../utils/imageHelper';
 import { useScrollReveal, useScrollRevealList } from '../hooks/useScrollReveal';
 
+// Lightboxen visar alltid största varianten; rutnätet väljer storlek via srcset
 const images = galleryImages.map((img) => ({ src: getImg(img.file), alt: img.alt }));
 
 const Gallery: React.FC = () => {
@@ -34,7 +35,7 @@ const Gallery: React.FC = () => {
       />
 
       <div className='container mx-auto px-4'>
-        <div ref={gridRef} className='reveal-stagger-desktop grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4'>
+        <div ref={gridRef} className='reveal-stagger-desktop grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4'>
           {images.map((img, index) => (
             <button
               type='button'
@@ -48,6 +49,8 @@ const Gallery: React.FC = () => {
               {/* Tom alt – knappens aria-label beskriver redan bilden */}
               <img
                 src={img.src}
+                srcSet={getImgSrcSet(galleryImages[index].file)}
+                sizes='(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw'
                 alt=''
                 loading='lazy'
                 className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'

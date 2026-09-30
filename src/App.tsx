@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, matchPath } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, matchPath } from 'react-router';
 import Layout from './components/Layout';
 import { routes } from './routes';
 import { usePageTracking } from './hooks/usePageTracking';
@@ -29,7 +29,7 @@ const PageShell = ({ children }: { children: React.ReactNode }) => {
 
 function App() {
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <Router>
       <Layout>
         <PageShell>
           <Routes>

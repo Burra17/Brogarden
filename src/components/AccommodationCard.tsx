@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Images, CalendarCheck } from 'lucide-react';
 import { AccommodationItem, Tone } from '../types';
 

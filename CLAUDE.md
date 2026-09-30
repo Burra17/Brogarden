@@ -42,7 +42,7 @@ src/
 
 ## Teknikval
 
-- **React 18** med funktionella komponenter och hooks
+- **React 19** med funktionella komponenter och hooks
 - **TypeScript** – strikt typning
 - **Tailwind CSS** – all styling via utility-klasser, inga separata CSS-filer per komponent
 - **Vite** – build och dev server

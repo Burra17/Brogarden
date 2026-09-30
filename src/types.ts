@@ -27,6 +27,12 @@ export interface AboutFeature {
   tone: Extract<Tone, 'green' | 'blue' | 'red'>;
 }
 
+// En bild i lightboxen – alt-texten läses upp av skärmläsare
+export interface LightboxImage {
+  src: string;
+  alt: string;
+}
+
 export interface Highlight {
   title: string;
   text: string;

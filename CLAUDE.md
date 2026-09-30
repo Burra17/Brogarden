@@ -22,6 +22,7 @@ Koda som en senior utvecklare. Följ dessa principer:
 - **KISS** – Håll det enkelt. Ingen överkonstruktion eller onödig abstraktion.
 - **Clean Code** – Läsbara namn, små funktioner, tydlig struktur.
 - **Kommentarer på svenska** i all kod.
+- **Tillgänglighet** – klickbara element är `<button>` eller `<a>`, aldrig `<div onClick>`. Bilder har beskrivande alt-text (tom `alt=''` bara när en omslutande knapp redan har en `aria-label`). Använd inte `outline-none` – fokusringen styrs globalt med `:focus-visible` i `index.css`. `eslint-plugin-jsx-a11y` fångar det mesta i CI.
 - Skriv inga nya README- eller dokumentationsfiler om det inte uttryckligen begärs.
 
 ## Projektstruktur

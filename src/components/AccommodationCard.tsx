@@ -1,11 +1,11 @@
 import { Link } from 'react-router';
 import { Images, CalendarCheck } from 'lucide-react';
-import { AccommodationItem, Tone } from '../types';
+import { AccommodationItem, LightboxImage, Tone } from '../types';
 
 interface AccommodationCardProps {
   item: AccommodationItem;
   reverse?: boolean;
-  onOpenGallery: (images: string[]) => void;
+  onOpenGallery: (images: LightboxImage[]) => void;
 }
 
 // Tailwind-klasser per färgton för etiketterna
@@ -18,25 +18,37 @@ const tagToneClasses: Record<Tone, string> = {
 };
 
 const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, onOpenGallery }) => {
+  // Alt-text per bild i lightboxen, t.ex. "Nystugan – bild 1 av 3". Bara namnet om det finns en bild.
+  const galleryImages: LightboxImage[] = item.images.map((src, index) => ({
+    src,
+    alt: item.images.length > 1 ? `${item.title} – bild ${index + 1} av ${item.images.length}` : item.title,
+  }));
+
   return (
     <div
       className={`flex flex-col lg:flex-row bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-12 lg:mb-20 transition-all hover:shadow-xl ${reverse ? 'lg:flex-row-reverse' : ''}`}
     >
       {/* Bildgalleri */}
-      <div className='lg:w-1/2 h-64 lg:h-auto relative group cursor-pointer' onClick={() => onOpenGallery(item.images)}>
+      {/* Negativ outline-offset så att fokusringen inte klipps av kortets overflow-hidden */}
+      <button
+        type='button'
+        className='lg:w-1/2 h-64 lg:h-auto relative group cursor-pointer block w-full focus-visible:-outline-offset-4'
+        onClick={() => onOpenGallery(galleryImages)}
+        aria-label={item.images.length > 1 ? `Visa bilder på ${item.title}` : `Visa bild på ${item.title}`}
+      >
         <img
           src={item.images[0]}
           onError={(e) => {
             e.currentTarget.src = `https://picsum.photos/seed/${item.id}/1200/800`;
           }}
-          alt={item.title}
+          alt=''
           loading='lazy'
           className='w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105'
         />
         <div className='absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition-opacity md:group-hover:opacity-40'></div>
 
         {/* Synlig galleri-ikon på mobil, hover-effekt på desktop */}
-        <div className='absolute inset-0 flex items-center justify-center opacity-70 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300'>
+        <div className='absolute inset-0 flex items-center justify-center opacity-70 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100 transition-opacity duration-300'>
           <div className='bg-black/40 p-3 rounded-full backdrop-blur-sm text-white border border-white/30'>
             <Images size={32} />
           </div>
@@ -49,7 +61,7 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
             </span>
           </div>
         )}
-      </div>
+      </button>
 
       {/* Innehåll */}
       <div className='lg:w-1/2 p-6 lg:p-10 flex flex-col justify-center'>

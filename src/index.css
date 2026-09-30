@@ -26,6 +26,13 @@ body {
   overflow-x: hidden;
 }
 
+/* Synlig fokusring för tangentbordsnavigering. :focus-visible gör att den inte
+   visas vid klick med mus eller finger, så inga element behöver outline-none. */
+:focus-visible {
+  outline: 2px solid theme('colors.brand.lightGreen');
+  outline-offset: 2px;
+}
+
 /* Hero-höjder – svh ger stabil höjd på mobil (ingen resize när adressfältet döljs) */
 .h-hero-home {
   min-height: 70vh;

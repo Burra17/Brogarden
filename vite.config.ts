@@ -1,20 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
-// Vite-konfiguration för lokal utveckling och bygget till Cloudflare Pages
+// Vite-konfiguration för lokal utveckling och bygget till Cloudflare Pages.
+// Bilderna optimeras efter bygget av scripts/optimizeImages.mjs.
 export default defineConfig({
-  plugins: [
-    react(),
-    ViteImageOptimizer({
-      jpg: {
-        quality: 75,
-      },
-      png: {
-        quality: 75,
-      },
-    }),
-  ],
+  plugins: [react()],
   base: '/',
   build: {
     outDir: 'dist',

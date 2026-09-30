@@ -7,7 +7,16 @@
 
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-    <link rel="preload" as="image" type="image/webp" href="/images/home-hero.webp" />
+    <!-- Hero-bilden laddas före JS. Pekar på varianterna från scripts/optimizeImages.mjs,
+         som bara finns efter bygget – i dev syns därför en misslyckad preload. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/home-hero-1920.webp"
+      imagesrcset="/images/home-hero-640.webp 640w, /images/home-hero-1280.webp 1280w, /images/home-hero-1920.webp 1920w"
+      imagesizes="100vw"
+    />
 
     <title>Brogården – Vandrarhem & Lägergård i Njutånger</title>
     <meta
@@ -23,7 +32,7 @@
       property="og:description"
       content="Brogården – prisvärt och hemtrevligt boende nära natur och vatten. Perfekt för familjer, vandrare och grupper."
     />
-    <meta property="og:image" content="https://www.efsbrogarden.se/images/home-hero.webp" />
+    <meta property="og:image" content="https://www.efsbrogarden.se/images/home-hero-1280.webp" />
     <meta property="og:locale" content="sv_SE" />
     <meta property="og:site_name" content="Brogården" />
 

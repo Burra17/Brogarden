@@ -17,6 +17,7 @@ export interface AccommodationItem {
   tags: { label: string; tone: Tone }[];
   price: { amount: string; unit?: string }[];
   features: AccommodationFeature[];
+  // Filnamn i public/images, t.ex. 'room-blue.jpg' – komponenten bygger sökvägarna
   images: string[];
 }
 

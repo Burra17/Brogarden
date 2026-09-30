@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
-import { getImg } from '../utils/imageHelper';
+import { getImg, getImgSrcSet } from '../utils/imageHelper';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { aboutFeatures } from '../data/aboutFeatures';
 import { AboutFeature } from '../types';
@@ -68,7 +68,14 @@ const Home: React.FC = () => {
       <section className='relative h-hero-home flex items-center justify-center overflow-hidden'>
         {/* Bakgrundsbild utan mörkt lager */}
         <div className='absolute inset-0 z-0'>
-          <img src={getImg('home-hero.jpg')} alt='Brogården natur' fetchPriority='high' className='w-full h-full object-cover hero-ken-burns' />
+          <img
+            src={getImg('home-hero.jpg')}
+            srcSet={getImgSrcSet('home-hero.jpg')}
+            sizes='100vw'
+            alt='Brogården natur'
+            fetchPriority='high'
+            className='w-full h-full object-cover hero-ken-burns'
+          />
         </div>
 
         {/* Innehåll */}
@@ -131,6 +138,8 @@ const Home: React.FC = () => {
           <div key={num} className='relative w-full h-full overflow-hidden group'>
             <img
               src={getImg(`collage-${num}.jpg`)}
+              srcSet={getImgSrcSet(`collage-${num}.jpg`)}
+              sizes='(min-width: 768px) 25vw, 50vw'
               alt='Natur och miljö på Brogården'
               loading='lazy'
               className='w-full h-full object-cover md:will-change-transform md:scale-[1.08]'

@@ -52,9 +52,12 @@ src/
 
 ## Bilder
 
-- Alla bilder i `public/images/` som `.webp`
+- Alla bilder i `public/images/` som `.webp` i full upplösning – de är masterfiler och ändras aldrig av bygget
+- `scripts/optimizeImages.mjs` körs efter `vite build` och skapar tre bredder per bild i `dist/images/` (`-640`, `-1280`, `-1920`, WebP kvalitet 78). Bredderna delas med `imageHelper.ts` via `src/utils/imageWidths.json`
 - Referera med `.jpg`-namn i koden – `imageHelper.ts` konverterar till `.webp` automatiskt
-- Använd `getImg()` för alla bildreferenser
+- Använd `getImg()` för `src` (1920-varianten i produktion, originalet i dev) och `getImgSrcSet()` + ett `sizes` som beskriver bildens bredd i layouten för `srcSet`
+- Datafiler (t.ex. `accommodations.ts`, `gallery.ts`) lagrar filnamn, inte sökvägar – komponenten anropar `getImg()`
+- Varianterna finns bara efter bygget – testa bildval med `npm run build && npm run preview`
 - Använd `loading="lazy"` på alla bilder utom hero (som har `fetchPriority="high"`)
 
 ## Deploy

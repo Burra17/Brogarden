@@ -24,13 +24,13 @@ const Program: React.FC = () => {
           {/* Kalender */}
           <div
             ref={calendarRef}
-            className={`reveal-fade-up w-full ${hasHighlights ? 'lg:w-2/3' : ''} bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden p-6`}
+            className={`reveal-fade-up w-full ${hasHighlights ? 'lg:w-2/3' : ''} bg-white rounded-2xl shadow-xs border border-gray-100 overflow-hidden p-6`}
           >
             <h2 className='text-2xl font-bold mb-6 flex items-center gap-2'>
               <Calendar className='text-brand-lightGreen' />
               Kalender
             </h2>
-            <div className='aspect-square md:aspect-[4/3] w-full bg-gray-50 rounded-lg overflow-hidden'>
+            <div className='aspect-square md:aspect-4/3 w-full bg-gray-50 rounded-lg overflow-hidden'>
               <iframe
                 src='https://calendar.google.com/calendar/embed?src=c_cafb2e4b853878b7445efc043ac1c561419a4c70903456cb06bf4cfa3feb097c%40group.calendar.google.com&ctz=Europe%2FStockholm&mode=AGENDA'
                 style={{ border: 0 }}
@@ -51,7 +51,7 @@ const Program: React.FC = () => {
                 {highlights.map((event) => (
                   <div
                     key={event.title}
-                    className='bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-brand-lightGreen transition-colors group'
+                    className='bg-white p-6 rounded-xl shadow-xs border border-gray-100 hover:border-brand-lightGreen transition-colors group'
                   >
                     {event.date && (
                       <div className='flex items-center gap-3 text-brand-green font-semibold mb-2'>

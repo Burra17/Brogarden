@@ -120,7 +120,7 @@ const Home: React.FC = () => {
 
           <div ref={cardsRef} className='reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-8'>
             {aboutFeatures.map((feature) => (
-              <div key={feature.title} className='p-6 bg-brand-cream/30 rounded-xl border border-gray-100 shadow-sm'>
+              <div key={feature.title} className='p-6 bg-brand-cream/30 rounded-xl border border-gray-100 shadow-xs'>
                 <div className={`w-12 h-12 ${featureToneClasses[feature.tone]} rounded-full flex items-center justify-center mx-auto mb-4`}>
                   <feature.icon size={24} />
                 </div>

@@ -1,18 +1,51 @@
 /* Lokalt hostade typsnitt – eliminerar render-blockerande Google Fonts-anrop */
 /* Bara latin – den täcker å, ä och ö. Fontsources filer för latin-ext saknar unicode-range
    och skulle då ta över alla tecken och laddas ner i onödan. */
-@import '@fontsource/inter/latin-300.css';
-@import '@fontsource/inter/latin-400.css';
-@import '@fontsource/inter/latin-500.css';
-@import '@fontsource/inter/latin-600.css';
-@import '@fontsource/inter/latin-700.css';
-@import '@fontsource/merriweather/latin-300.css';
-@import '@fontsource/merriweather/latin-400.css';
-@import '@fontsource/merriweather/latin-700.css';
+@import '@fontsource/inter/latin-300.css' layer(base);
+@import '@fontsource/inter/latin-400.css' layer(base);
+@import '@fontsource/inter/latin-500.css' layer(base);
+@import '@fontsource/inter/latin-600.css' layer(base);
+@import '@fontsource/inter/latin-700.css' layer(base);
+@import '@fontsource/merriweather/latin-300.css' layer(base);
+@import '@fontsource/merriweather/latin-400.css' layer(base);
+@import '@fontsource/merriweather/latin-700.css' layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* Sajtens designtokens – ger klasser som bg-brand-green och animate-fade-in */
+@theme {
+  --color-brand-green: #2f5233;
+  --color-brand-lightGreen: #76b041;
+  --color-brand-cream: #f7f5e6;
+  --color-brand-dark: #1a202c;
+  --color-brand-blue: #4a90e2;
+  --color-brand-red: #e53e3e;
+
+  --font-sans: Inter, sans-serif;
+  --font-serif: Merriweather, serif;
+
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-in-from-top-2: slideInFromTop 0.2s ease-out;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes slideInFromTop {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
 
 html,
 body {
@@ -22,7 +55,7 @@ body {
 /* Synlig fokusring för tangentbordsnavigering. :focus-visible gör att den inte
    visas vid klick med mus eller finger, så inga element behöver outline-none. */
 :focus-visible {
-  outline: 2px solid theme('colors.brand.lightGreen');
+  outline: 2px solid var(--color-brand-lightGreen);
   outline-offset: 2px;
 }
 

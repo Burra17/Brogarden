@@ -27,7 +27,7 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
 
   return (
     <div
-      className={`flex flex-col lg:flex-row bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-12 lg:mb-20 transition-all hover:shadow-xl ${reverse ? 'lg:flex-row-reverse' : ''}`}
+      className={`flex flex-col lg:flex-row bg-white rounded-2xl overflow-hidden shadow-xs border border-gray-100 mb-12 lg:mb-20 transition-all hover:shadow-xl ${reverse ? 'lg:flex-row-reverse' : ''}`}
     >
       {/* Bildgalleri */}
       {/* Negativ outline-offset så att fokusringen inte klipps av kortets overflow-hidden */}
@@ -45,11 +45,11 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
           loading='lazy'
           className='w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105'
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition-opacity md:group-hover:opacity-40'></div>
+        <div className='absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 transition-opacity md:group-hover:opacity-40'></div>
 
         {/* Synlig galleri-ikon på mobil, hover-effekt på desktop */}
         <div className='absolute inset-0 flex items-center justify-center opacity-70 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100 transition-opacity duration-300'>
-          <div className='bg-black/40 p-3 rounded-full backdrop-blur-sm text-white border border-white/30'>
+          <div className='bg-black/40 p-3 rounded-full backdrop-blur-xs text-white border border-white/30'>
             <Images size={32} />
           </div>
         </div>

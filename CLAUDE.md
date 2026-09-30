@@ -39,14 +39,14 @@ src/
 ├── App.tsx        # Routes, layout och PageShell (titel, beskrivning, canonical)
 ├── index.tsx      # Entry point i webbläsaren (BrowserRouter, hydrering)
 ├── entry-server.tsx # Entry point för förrenderingen (StaticRouter)
-└── index.css      # Globala stilar + Tailwind
+└── index.css      # Globala stilar, Tailwind och designtokens (@theme)
 ```
 
 ## Teknikval
 
 - **React 19** med funktionella komponenter och hooks
 - **TypeScript** – strikt typning
-- **Tailwind CSS** – all styling via utility-klasser, inga separata CSS-filer per komponent
+- **Tailwind CSS 4** – all styling via utility-klasser, inga separata CSS-filer per komponent. Ingen `tailwind.config.js` – färger, typsnitt och animationer ligger i `@theme` i `index.css`, och Tailwind körs via `@tailwindcss/vite`. Kräver Safari/iOS 16.4+, Chrome 111+ och Firefox 128+
 - **Vite** – build och dev server
 - **React Router** (BrowserRouter) – klientsidesrouting med rena URL:er. Gamla `/#/`-länkar skrivs om i `utils/redirectLegacyHashUrl.ts`
 - **Förrendering** – `scripts/prerender.mjs` renderar varje sida i `routes.tsx` till en egen HTML-fil (`index.html`, `boende.html` …) med titel, beskrivning, canonical och `og:*` inbakade. `index.tsx` hydrerar HTML:en. Okända sökvägar får den förrenderade `404.html`, som Cloudflare Pages serverar med status 404 – lägg inte en egen `404.html` i `public/`

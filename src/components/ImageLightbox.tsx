@@ -140,7 +140,9 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, isO
         </>
       )}
 
-      {currentImage && (
+      {/* Renderas bara när dialogen är öppen, så att varje öppning får ett nytt <img>.
+          Återanvänds elementet visar webbläsaren förra bilden tills den nya laddats. */}
+      {isOpen && currentImage && (
         <div className='relative max-w-7xl max-h-screen w-full h-full flex items-center justify-center pointer-events-none'>
           <img
             src={currentImage.src}

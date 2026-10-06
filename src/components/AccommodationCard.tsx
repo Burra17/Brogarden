@@ -31,9 +31,10 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
     >
       {/* Bildgalleri */}
       {/* Negativ outline-offset så att fokusringen inte klipps av kortets overflow-hidden */}
+      {/* På desktop styr texten kortets höjd – bilden ligger absolut och beskärs, så stående foton inte gör kortet högre än skärmen */}
       <button
         type='button'
-        className='lg:w-1/2 h-64 lg:h-auto relative group cursor-pointer block w-full focus-visible:-outline-offset-4'
+        className='lg:w-1/2 h-64 lg:h-auto lg:min-h-105 relative group cursor-pointer block w-full focus-visible:-outline-offset-4'
         onClick={() => onOpenGallery(galleryImages)}
         aria-label={item.images.length > 1 ? `Visa bilder på ${item.title}` : `Visa bild på ${item.title}`}
       >
@@ -43,7 +44,7 @@ const AccommodationCard: React.FC<AccommodationCardProps> = ({ item, reverse, on
           sizes='(min-width: 1024px) 50vw, 100vw'
           alt=''
           loading='lazy'
-          className='w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105'
+          className='lg:absolute lg:inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105'
         />
         <div className='absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 transition-opacity md:group-hover:opacity-40'></div>
 
